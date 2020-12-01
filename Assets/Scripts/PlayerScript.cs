@@ -4,23 +4,39 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    public float speed;
     public float runSpeed = 10f;
     public float crouchSpeed = 5f;
-    private Transform target;
+    
+    private float speed;
+    private Transform waypoint;
     private int waypointIndex = 0;
+    //private SphereCollider sphereCollider;
     void Start()
     {
-        target = WaypointsScript.waypoints[0];
+        //sphereCollider = GetComponent<SphereCollider>();
+        waypoint = WaypointsScript.waypoints[0];
     }
 
     void Update()
     {
         Crouch();
-        Vector3 dir = target.position - transform.position;
+        ToWaypointsMover();
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("ENEMY!");
+        }
+    }
+
+    void ToWaypointsMover()
+    {
+        Vector3 dir = waypoint.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
+        if (Vector3.Distance(transform.position, waypoint.position) <= 0.2f)
         {
             GetNextWaypoint();
         }
@@ -35,7 +51,7 @@ public class PlayerScript : MonoBehaviour
             return;
         }
         waypointIndex++;
-        target = WaypointsScript.waypoints[waypointIndex];
+        waypoint = WaypointsScript.waypoints[waypointIndex];
     }
 
     void Crouch()
