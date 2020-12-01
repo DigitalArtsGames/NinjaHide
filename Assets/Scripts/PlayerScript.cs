@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed;
+    public float runSpeed = 10f;
+    public float crouchSpeed = 5f;
     private Transform target;
     private int waypointIndex = 0;
     void Start()
@@ -14,6 +16,7 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
+        Crouch();
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
@@ -33,5 +36,17 @@ public class PlayerScript : MonoBehaviour
         }
         waypointIndex++;
         target = WaypointsScript.waypoints[waypointIndex];
+    }
+
+    void Crouch()
+    {
+        if(Input.GetButton("Crouch"))
+        {
+            speed = crouchSpeed;
+        }
+        else
+        {
+            speed = runSpeed;
+        }
     }
 }
