@@ -6,6 +6,8 @@ public class PlayerScript : MonoBehaviour
 {
     public float runSpeed = 10f;
     public float crouchSpeed = 5f;
+
+    private int score;
     
     private float speed;
     private Transform waypoint;
@@ -13,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     //private SphereCollider sphereCollider;
     void Start()
     {
+        score = 0;
         //sphereCollider = GetComponent<SphereCollider>();
         waypoint = WaypointsScript.waypoints[0];
     }
@@ -28,6 +31,12 @@ public class PlayerScript : MonoBehaviour
         if(other.gameObject.tag == "Enemy")
         {
             Debug.Log("ENEMY!");
+        }
+        if(other.gameObject.tag == "Hostage")
+        {
+            Destroy(other.gameObject);
+            score++;
+            Debug.Log(score);
         }
     }
 
