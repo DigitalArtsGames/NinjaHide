@@ -4,39 +4,81 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public Transform enemyTarget;
+    
     public float runSpeed = 10f;
     public float crouchSpeed = 5f;
+    public GameObject bulletPrefab;
+    public Transform firePoint;
 
     private int score;
-    
+
+    private SphereCollider sphereCollider;
     private float speed;
     private Transform waypoint;
     private int waypointIndex = 0;
-    //private SphereCollider sphereCollider;
     void Start()
     {
+        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        
         score = 0;
-        //sphereCollider = GetComponent<SphereCollider>();
         waypoint = WaypointsScript.waypoints[0];
+
     }
 
     void Update()
     {
-        Crouch();
         ToWaypointsMover();
+        Crouch();
+        sphereCollider = GetComponent<SphereCollider>();
+        
+        if (enemyTarget == null)
+            return;
+        Shoot();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy")
-        {
-            Debug.Log("ENEMY!");
-        }
         if(other.gameObject.tag == "Hostage")
         {
             Destroy(other.gameObject);
             score++;
             Debug.Log(score);
+        }
+    }
+
+    void Shoot()
+    {
+        GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        BulletScript bullet = bulletGameObject.GetComponent<BulletScript>();
+        if (bullet != null)
+        {
+            bullet.SetTarget(enemyTarget);
+        }
+    }
+
+    public void UpdateTarget()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestEnemy = null;
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < shortestDistance)
+            {
+                shortestDistance = distanceToEnemy;
+                nearestEnemy = enemy;
+            }
+        }
+
+        if (nearestEnemy != null && shortestDistance <= sphereCollider.radius)
+        {
+            enemyTarget = nearestEnemy.transform;
+        }
+        else
+        {
+            enemyTarget = null;
         }
     }
 
