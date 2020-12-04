@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    public Transform enemyTarget;
-    
-    public float runSpeed = 10f;
-    public float crouchSpeed = 5f;
+    private Transform enemyTarget;
+
+    [Header("Prefabs and Points")]
     public GameObject bulletPrefab;
     public Transform firePoint;
+
+    [Header("Player Parameters")]
+    public float runSpeed = 10f;
+    public float crouchSpeed = 5f;
+
+    [Header("Fire Rate")]
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
 
     private int score;
 
@@ -20,7 +27,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-        
+        enemyTarget = null;
         score = 0;
         waypoint = WaypointsScript.waypoints[0];
 
@@ -28,22 +35,35 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
+        //GameObject go = GameObject.Find("MainCamera");
+        //go.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         ToWaypointsMover();
         Crouch();
         sphereCollider = GetComponent<SphereCollider>();
-        
+
         if (enemyTarget == null)
             return;
-        Shoot();
+
+        Vector3 dir = enemyTarget.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+
+        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 3).eulerAngles;
+        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+        fireCountdown -= Time.deltaTime;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Hostage")
+        if (other.gameObject.tag == "Hostage")
         {
             Destroy(other.gameObject);
             score++;
-            Debug.Log(score);
         }
     }
 
@@ -97,7 +117,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (waypointIndex >= WaypointsScript.waypoints.Length - 1)
         {
-            Debug.Log("WIN!!");
             Destroy(gameObject);
             return;
         }
@@ -107,7 +126,7 @@ public class PlayerScript : MonoBehaviour
 
     void Crouch()
     {
-        if(Input.GetButton("Crouch"))
+        if (Input.GetButton("Crouch"))
         {
             speed = crouchSpeed;
         }
