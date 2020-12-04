@@ -20,6 +20,10 @@ public class PlayerScript : MonoBehaviour
 
     private int score;
 
+    Vector3 tempPosition;
+    private Collider hidingSpot;
+    private bool canHide;
+    private bool isHiding;
     private SphereCollider sphereCollider;
     private float speed;
     private Transform waypoint;
@@ -37,8 +41,14 @@ public class PlayerScript : MonoBehaviour
     {
         //GameObject go = GameObject.Find("MainCamera");
         //go.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        ToWaypointsMover();
-        Crouch();
+
+        Hide();
+
+        if (!isHiding)
+        {
+            ToWaypointsMover();
+            Crouch();
+        }
         sphereCollider = GetComponent<SphereCollider>();
 
         if (enemyTarget == null)
@@ -60,10 +70,35 @@ public class PlayerScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Hostage")
+        if (other.gameObject.CompareTag("Hostage"))
         {
             Destroy(other.gameObject);
             score++;
+        }
+        if (other.gameObject.CompareTag("HidingSpot"))
+        {
+            canHide = true;
+            hidingSpot = other;
+        }
+    }
+
+    void Hide()
+    {
+        if(canHide == true)
+        {
+            if (Input.GetButtonDown("Hide"))
+            {
+                Debug.Log("I am hiding! He-he he");
+                tempPosition = transform.position;
+                transform.position = hidingSpot.transform.position;
+                isHiding = true;
+            } 
+            if(Input.GetButtonUp("Hide"))
+            {
+                transform.position = tempPosition;
+                isHiding = false;
+                tempPosition = new Vector3();
+            }
         }
     }
 

@@ -16,10 +16,10 @@ public class EnemyScript : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
         if (target == null)
             return;
-        Invoke("Shoot()", 1f);
+        Invoke("Shoot", 1f);
     }
 
-    void Shoot()
+    public void Shoot()
     {
         GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         BulletScript bullet = bulletGameObject.GetComponent<BulletScript>();
