@@ -16,7 +16,7 @@ public class EnemyScript : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
         if (target == null)
             return;
-        Shoot();
+        Invoke("Shoot()", 1f);
     }
 
     void Shoot()
