@@ -13,23 +13,28 @@ public class EnemyScript : MonoBehaviour
     [Header("FOV and View Destance Settings")]
     public float viewDistance;
     public float fov;
+    public GameObject eyes;
+
+    [Header("Mesh Collider")]
+    public MeshCollider meshCollider;
 
     private MeshScript gm;
     private Transform target;
     private bool isAgressive;
-    private SphereCollider sphereCollider;
+    //private SphereCollider sphereCollider;
 
     private void Start()
     {
-        gm = Instantiate(meshScript, firePoint.position, Quaternion.Euler(90,0,90));
+        gm = Instantiate(meshScript, eyes.transform.position, Quaternion.Euler(90,0,eyes.transform.rotation.z + 30), transform);
     }
 
     void Update()
     {
         gm.SetFov(fov);
         gm.SetViewDistance(viewDistance);
-
-        sphereCollider = GetComponent<SphereCollider>();
+        meshCollider.sharedMesh = gm.mesh;
+        RotatePlayer();
+        //sphereCollider = GetComponent<SphereCollider>();
         if (target == null)
             return;
         Invoke("Shoot", 2f);
@@ -56,13 +61,27 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    void RotatePlayer()
+    {
+        if(isAgressive && target != null)
+        {
+            Vector3 targetDirection = target.position - transform.position;
+            float singleStep = 1 * Time.deltaTime;
+
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+            Debug.DrawRay(transform.position, newDirection, Color.red);
+            transform.rotation = Quaternion.LookRotation(newDirection);
+
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == targetTag)
         {
             target = other.transform;
             isAgressive = true;
-            //Debug.Log("НАШЕЛ ЗАРАЗУ");
+            Debug.Log("НАШЕЛ ЗАРАЗУ");
         }
     }
 
@@ -71,7 +90,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (other.tag == targetTag)
         {
-            target = other.transform;
+            //target = other.transform;
             isAgressive = false;
         }
     }

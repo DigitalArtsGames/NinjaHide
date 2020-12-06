@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeshScript : MonoBehaviour
 {
     [SerializeField] private LayerMask layerMask;
-    Mesh mesh;
+    [HideInInspector] public Mesh mesh;
     Vector3 origin;
     float startingAngle;
     float fov;
