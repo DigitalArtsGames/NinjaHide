@@ -9,6 +9,7 @@ public class EnemyScript : MonoBehaviour
     public Transform firePoint;
 
     private Transform target;
+    private bool isAgressive;
     private SphereCollider sphereCollider;
 
     void Update()
@@ -19,15 +20,24 @@ public class EnemyScript : MonoBehaviour
         Invoke("Shoot", 1f);
     }
 
+    //IEnumerator ColdDown()
+    //{
+    //    yield return new WaitForSeconds(3f);
+    //    isAgressive = false;
+    //}
+
     public void Shoot()
     {
-        GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        BulletScript bullet = bulletGameObject.GetComponent<BulletScript>();
-        if (bullet != null)
+        if(isAgressive)
         {
-            bullet.SetTarget(target);
+            GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            BulletScript bullet = bulletGameObject.GetComponent<BulletScript>();
+            if (bullet != null)
+            {
+                bullet.SetTarget(target);
+            }
+            //Debug.Log("BUX");
         }
-        //Debug.Log("BUX");
     }
 
     void OnTriggerEnter(Collider other)
@@ -35,7 +45,17 @@ public class EnemyScript : MonoBehaviour
         if (other.tag == targetTag)
         {
             target = other.transform;
+            isAgressive = true;
             //Debug.Log("НАШЕЛ ЗАРАЗУ");
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == targetTag)
+        {
+            target = other.transform;
+            isAgressive = false;
         }
     }
 }

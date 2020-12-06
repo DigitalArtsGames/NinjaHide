@@ -16,9 +16,17 @@ public class BulletScript : MonoBehaviour
         ChaseTarget();
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.CompareTag("Obstacle"))
+        {
+            Destroy(gameObject);
+            print("AAA");
+        }
+    }
+
     public void HitTarget()
     {
-        Debug.Log("HITT!");
         Destroy(gameObject);
         Destroy(target.gameObject);
     }
