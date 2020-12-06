@@ -20,6 +20,7 @@ public class EnemyScript : MonoBehaviour
         Invoke("Shoot", 1f);
     }
 
+    //Если противнику нужно время для перехода в не агрессивное состояние
     //IEnumerator ColdDown()
     //{
     //    yield return new WaitForSeconds(3f);
@@ -50,6 +51,7 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    //Враг моментально переходит в неагрессивное состояние если игрок вышел из поле зрения
     void OnTriggerExit(Collider other)
     {
         if (other.tag == targetTag)

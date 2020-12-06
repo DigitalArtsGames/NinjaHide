@@ -55,11 +55,7 @@ public class PlayerScript : MonoBehaviour
         if (enemyTarget == null)
             return;
 
-        Vector3 dir = enemyTarget.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-
-        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 3).eulerAngles;
-        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        RotatePlayer();
 
         if (fireCountdown <= 0f)
         {
@@ -67,6 +63,16 @@ public class PlayerScript : MonoBehaviour
             fireCountdown = 1f / fireRate;
         }
         fireCountdown -= Time.deltaTime;
+    }
+
+    //Поварачивает игрока в сторону стрельбы
+    void RotatePlayer()
+    {
+        Vector3 dir = enemyTarget.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+
+        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 3).eulerAngles;
+        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
     void OnTriggerEnter(Collider other)
@@ -113,6 +119,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    //Обновляет врагов
     public void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
