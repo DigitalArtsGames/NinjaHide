@@ -34,6 +34,7 @@ public class PlayerScript : MonoBehaviour
         enemyTarget = null;
         score = 0;
         waypoint = WaypointsScript.waypoints[0];
+        sphereCollider = GetComponent<SphereCollider>();
 
     }
 
@@ -49,7 +50,7 @@ public class PlayerScript : MonoBehaviour
             ToWaypointsMover();
             Crouch();
         }
-        sphereCollider = GetComponent<SphereCollider>();
+        //sphereCollider = GetComponent<SphereCollider>();
 
         if (enemyTarget == null)
             return;
@@ -84,7 +85,7 @@ public class PlayerScript : MonoBehaviour
 
     void Hide()
     {
-        if(canHide == true)
+        if (canHide == true)
         {
             if (Input.GetButtonDown("Hide"))
             {
@@ -92,8 +93,8 @@ public class PlayerScript : MonoBehaviour
                 tempPosition = transform.position;
                 transform.position = hidingSpot.transform.position;
                 isHiding = true;
-            } 
-            if(Input.GetButtonUp("Hide"))
+            }
+            if (Input.GetButtonUp("Hide"))
             {
                 transform.position = tempPosition;
                 isHiding = false;
