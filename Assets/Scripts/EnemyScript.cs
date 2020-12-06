@@ -4,20 +4,35 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    [Header("Main Settings")]
     public string targetTag;
     public GameObject bulletPrefab;
     public Transform firePoint;
+    public MeshScript meshScript;
 
+    [Header("FOV and View Destance Settings")]
+    public float viewDistance;
+    public float fov;
+
+    private MeshScript gm;
     private Transform target;
     private bool isAgressive;
     private SphereCollider sphereCollider;
 
+    private void Start()
+    {
+        gm = Instantiate(meshScript, firePoint.position, Quaternion.Euler(90,0,90));
+    }
+
     void Update()
     {
+        gm.SetFov(fov);
+        gm.SetViewDistance(viewDistance);
+
         sphereCollider = GetComponent<SphereCollider>();
         if (target == null)
             return;
-        Invoke("Shoot", 1f);
+        Invoke("Shoot", 2f);
     }
 
     //Если противнику нужно время для перехода в не агрессивное состояние
