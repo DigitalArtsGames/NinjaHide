@@ -353,6 +353,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1456031288, guid: 2f65cba855c4760489cc402278331687, type: 3}
+      propertyPath: viewAngle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1456031288, guid: 2f65cba855c4760489cc402278331687, type: 3}
+      propertyPath: viewRadius
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8449585512840838662, guid: 2f65cba855c4760489cc402278331687,
         type: 3}
       propertyPath: m_Name
@@ -371,7 +379,7 @@ PrefabInstance:
     - target: {fileID: 8449585512840838714, guid: 2f65cba855c4760489cc402278331687,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.99
+      value: 6.14
       objectReference: {fileID: 0}
     - target: {fileID: 8449585512840838714, guid: 2f65cba855c4760489cc402278331687,
         type: 3}
@@ -412,11 +420,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8623382085519367903, guid: 2f65cba855c4760489cc402278331687,
-        type: 3}
-      propertyPath: meshCollider
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f65cba855c4760489cc402278331687, type: 3}
@@ -1110,6 +1113,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1456031288, guid: 2f65cba855c4760489cc402278331687, type: 3}
+      propertyPath: viewAngle
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 8449585512840838662, guid: 2f65cba855c4760489cc402278331687,
         type: 3}
       propertyPath: m_Name
@@ -1128,7 +1135,7 @@ PrefabInstance:
     - target: {fileID: 8449585512840838714, guid: 2f65cba855c4760489cc402278331687,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.7
+      value: -3.32
       objectReference: {fileID: 0}
     - target: {fileID: 8449585512840838714, guid: 2f65cba855c4760489cc402278331687,
         type: 3}

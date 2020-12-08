@@ -55,7 +55,7 @@ public class PlayerScript : MonoBehaviour
 
         if (fireCountdown <= 0f)
         {
-            //Shoot();
+            Shoot();
             fireCountdown = 1f / fireRate;
         }
         fireCountdown -= Time.deltaTime;
