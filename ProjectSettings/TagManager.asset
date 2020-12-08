@@ -8,6 +8,7 @@ TagManager:
   - Hostage
   - HidingSpot
   - Obstacle
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Obstacle
+  - Target
   - 
   - 
   - 

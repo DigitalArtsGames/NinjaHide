@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 8449585512840838663}
   - component: {fileID: 8449585512840838715}
   - component: {fileID: 8623382085519367903}
+  - component: {fileID: 1456031288}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -191,12 +192,30 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2273965021098050530, guid: a12b6b1f9a4fb9742b7eb65692e88709,
     type: 3}
   firePoint: {fileID: 5639208637197368564}
-  meshScript: {fileID: 6744483755529015242, guid: 00d763328f8e6334f976841a1ebb8437,
-    type: 3}
   viewDistance: 5
   fov: 60
   eyes: {fileID: 7882410474585992970}
-  meshCollider: {fileID: 0}
+--- !u!114 &1456031288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8449585512840838662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c106394972dd5a44db75e85faa8c257b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 6.22
+  viewAngle: 60
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 512
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  visibleTargets: []
 --- !u!1 &8449585514264697926
 GameObject:
   m_ObjectHideFlags: 0
