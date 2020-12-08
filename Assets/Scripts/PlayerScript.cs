@@ -40,9 +40,6 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        //GameObject go = GameObject.Find("MainCamera");
-        //go.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-
         Hide();
 
         if (!isHiding)
@@ -50,7 +47,6 @@ public class PlayerScript : MonoBehaviour
             ToWaypointsMover();
             Crouch();
         }
-        //sphereCollider = GetComponent<SphereCollider>();
 
         if (enemyTarget == null)
             return;
@@ -59,7 +55,7 @@ public class PlayerScript : MonoBehaviour
 
         if (fireCountdown <= 0f)
         {
-            Shoot();
+            //Shoot();
             fireCountdown = 1f / fireRate;
         }
         fireCountdown -= Time.deltaTime;

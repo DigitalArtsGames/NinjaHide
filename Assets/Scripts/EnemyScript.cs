@@ -8,33 +8,24 @@ public class EnemyScript : MonoBehaviour
     public string targetTag;
     public GameObject bulletPrefab;
     public Transform firePoint;
-    public MeshScript meshScript;
 
     [Header("FOV and View Destance Settings")]
     public float viewDistance;
     public float fov;
     public GameObject eyes;
 
-    [Header("Mesh Collider")]
-    public MeshCollider meshCollider;
-
-    private MeshScript gm;
     private Transform target;
     private bool isAgressive;
-    //private SphereCollider sphereCollider;
 
     private void Start()
     {
-        gm = Instantiate(meshScript, eyes.transform.position, Quaternion.Euler(90,0,eyes.transform.rotation.z + 30), transform);
+        
     }
 
     void Update()
     {
-        gm.SetFov(fov);
-        gm.SetViewDistance(viewDistance);
-        meshCollider.sharedMesh = gm.mesh;
         RotatePlayer();
-        //sphereCollider = GetComponent<SphereCollider>();
+
         if (target == null)
             return;
         Invoke("Shoot", 2f);
@@ -57,7 +48,6 @@ public class EnemyScript : MonoBehaviour
             {
                 bullet.SetTarget(target);
             }
-            //Debug.Log("BUX");
         }
     }
 

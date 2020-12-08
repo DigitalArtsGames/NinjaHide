@@ -74,8 +74,6 @@ GameObject:
   - component: {fileID: 8449585512840838663}
   - component: {fileID: 8449585512840838715}
   - component: {fileID: 8623382085519367903}
-  - component: {fileID: -5195427215043299453}
-  - component: {fileID: 1321802377}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -198,34 +196,7 @@ MonoBehaviour:
   viewDistance: 5
   fov: 60
   eyes: {fileID: 7882410474585992970}
-  meshCollider: {fileID: 1321802377}
---- !u!135 &-5195427215043299453
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8449585512840838662}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!64 &1321802377
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8449585512840838662}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  meshCollider: {fileID: 0}
 --- !u!1 &8449585514264697926
 GameObject:
   m_ObjectHideFlags: 0
