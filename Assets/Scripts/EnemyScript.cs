@@ -9,21 +9,37 @@ public class EnemyScript : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
 
+    [Header("Player Detection Settings")]
+    public int detectionTime;
+    public int currentDetectionValue;
+
+    public SeeingBarScript seeingBarScript;
+
     private Transform target;
+    private bool isSeeingPlayer;
+    private List<Transform> targets;
+
+    void Start()
+    {
+        seeingBarScript.SetMaxSeeingValue(detectionTime);
+        currentDetectionValue = detectionTime;
+    }
 
     void Update()
     {
+        targets = GetComponent<FieldOfView>().visibleTargets;
         GetTargets();
-        if(target != null)
+        SeeingPlayer();
+        if (target != null)
         {
-            RotatePlayer();
-            Shoot();
+            isSeeingPlayer = true;
+            RotateToPlayer();
+            //Shoot();
         }
     }
 
     void GetTargets()
     {
-        List<Transform> targets = GetComponent<FieldOfView>().visibleTargets;
         foreach (var target in targets)
         {
             this.target = target;
@@ -40,7 +56,7 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    void RotatePlayer()
+    void RotateToPlayer()
     {
         Vector3 targetDirection = target.position - transform.position;
         float singleStep = 1 * Time.deltaTime;
@@ -49,4 +65,14 @@ public class EnemyScript : MonoBehaviour
         Debug.DrawRay(transform.position, newDirection, Color.red);
         transform.rotation = Quaternion.LookRotation(newDirection);
     }
+
+    void SeeingPlayer()
+    {
+        if (isSeeingPlayer)
+        {
+            currentDetectionValue--;
+            seeingBarScript.SetSeeingValue(currentDetectionValue);
+        }
+    }
+
 }

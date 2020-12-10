@@ -15,10 +15,21 @@ public class FieldOfView : MonoBehaviour
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
 
-    private void Start()
+    //private void Start()
+    //{
+    //    StartCoroutine("FindTargetsWithDelay", 0.1f);
+    //}
+
+
+    private void Update()
     {
-        StartCoroutine("FindTargetsWithDelay", 0);
+        FindVisibleTargets();
+        foreach (var target in visibleTargets)
+        {
+            print(target);
+        }
     }
+
 
     IEnumerator FindTargetsWithDelay(float delay)
     {
