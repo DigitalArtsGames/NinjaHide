@@ -11,11 +11,6 @@ public class EnemyScript : MonoBehaviour
 
     private Transform target;
 
-    private void Start()
-    {
-
-    }
-
     void Update()
     {
         GetTargets();
@@ -35,7 +30,7 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    public void Shoot()
+    void Shoot()
     {
         GameObject bulletGameObject = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         BulletScript bullet = bulletGameObject.GetComponent<BulletScript>();

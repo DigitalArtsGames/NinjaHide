@@ -6,7 +6,7 @@ public class FieldOfView : MonoBehaviour
 {
     public float viewRadius;
 
-    [Range (0, 360)]
+    [Range(0, 360)]
     public float viewAngle;
 
     public LayerMask targetMask;
@@ -22,7 +22,7 @@ public class FieldOfView : MonoBehaviour
 
     IEnumerator FindTargetsWithDelay(float delay)
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(delay);
             FindVisibleTargets();
@@ -37,14 +37,13 @@ public class FieldOfView : MonoBehaviour
         {
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirTotarget = (target.position - transform.position).normalized;
-            if(Vector3.Angle(transform.forward, dirTotarget) < viewAngle / 2)
+            if (Vector3.Angle(transform.forward, dirTotarget) < viewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
-                
-                if(!Physics.Raycast(transform.position, dirTotarget, dstToTarget, obstacleMask))
+
+                if (!Physics.Raycast(transform.position, dirTotarget, dstToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
-                    Debug.Log("I see you!");
                 }
             }
         }
@@ -52,11 +51,10 @@ public class FieldOfView : MonoBehaviour
 
     public Vector3 DirectionFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
-        if(!angleIsGlobal)
+        if (!angleIsGlobal)
         {
             angleInDegrees += transform.eulerAngles.y;
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
-
     }
 }
