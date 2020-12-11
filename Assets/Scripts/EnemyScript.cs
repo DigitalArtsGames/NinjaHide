@@ -40,6 +40,7 @@ public class EnemyScript : MonoBehaviour
 
     void GetTargets()
     {
+        target = null;
         foreach (var target in targets)
         {
             this.target = target;
