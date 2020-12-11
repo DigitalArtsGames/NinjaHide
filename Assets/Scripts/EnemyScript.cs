@@ -14,6 +14,7 @@ public class EnemyScript : MonoBehaviour
     public int currentDetectionValue;
 
     public SeeingBarScript seeingBarScript;
+    public GameObject seeingBarObject;
 
     private Transform target;
     private bool isSeeingPlayer;
@@ -23,6 +24,7 @@ public class EnemyScript : MonoBehaviour
     {
         seeingBarScript.SetMaxSeeingValue(detectionTime);
         seeingBarScript.SetSeeingValue(0);
+        seeingBarObject.SetActive(false);
     }
 
     void Update()
@@ -39,6 +41,7 @@ public class EnemyScript : MonoBehaviour
         else
         {
             isSeeingPlayer = false;
+            seeingBarObject.SetActive(false);
         }
     }
 
@@ -75,6 +78,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (isSeeingPlayer)
         {
+            seeingBarObject.SetActive(true);
             currentDetectionValue++;
             seeingBarScript.SetSeeingValue(currentDetectionValue);
         }
