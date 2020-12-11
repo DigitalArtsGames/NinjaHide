@@ -6,7 +6,7 @@ public class BillboardScript : MonoBehaviour
 {
     public Transform camera;
 
-    void LateUpdate()
+    void Update()
     {
         transform.LookAt(transform.position + camera.forward);
     }
