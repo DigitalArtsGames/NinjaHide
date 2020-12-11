@@ -22,7 +22,7 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         seeingBarScript.SetMaxSeeingValue(detectionTime);
-        currentDetectionValue = detectionTime;
+        seeingBarScript.SetSeeingValue(0);
     }
 
     void Update()
@@ -35,6 +35,10 @@ public class EnemyScript : MonoBehaviour
             isSeeingPlayer = true;
             RotateToPlayer();
             //Shoot();
+        }
+        else
+        {
+            isSeeingPlayer = false;
         }
     }
 
@@ -71,6 +75,15 @@ public class EnemyScript : MonoBehaviour
     {
         if (isSeeingPlayer)
         {
+            currentDetectionValue++;
+            seeingBarScript.SetSeeingValue(currentDetectionValue);
+        }
+        else
+        {
+            if(currentDetectionValue == 0)
+            {
+                return;
+            }
             currentDetectionValue--;
             seeingBarScript.SetSeeingValue(currentDetectionValue);
         }
