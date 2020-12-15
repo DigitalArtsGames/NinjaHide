@@ -20,6 +20,9 @@ public class EnemyScript : MonoBehaviour
     public SeeingBarScript seeingBarScript;
     public GameObject seeingBarObject;
 
+    public int maxPossibility;
+    public int minPossibility;
+
     private int shotsCount;
     private Transform target;
     private bool isSeeingPlayer;
@@ -43,7 +46,7 @@ public class EnemyScript : MonoBehaviour
         {
             isSeeingPlayer = true;
             RotateToPlayer();
-            //Shoot();
+            //Скорость стрельбы
             if (Time.time > nextFire)
             {
                 nextFire = Time.time + fireRate;
@@ -80,17 +83,17 @@ public class EnemyScript : MonoBehaviour
     //Проверяет проходит ли шанс выстрела рандомному шансу
     void ShootWithChance()
     {
-        int shotChance = GetRandomizeChance();
+        GetRandomizeChance();
         int ranChance = Random.Range(0, 100);
 
-        if (ranChance < shotChance)
+        if (minPossibility > ranChance && ranChance < maxPossibility)
         {
-            Debug.Log("СТРЕЛЯЮ И ПОПАДАЮ >:)");
+            //Debug.Log("СТРЕЛЯЮ И ПОПАДАЮ >:)");
             Shoot(target);
         }
         else
         {
-            Debug.Log("СТРЕЛЯЮ НО НЕ ПОПАДАЮ :(");
+            //Debug.Log("СТРЕЛЯЮ НО НЕ ПОПАДАЮ :(");
 
             GameObject fakeTarget = new GameObject();
 
@@ -103,24 +106,32 @@ public class EnemyScript : MonoBehaviour
     }
 
     //Вычисляет шанс выстрела
-    int GetRandomizeChance()
+    void GetRandomizeChance()
     {
-        //первый выстрел = 0
+        //шанс попадания
         if (shotsCount == 0)
         {
-            return 0;
+            //0%
+            minPossibility = 0;
+            maxPossibility = 0;
         }
         else if (shotsCount == 1)
         {
-            return 50;
+            //50%
+            minPossibility = 50;
+            maxPossibility = 100;
         }
         else if (shotsCount == 2)
         {
-            return 90;
+            //90%
+            minPossibility = 10;
+            maxPossibility = 100;
         }
         else
         {
-            return 99;
+            //100%
+            minPossibility = 0;
+            maxPossibility = 100;
         }
     }
 
