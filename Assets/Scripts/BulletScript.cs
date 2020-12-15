@@ -21,7 +21,6 @@ public class BulletScript : MonoBehaviour
         if(collision.transform.CompareTag("Obstacle"))
         {
             Destroy(gameObject);
-            print("AAA");
         }
     }
 

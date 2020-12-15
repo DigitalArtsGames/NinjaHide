@@ -134,6 +134,7 @@ public class PlayerScript : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= sphereCollider.radius)
         {
             enemyTarget = nearestEnemy.transform;
+            Debug.Log("НАШЕЛ!");
         }
         else
         {

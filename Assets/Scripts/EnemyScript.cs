@@ -16,6 +16,7 @@ public class EnemyScript : MonoBehaviour
     public SeeingBarScript seeingBarScript;
     public GameObject seeingBarObject;
 
+    private int shotsCount;
     private Transform target;
     private bool isSeeingPlayer;
     private List<Transform> targets;
@@ -25,6 +26,8 @@ public class EnemyScript : MonoBehaviour
         seeingBarScript.SetMaxSeeingValue(detectionTime);
         seeingBarScript.SetSeeingValue(0);
         seeingBarObject.SetActive(false);
+
+        shotsCount = 0;
     }
 
     void Update()
@@ -37,6 +40,7 @@ public class EnemyScript : MonoBehaviour
             isSeeingPlayer = true;
             RotateToPlayer();
             //Shoot();
+            //ShootWithChance();
         }
         else
         {
@@ -54,13 +58,56 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    void Shoot()
+    void Shoot(Transform target)
     {
         GameObject bulletGameObject = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         BulletScript bullet = bulletGameObject.GetComponent<BulletScript>();
         if (bullet != null)
         {
             bullet.SetTarget(target);
+            shotsCount++;
+        }
+    }
+
+    //Проверяет проходит ли шанс выстрела рандомному шансу
+    void ShootWithChance()
+    {
+        int shotChance = GetRandomizeChance();
+        int ranChance = Random.Range(0, 100);
+
+        if (ranChance < shotChance)
+        {
+            Debug.Log("СТРЕЛЯЮ И ПОПАДАЮ >:)");
+            Shoot(target);
+        }
+        else
+        {
+            Debug.Log("СТРЕЛЯЮ НО НЕ ПОПАДАЮ :(");
+            Transform fakeTarget = target;
+            fakeTarget.position.Set(fakeTarget.position.x, fakeTarget.position.y + 5, fakeTarget.position.z);
+            Shoot(fakeTarget);
+        }
+    }
+
+    //Вычисляет шанс выстрела
+    int GetRandomizeChance()
+    {
+        //первый выстрел = 0
+        if (shotsCount == 0)
+        {
+            return 0;
+        }
+        else if (shotsCount == 1)
+        {
+            return 50;
+        }
+        else if (shotsCount == 2)
+        {
+            return 90;
+        }
+        else
+        {
+            return 99;
         }
     }
 
@@ -84,7 +131,7 @@ public class EnemyScript : MonoBehaviour
         }
         else
         {
-            if(currentDetectionValue == 0)
+            if (currentDetectionValue == 0)
             {
                 return;
             }
