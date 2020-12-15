@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 114450771}
   - component: {fileID: 114450772}
   - component: {fileID: 114450770}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: SeeingBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 681930396}
   - component: {fileID: 681930398}
   - component: {fileID: 681930397}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 752185561}
   - component: {fileID: 752185560}
   - component: {fileID: 752185564}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 882842544}
   - component: {fileID: 882842546}
   - component: {fileID: 882842545}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: View FOV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 1331351012}
   - component: {fileID: 1331351014}
   - component: {fileID: 1331351013}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5639208637197368564}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8190519665868428315}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 8449585512840838715}
   - component: {fileID: 8623382085519367903}
   - component: {fileID: 1456031288}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -727,7 +727,7 @@ GameObject:
   - component: {fileID: 8449585514264697978}
   - component: {fileID: 8449585514264697925}
   - component: {fileID: 8449585514264697924}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,6 +13,10 @@ public class EnemyScript : MonoBehaviour
     public int detectionTime;
     public int currentDetectionValue;
 
+    [Header("Fire Rate")]
+    private float fireRate = 1f;
+    private float nextFire = 0f;
+
     public SeeingBarScript seeingBarScript;
     public GameObject seeingBarObject;
 
@@ -40,7 +44,11 @@ public class EnemyScript : MonoBehaviour
             isSeeingPlayer = true;
             RotateToPlayer();
             //Shoot();
-            //ShootWithChance();
+            if (Time.time > nextFire)
+            {
+                nextFire = Time.time + fireRate;
+                ShootWithChance();
+            }
         }
         else
         {
@@ -83,9 +91,14 @@ public class EnemyScript : MonoBehaviour
         else
         {
             Debug.Log("СТРЕЛЯЮ НО НЕ ПОПАДАЮ :(");
-            Transform fakeTarget = target;
-            fakeTarget.position.Set(fakeTarget.position.x, fakeTarget.position.y + 5, fakeTarget.position.z);
-            Shoot(fakeTarget);
+
+            GameObject fakeTarget = new GameObject();
+
+            fakeTarget.transform.position = target.position;
+            Vector3 newPos = new Vector3(target.position.x + 1, target.position.y + 1, target.position.z);
+
+            fakeTarget.transform.SetPositionAndRotation(newPos, fakeTarget.transform.rotation);
+            Shoot(fakeTarget.transform);
         }
     }
 

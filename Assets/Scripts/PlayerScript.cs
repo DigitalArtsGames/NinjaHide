@@ -15,8 +15,8 @@ public class PlayerScript : MonoBehaviour
     public float crouchSpeed = 5f;
 
     [Header("Fire Rate")]
-    public float fireRate = 1f;
-    private float fireCountdown = 0f;
+    private float fireRate = 1f;
+    private float nextFire = 0f;
 
     private int score;
 
@@ -30,11 +30,11 @@ public class PlayerScript : MonoBehaviour
     private int waypointIndex = 0;
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        InvokeRepeating("UpdateTarget", 0f, 0.1f);
         enemyTarget = null;
         score = 0;
         waypoint = WaypointsScript.waypoints[0];
-        sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider = GetComponentInChildren<SphereCollider>();
 
     }
 
@@ -53,13 +53,20 @@ public class PlayerScript : MonoBehaviour
 
         RotatePlayer();
 
-        if (fireCountdown <= 0f)
+        //FireDelay(fireDelay);
+
+        if (Time.time > nextFire)
         {
-            Shoot();
-            fireCountdown = 1f / fireRate;
+            nextFire = Time.time + fireRate;
+            //Shoot();
         }
-        fireCountdown -= Time.deltaTime;
     }
+
+    //IEnumerator FireDelay(float fireDelay)
+    //{
+    //    Shoot();
+    //    yield return new WaitForSeconds(fireDelay);
+    //}
 
     //Поварачивает игрока в сторону стрельбы
     void RotatePlayer()
