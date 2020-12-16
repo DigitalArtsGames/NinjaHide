@@ -17,4 +17,9 @@ public class SeeingBarScript : MonoBehaviour
     {
         barSlider.value = seeingValue;
     }
+
+    public float GetMaxValue()
+    {
+        return barSlider.maxValue;
+    }
 }

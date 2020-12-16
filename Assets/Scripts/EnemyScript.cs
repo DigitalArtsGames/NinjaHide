@@ -46,11 +46,15 @@ public class EnemyScript : MonoBehaviour
         {
             isSeeingPlayer = true;
             RotateToPlayer();
-            //Скорость стрельбы
-            if (Time.time > nextFire)
+            
+            if(currentDetectionValue == seeingBarScript.GetMaxValue())
             {
-                nextFire = Time.time + fireRate;
-                ShootWithChance();
+                //Скорость стрельбы
+                if (Time.time > nextFire)
+                {
+                    nextFire = Time.time + fireRate;
+                    ShootWithChance();
+                }
             }
         }
         else
