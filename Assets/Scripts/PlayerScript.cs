@@ -37,7 +37,6 @@ public class PlayerScript : MonoBehaviour
         sphereCollider = GetComponentInChildren<SphereCollider>();
 
     }
-
     void Update()
     {
         Hide();
@@ -53,20 +52,12 @@ public class PlayerScript : MonoBehaviour
 
         RotatePlayer();
 
-        //FireDelay(fireDelay);
-
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             //Shoot();
         }
     }
-
-    //IEnumerator FireDelay(float fireDelay)
-    //{
-    //    Shoot();
-    //    yield return new WaitForSeconds(fireDelay);
-    //}
 
     //Поварачивает игрока в сторону стрельбы
     void RotatePlayer()
@@ -149,16 +140,16 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void ToWaypointsMover()
-    {
-        Vector3 dir = waypoint.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+    //void ToWaypointsMover()
+    //{
+    //    Vector3 dir = waypoint.position - transform.position;
+    //    transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(transform.position, waypoint.position) <= 0.2f)
-        {
-            GetNextWaypoint();
-        }
-    }
+    //    if (Vector3.Distance(transform.position, waypoint.position) <= 0.2f)
+    //    {
+    //        GetNextWaypoint();
+    //    }
+    //}
 
     void GetNextWaypoint()
     {

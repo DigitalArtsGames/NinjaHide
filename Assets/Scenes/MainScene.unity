@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 1226044348}
   - component: {fileID: 1226044347}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Spline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -650,7 +650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226044346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -968,6 +968,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &1891417787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8231577407623796718, guid: 5b77a00f36aabca46bdc500f5aab7591,
+    type: 3}
+  m_PrefabInstance: {fileID: 8231577407621408364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1891417792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891417787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edddab5ffdd329542b8906c6f900d2f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spline: {fileID: 1226044347}
+  runDuration: 10
+  crouchDuration: 15
 --- !u!1 &1900391376
 GameObject:
   m_ObjectHideFlags: 3
