@@ -44,7 +44,7 @@ public class PlayerScript : MonoBehaviour
 
         if (!isHiding)
         {
-            ToWaypointsMover();
+            //ToWaypointsMover();
             Crouch();
         }
 

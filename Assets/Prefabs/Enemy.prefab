@@ -692,6 +692,8 @@ MonoBehaviour:
   currentDetectionValue: 1
   seeingBarScript: {fileID: 114450772}
   seeingBarObject: {fileID: 114450766}
+  maxPossibility: 0
+  minPossibility: 0
 --- !u!114 &1456031288
 MonoBehaviour:
   m_ObjectHideFlags: 0
