@@ -79,6 +79,14 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("HidingSpot"))
+        {
+            canHide = false;
+        }
+    }
+
     void Shoot()
     {
         GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -128,14 +136,12 @@ public class PlayerScript : MonoBehaviour
         IsPressedButton();
         int speed = 10;
 
-        Vector3 dirToHidingSpot = (hidingSpotNearby.transform.position - transform.position);
-        Vector3 dirToExitSpot = (exitSpotNearby.transform.position - transform.position);
-
         if (buttonPressed)
         {
             splineWalker.enabled = false;
             if (transform.position != hidingSpotNearby.transform.position)
             {
+                Vector3 dirToHidingSpot = (hidingSpotNearby.transform.position - transform.position);
                 transform.Translate(dirToHidingSpot * Time.deltaTime * speed);
             }
         }
@@ -143,7 +149,8 @@ public class PlayerScript : MonoBehaviour
         {
             if (transform.position != exitSpotNearby.transform.position)
             {
-                transform.Translate(dirToExitSpot * Time.deltaTime * speed / 2);
+                Vector3 dirToExitSpot = (exitSpotNearby.transform.position - transform.position);
+                transform.Translate(dirToExitSpot * Time.deltaTime * speed);
             }
             splineWalker.enabled = true;
         }
