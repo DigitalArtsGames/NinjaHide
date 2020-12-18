@@ -52,8 +52,8 @@ public class EnemyScript : MonoBehaviour
                 //Скорость стрельбы
                 if (Time.time > nextFire)
                 {
+                    //ShootWithChance();
                     nextFire = Time.time + fireRate;
-                    ShootWithChance();
                 }
             }
         }
@@ -90,15 +90,12 @@ public class EnemyScript : MonoBehaviour
         GetRandomizeChance();
         int ranChance = Random.Range(0, 100);
 
-        if (minPossibility > ranChance && ranChance < maxPossibility)
+        if (minPossibility < ranChance && ranChance < maxPossibility)
         {
-            //Debug.Log("СТРЕЛЯЮ И ПОПАДАЮ >:)");
             Shoot(target);
         }
         else
         {
-            //Debug.Log("СТРЕЛЯЮ НО НЕ ПОПАДАЮ :(");
-
             GameObject fakeTarget = new GameObject();
 
             fakeTarget.transform.position = target.position;
@@ -145,7 +142,7 @@ public class EnemyScript : MonoBehaviour
         float singleStep = 1 * Time.deltaTime;
 
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-        Debug.DrawRay(transform.position, newDirection, Color.red);
+        //Debug.DrawLine(transform.position, newDirection, Color.red);
         transform.rotation = Quaternion.LookRotation(newDirection);
     }
 
@@ -154,7 +151,10 @@ public class EnemyScript : MonoBehaviour
         if (isSeeingPlayer)
         {
             seeingBarObject.SetActive(true);
-            currentDetectionValue++;
+            if(currentDetectionValue != seeingBarScript.GetMaxValue())
+            {
+                currentDetectionValue++;
+            }
             seeingBarScript.SetSeeingValue(currentDetectionValue);
         }
         else

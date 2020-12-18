@@ -20,32 +20,29 @@ public class PlayerScript : MonoBehaviour
 
     private int score;
 
-    Vector3 tempPosition;
-    private Collider hidingSpot;
+    private bool buttonPressed;
+    private SplineWalker splineWalker;
+
+    private GameObject hidingSpotNearby;
+    private GameObject exitSpotNearby;
+
     private bool canHide;
-    private bool isHiding;
     private SphereCollider sphereCollider;
-    private float speed;
-    private Transform waypoint;
-    private int waypointIndex = 0;
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         enemyTarget = null;
         score = 0;
-        waypoint = WaypointsScript.waypoints[0];
         sphereCollider = GetComponentInChildren<SphereCollider>();
+        splineWalker = GetComponent<SplineWalker>();
 
     }
     void Update()
     {
-        Hide();
-
-        if (!isHiding)
-        {
-            //ToWaypointsMover();
-            Crouch();
-        }
+        hidingSpotNearby = GameObject.FindGameObjectWithTag("HidingSpot");
+        exitSpotNearby = GameObject.FindGameObjectWithTag("ExitSpot");
+        FindHidingSpot();
 
         if (enemyTarget == null)
             return;
@@ -79,27 +76,6 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.CompareTag("HidingSpot"))
         {
             canHide = true;
-            hidingSpot = other;
-        }
-    }
-
-    void Hide()
-    {
-        if (canHide == true)
-        {
-            if (Input.GetButtonDown("Hide"))
-            {
-                Debug.Log("I am hiding! He-he he");
-                tempPosition = transform.position;
-                transform.position = hidingSpot.transform.position;
-                isHiding = true;
-            }
-            if (Input.GetButtonUp("Hide"))
-            {
-                transform.position = tempPosition;
-                isHiding = false;
-                tempPosition = new Vector3();
-            }
         }
     }
 
@@ -132,13 +108,57 @@ public class PlayerScript : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= sphereCollider.radius)
         {
             enemyTarget = nearestEnemy.transform;
-            Debug.Log("НАШЕЛ!");
         }
         else
         {
             enemyTarget = null;
         }
     }
+
+
+    void IsPressedButton()
+    {
+        if (Input.GetButtonDown("Hide") && canHide)
+            buttonPressed = !buttonPressed;
+    }
+
+
+    void FindHidingSpot()
+    {
+        IsPressedButton();
+        int speed = 10;
+
+        Vector3 dirToHidingSpot = (hidingSpotNearby.transform.position - transform.position);
+        Vector3 dirToExitSpot = (exitSpotNearby.transform.position - transform.position);
+
+        if (buttonPressed)
+        {
+            splineWalker.enabled = false;
+            if (transform.position != hidingSpotNearby.transform.position)
+            {
+                transform.Translate(dirToHidingSpot * Time.deltaTime * speed);
+            }
+        }
+        else
+        {
+            if (transform.position != exitSpotNearby.transform.position)
+            {
+                transform.Translate(dirToExitSpot * Time.deltaTime * speed / 2);
+            }
+            splineWalker.enabled = true;
+        }
+    }
+
+    //void GetNextWaypoint()
+    //{
+    //    if (waypointIndex >= WaypointsScript.waypoints.Length - 1)
+    //    {
+    //        Destroy(gameObject);
+    //        return;
+    //    }
+    //    waypointIndex++;
+    //    waypoint = WaypointsScript.waypoints[waypointIndex];
+    //}
 
     //void ToWaypointsMover()
     //{
@@ -150,27 +170,4 @@ public class PlayerScript : MonoBehaviour
     //        GetNextWaypoint();
     //    }
     //}
-
-    void GetNextWaypoint()
-    {
-        if (waypointIndex >= WaypointsScript.waypoints.Length - 1)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        waypointIndex++;
-        waypoint = WaypointsScript.waypoints[waypointIndex];
-    }
-
-    void Crouch()
-    {
-        if (Input.GetButton("Crouch"))
-        {
-            speed = crouchSpeed;
-        }
-        else
-        {
-            speed = runSpeed;
-        }
-    }
 }
