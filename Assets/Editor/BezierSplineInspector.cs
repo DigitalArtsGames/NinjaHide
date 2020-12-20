@@ -71,7 +71,10 @@ public class BezierSplineInspector : Editor
             size *= 2f;
         }
         Handles.color = modeColors[(int)spline.GetControlPointMode(index)];
+        //Не критичные предупреждения, потом нужно пофиксить
+#pragma warning disable CS0618 // Type or member is obsolete
         if (Handles.Button(point, handleRotation, size * handleSize, size * pickSize, Handles.DotCap))
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             selectedIndex = index;
             Repaint();

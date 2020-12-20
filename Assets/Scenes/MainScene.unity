@@ -460,6 +460,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f65cba855c4760489cc402278331687, type: 3}
+--- !u!1 &974201643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2916337666242764528, guid: 82e55d5af7659f64bb40f3dfbaa286f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 949051367966440811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &974201649
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974201643}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &981805138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,6 +1089,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Hostage
       objectReference: {fileID: 0}
+    - target: {fileID: 2916337666242764529, guid: 82e55d5af7659f64bb40f3dfbaa286f7,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2916337666242764530, guid: 82e55d5af7659f64bb40f3dfbaa286f7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1148,6 +1172,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231577407623796719, guid: 5b77a00f36aabca46bdc500f5aab7591,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8231577407766563608, guid: 5b77a00f36aabca46bdc500f5aab7591,
         type: 3}
