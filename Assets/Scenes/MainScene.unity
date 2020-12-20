@@ -121,6 +121,83 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &264645428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8449585512840838662, guid: 2f65cba855c4760489cc402278331687,
+    type: 3}
+  m_PrefabInstance: {fileID: 8449585514625553882}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &264645436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264645428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edddab5ffdd329542b8906c6f900d2f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNPC: 1
+  mode: 1
+  spline: {fileID: 490138078}
+  runDuration: 10
+  crouchDuration: 0
+  lookForward: 1
+--- !u!1 &490138077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 490138079}
+  - component: {fileID: 490138078}
+  m_Layer: 0
+  m_Name: EnemySpline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &490138078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490138077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91d5ebcfd258d342a2508e43b0e9509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {x: -6.369997, y: 1, z: -6.742796}
+  - {x: -1.0499973, y: 1, z: -5.96349}
+  - {x: 0.55973244, y: 1, z: -2.602251}
+  - {x: -6.8102665, y: 1, z: -2.5509377}
+  - {x: -24.45474, y: 1, z: -2.7534413}
+  - {x: -28.257174, y: 1, z: -6.742796}
+  - {x: -6.369997, y: 1, z: -6.742796}
+  loop: 1
+  modes: 0000000000000000000000000000000000000000
+--- !u!4 &490138079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490138077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -28.65, y: 0, z: -0.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,12 +501,12 @@ GameObject:
   - component: {fileID: 1226044348}
   - component: {fileID: 1226044347}
   m_Layer: 0
-  m_Name: Spline
+  m_Name: PlayerSpline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1226044347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,9 +845,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edddab5ffdd329542b8906c6f900d2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isNPC: 0
+  mode: 0
   spline: {fileID: 1226044347}
   runDuration: 20
   crouchDuration: 30
+  lookForward: 0
 --- !u!1 &1900391376
 GameObject:
   m_ObjectHideFlags: 3

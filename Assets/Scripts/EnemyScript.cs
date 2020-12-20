@@ -52,7 +52,7 @@ public class EnemyScript : MonoBehaviour
                 //Скорость стрельбы
                 if (Time.time > nextFire)
                 {
-                    //ShootWithChance();
+                    ShootWithChance();
                     nextFire = Time.time + fireRate;
                 }
             }

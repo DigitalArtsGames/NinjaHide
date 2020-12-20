@@ -52,7 +52,7 @@ public class PlayerScript : MonoBehaviour
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            //Shoot();
+            Shoot();
         }
     }
 
