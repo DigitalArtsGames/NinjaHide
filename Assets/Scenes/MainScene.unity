@@ -175,13 +175,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points:
-  - {x: -6.369997, y: 1, z: -6.742796}
-  - {x: -1.0499973, y: 1, z: -5.96349}
-  - {x: 0.55973244, y: 1, z: -2.602251}
-  - {x: -6.8102665, y: 1, z: -2.5509377}
-  - {x: -24.45474, y: 1, z: -2.7534413}
-  - {x: -28.257174, y: 1, z: -6.742796}
-  - {x: -6.369997, y: 1, z: -6.742796}
+  - {x: -6.369997, y: 0, z: -6.742796}
+  - {x: -1.0499973, y: 0, z: -5.96349}
+  - {x: 0.55973244, y: 0, z: -2.602251}
+  - {x: -6.8102665, y: 0, z: -2.5509377}
+  - {x: -24.45474, y: 0, z: -2.7534413}
+  - {x: -28.257174, y: 0, z: -6.742796}
+  - {x: -6.369997, y: 0, z: -6.742796}
   loop: 1
   modes: 0000000000000000000000000000000000000000
 --- !u!4 &490138079
@@ -192,7 +192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490138077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.65, y: 0, z: -0.12}
+  m_LocalPosition: {x: -28.65, y: 1.5, z: -0.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -519,6 +519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1226044348}
   - component: {fileID: 1226044347}
+  - component: {fileID: 1226044349}
   m_Layer: 0
   m_Name: PlayerSpline
   m_TagString: Untagged
@@ -562,6 +563,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1226044349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226044346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d34cb3797265749a7115513502647f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spline: {fileID: 1226044347}
+  frequency: 1000
+  lookForward: 1
+  items:
+  - {fileID: 2634306580017020460, guid: f9f369e5b4be7854dbeca91f35a41609, type: 3}
 --- !u!1 &1320264703
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,8 +846,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.64469, y: 1, z: 2.3523805}
-  m_Center: {x: 1.4350675, y: 0, z: -0.1761907}
+  m_Size: {x: 7.8625917, y: 1, z: 2.3523805}
+  m_Center: {x: 3.3751812, y: 0, z: -0.1761907}
 --- !u!54 &1836624806
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1163,6 +1181,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8231577407623796715, guid: 5b77a00f36aabca46bdc500f5aab7591,
+        type: 3}
+      propertyPath: lineMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 27f051cab0b14f0498ecb58738cd7073, type: 2}
     - target: {fileID: 8231577407623796718, guid: 5b77a00f36aabca46bdc500f5aab7591,
         type: 3}
       propertyPath: m_Name

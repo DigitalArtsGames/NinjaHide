@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     [Header("Player Parameters")]
     public float runSpeed = 10f;
     public float crouchSpeed = 5f;
+    public Material lineMaterial;
 
     [Header("Fire Rate")]
     private float fireRate = 1f;
@@ -28,6 +29,8 @@ public class PlayerScript : MonoBehaviour
 
     private bool canHide;
     private SphereCollider sphereCollider;
+
+    private LineRenderer lineRenderer;
 
     void Start()
     {
@@ -130,11 +133,42 @@ public class PlayerScript : MonoBehaviour
             buttonPressed = !buttonPressed;
     }
 
+    void ShowPathToHidingSpot(Vector3 start, Vector3 end, Color color)
+    {
+        Debug.DrawLine(start, end, color);
+    }
 
     void FindHidingSpot()
     {
         IsPressedButton();
-        int speed = 10;
+        int speed = 2;
+
+        if(hidingSpotNearby != null && canHide)
+        {
+            ShowPathToHidingSpot(transform.position, hidingSpotNearby.transform.position, Color.red);
+            if(gameObject.GetComponent<LineRenderer>() == null)
+            {
+                lineRenderer = gameObject.AddComponent<LineRenderer>();
+            }
+            lineRenderer.material = lineMaterial;
+            //float alpha = 1.0f;
+            //Gradient gradient = new Gradient();
+            //gradient.SetKeys(
+            //    new GradientColorKey[] { new GradientColorKey(Color.red, 0.0f), new GradientColorKey(Color.yellow, 1.0f) },
+            //    new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
+            //);
+            //lineRenderer.colorGradient = gradient;
+            lineRenderer.widthMultiplier = 0.2f;
+            Vector3[] points = { transform.position, hidingSpotNearby.transform.position };
+
+            for (int i = 0; i < points.Length; i++)
+            {
+                lineRenderer.SetPositions(points);
+            }
+        } else
+        {
+            Destroy(lineRenderer);
+        }
 
         if (buttonPressed)
         {

@@ -239,4 +239,8 @@ public class BezierSpline : MonoBehaviour
             EnforceMode(0);
         }
     }
+    private void OnGUI()
+    {
+        
+    }
 }
