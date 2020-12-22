@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - Target
   - ExitSpot
+  - Circle
   layers:
   - Default
   - TransparentFX

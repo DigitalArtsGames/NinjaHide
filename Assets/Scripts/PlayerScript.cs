@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
     public float runSpeed = 10f;
     public float crouchSpeed = 5f;
     public Material lineMaterial;
+    public GameObject circlePrefab;
 
     [Header("Fire Rate")]
     private float fireRate = 1f;
@@ -151,15 +152,20 @@ public class PlayerScript : MonoBehaviour
                 lineRenderer = gameObject.AddComponent<LineRenderer>();
             }
             lineRenderer.material = lineMaterial;
-            //float alpha = 1.0f;
-            //Gradient gradient = new Gradient();
-            //gradient.SetKeys(
-            //    new GradientColorKey[] { new GradientColorKey(Color.red, 0.0f), new GradientColorKey(Color.yellow, 1.0f) },
-            //    new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
-            //);
-            //lineRenderer.colorGradient = gradient;
             lineRenderer.widthMultiplier = 0.2f;
+            
             Vector3[] points = { transform.position, hidingSpotNearby.transform.position };
+
+            if(!GameObject.FindGameObjectWithTag("Circle"))
+            {
+                Instantiate(circlePrefab, hidingSpotNearby.transform.position, hidingSpotNearby.transform.rotation);
+            }
+
+            for (int i = 0; i < points.Length; i++)
+            {
+                Vector3 newpos = new Vector3(points[i].x, points[i].y - 0.9f, points[i].z);
+                points[i].Set(newpos.x, newpos.y, newpos.z);
+            }
 
             for (int i = 0; i < points.Length; i++)
             {
@@ -168,6 +174,7 @@ public class PlayerScript : MonoBehaviour
         } else
         {
             Destroy(lineRenderer);
+            Destroy(GameObject.FindGameObjectWithTag("Circle"));
         }
 
         if (buttonPressed)
