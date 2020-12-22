@@ -21,6 +21,11 @@ public class BezierSpline : MonoBehaviour
         }
     }
 
+    public Vector3[] GetPointsArray()
+    {
+        return points;
+    }
+
     public Vector3 GetControlPoint(int index)
     {
         return points[index];

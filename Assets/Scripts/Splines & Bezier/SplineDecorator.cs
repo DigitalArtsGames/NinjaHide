@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+
 
 public class SplineDecorator : MonoBehaviour
 {
 
 	public BezierSpline spline;
+
+	public List<Vector3> points;
 
 	public int frequency;
 
@@ -26,6 +30,7 @@ public class SplineDecorator : MonoBehaviour
 		{
 			stepSize = 1f / (stepSize - 1);
 		}
+		
 		for (int p = 0, f = 0; f < frequency; f++)
 		{
 			for (int i = 0; i < items.Length; i++, p++)
@@ -33,6 +38,7 @@ public class SplineDecorator : MonoBehaviour
 				Transform item = Instantiate(items[i]) as Transform;
 				Vector3 position = spline.GetPoint(p * stepSize);
 				item.transform.localPosition = position;
+				points.Add(position);
 				if (lookForward)
 				{
 					item.transform.LookAt(position + spline.GetDirection(p * stepSize));
