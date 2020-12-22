@@ -7,15 +7,20 @@ public class CircleDrawingScript : MonoBehaviour
     public int segments;
     public float xradius;
     public float yradius;
-    LineRenderer line;
+    LineRenderer lineRenderer;
+    private bool isEnable;
 
     void Start()
     {
-        line = gameObject.GetComponent<LineRenderer>();
-
-        line.SetVertexCount(segments + 1);
-        line.useWorldSpace = false;
+        isEnable = true;
+        lineRenderer = gameObject.GetComponent<LineRenderer>();
+        lineRenderer.SetVertexCount(segments + 1);
+        lineRenderer.useWorldSpace = false;
         CreatePoints();
+    }
+    void Update()
+    {
+        InvokeRepeating("EnableCircle", 0f, 0.5f);
     }
 
 
@@ -32,9 +37,25 @@ public class CircleDrawingScript : MonoBehaviour
             x = Mathf.Sin(Mathf.Deg2Rad * angle) * xradius;
             y = Mathf.Cos(Mathf.Deg2Rad * angle) * yradius;
 
-            line.SetPosition(i, new Vector3(x, y, z));
+            lineRenderer.SetPosition(i, new Vector3(x, y, z));
 
             angle += (360f / segments);
+        }
+    }
+
+
+
+    void EnableCircle()
+    {
+        if (isEnable)
+        {
+            lineRenderer.enabled = false;
+            isEnable = false;
+        }
+        else
+        {
+            lineRenderer.enabled = true;
+            isEnable = true;
         }
     }
 

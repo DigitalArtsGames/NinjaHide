@@ -87,3 +87,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bezierSpline: {fileID: 34219254256614959}
   lineMaterial: {fileID: 2100000, guid: 27f051cab0b14f0498ecb58738cd7073, type: 2}
+  isGlowing: 1
