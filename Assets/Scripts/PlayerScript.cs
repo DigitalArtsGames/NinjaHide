@@ -35,15 +35,16 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.1f);
         enemyTarget = null;
         score = 0;
         sphereCollider = GetComponentInChildren<SphereCollider>();
         splineWalker = GetComponent<SplineWalker>();
+        StartCoroutine(UpdateTarget());
 
     }
     void Update()
     {
+        RotateToPlayer();
         hidingSpotNearby = GameObject.FindGameObjectWithTag("HidingSpot");
         exitSpotNearby = GameObject.FindGameObjectWithTag("ExitSpot");
         FindHidingSpot();
@@ -51,7 +52,6 @@ public class PlayerScript : MonoBehaviour
         if (enemyTarget == null)
             return;
 
-        RotatePlayer();
 
         if (Time.time > nextFire)
         {
@@ -60,14 +60,34 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+    }
+
     //Поварачивает игрока в сторону стрельбы
+    void RotateToPlayer()
+    {
+        if (enemyTarget != null)
+        {
+            Vector3 targetDirection = enemyTarget.position - transform.position;
+            float singleStep = 1 * Time.deltaTime;
+
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDirection);
+
+        }
+    }
+
     void RotatePlayer()
     {
         Vector3 dir = enemyTarget.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
 
+
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 3).eulerAngles;
         transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        Debug.DrawRay(transform.position, dir, Color.red);
     }
 
     void OnTriggerEnter(Collider other)
@@ -102,31 +122,34 @@ public class PlayerScript : MonoBehaviour
     }
 
     //Обновляет врагов
-    public void UpdateTarget()
+    public IEnumerator UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
-        foreach (GameObject enemy in enemies)
+        while (true)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
+            yield return new WaitForSeconds(.5f);
+            List<GameObject> enemies = sphereCollider.GetComponent<SphereColliderScript>().enemies;
+            float shortestDistance = Mathf.Infinity;
+            GameObject nearestEnemy = null;
+            foreach (GameObject enemy in enemies)
             {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distanceToEnemy < shortestDistance)
+                {
+                    shortestDistance = distanceToEnemy;
+                    nearestEnemy = enemy;
+                }
+            }
+
+            if (nearestEnemy != null && shortestDistance <= sphereCollider.radius)
+            {
+                enemyTarget = nearestEnemy.transform;
+            }
+            else
+            {
+                enemyTarget = null;
             }
         }
-
-        if (nearestEnemy != null && shortestDistance <= sphereCollider.radius)
-        {
-            enemyTarget = nearestEnemy.transform;
-        }
-        else
-        {
-            enemyTarget = null;
-        }
     }
-
 
     void IsPressedButton()
     {
@@ -144,19 +167,19 @@ public class PlayerScript : MonoBehaviour
         IsPressedButton();
         int speed = 2;
 
-        if(hidingSpotNearby != null && canHide)
+        if (hidingSpotNearby != null && canHide)
         {
             ShowPathToHidingSpot(transform.position, hidingSpotNearby.transform.position, Color.red);
-            if(gameObject.GetComponent<LineRenderer>() == null)
+            if (gameObject.GetComponent<LineRenderer>() == null)
             {
                 lineRenderer = gameObject.AddComponent<LineRenderer>();
             }
             lineRenderer.material = lineMaterial;
             lineRenderer.widthMultiplier = 0.2f;
-            
+
             Vector3[] points = { transform.position, hidingSpotNearby.transform.position };
 
-            if(!GameObject.FindGameObjectWithTag("Circle"))
+            if (!GameObject.FindGameObjectWithTag("Circle"))
             {
                 Instantiate(circlePrefab, hidingSpotNearby.transform.position, hidingSpotNearby.transform.rotation);
             }
@@ -171,7 +194,8 @@ public class PlayerScript : MonoBehaviour
             {
                 lineRenderer.SetPositions(points);
             }
-        } else
+        }
+        else
         {
             Destroy(lineRenderer);
             Destroy(GameObject.FindGameObjectWithTag("Circle"));
@@ -196,26 +220,4 @@ public class PlayerScript : MonoBehaviour
             splineWalker.enabled = true;
         }
     }
-
-    //void GetNextWaypoint()
-    //{
-    //    if (waypointIndex >= WaypointsScript.waypoints.Length - 1)
-    //    {
-    //        Destroy(gameObject);
-    //        return;
-    //    }
-    //    waypointIndex++;
-    //    waypoint = WaypointsScript.waypoints[waypointIndex];
-    //}
-
-    //void ToWaypointsMover()
-    //{
-    //    Vector3 dir = waypoint.position - transform.position;
-    //    transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-
-    //    if (Vector3.Distance(transform.position, waypoint.position) <= 0.2f)
-    //    {
-    //        GetNextWaypoint();
-    //    }
-    //}
 }
