@@ -27,9 +27,12 @@ public class EnemyScript : MonoBehaviour
     private Transform target;
     private bool isSeeingPlayer;
     private List<Transform> targets;
+    private ObjectPoolerScript objectPooler;
 
     void Start()
     {
+        objectPooler = ObjectPoolerScript.Instance;
+
         seeingBarScript.SetMaxSeeingValue(detectionTime);
         seeingBarScript.SetSeeingValue(0);
         seeingBarObject.SetActive(false);
@@ -75,7 +78,7 @@ public class EnemyScript : MonoBehaviour
 
     void Shoot(Transform target)
     {
-        GameObject bulletGameObject = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bulletGameObject = objectPooler.SpawnFromPool("Bullet", firePoint.position, firePoint.rotation);
         BulletScript bullet = bulletGameObject.GetComponent<BulletScript>();
         if (bullet != null)
         {

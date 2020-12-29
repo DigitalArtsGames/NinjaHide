@@ -33,8 +33,11 @@ public class PlayerScript : MonoBehaviour
 
     private LineRenderer lineRenderer;
 
+    private ObjectPoolerScript objectPooler;
+
     void Start()
     {
+        objectPooler = ObjectPoolerScript.Instance;
         enemyTarget = null;
         score = 0;
         sphereCollider = GetComponentInChildren<SphereCollider>();
@@ -56,12 +59,8 @@ public class PlayerScript : MonoBehaviour
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            Shoot();
+            //Shoot();
         }
-    }
-
-    private void FixedUpdate()
-    {
     }
 
     //Поварачивает игрока в сторону стрельбы
@@ -113,7 +112,8 @@ public class PlayerScript : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        //Pool usage
+        GameObject bulletGameObject = objectPooler.SpawnFromPool("Bullet", firePoint.position, firePoint.rotation);
         BulletScript bullet = bulletGameObject.GetComponent<BulletScript>();
         if (bullet != null)
         {
