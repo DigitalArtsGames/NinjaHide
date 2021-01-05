@@ -59,7 +59,7 @@ public class PlayerScript : MonoBehaviour
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            //Shoot();
+            Shoot();
         }
     }
 
@@ -153,7 +153,8 @@ public class PlayerScript : MonoBehaviour
 
     void IsPressedButton()
     {
-        if (Input.GetButtonDown("Hide") && canHide)
+        //if (Input.GetButtonDown("Hide") && canHide)
+        if (Input.GetButtonDown("Fire1") && canHide)
             buttonPressed = !buttonPressed;
     }
 

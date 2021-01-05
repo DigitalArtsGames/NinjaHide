@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1597524994}
   - component: {fileID: 1597524995}
+  - component: {fileID: 1571947599}
   m_Layer: 0
   m_Name: SphereCollider
   m_TagString: Untagged
@@ -74,6 +75,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1571947599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597524993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b0e2be8afbd3643a4c2447b026326d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: []
 --- !u!1 &8231577407552607478
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +194,7 @@ GameObject:
   - component: {fileID: 8231577407623796712}
   - component: {fileID: 8231577407623796719}
   - component: {fileID: 8231577407623796715}
+  - component: {fileID: 1891417792}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -283,6 +298,27 @@ MonoBehaviour:
   firePoint: {fileID: 1262058333}
   runSpeed: 5
   crouchSpeed: 2
+  lineMaterial: {fileID: 2100000, guid: 27f051cab0b14f0498ecb58738cd7073, type: 2}
+  circlePrefab: {fileID: 34219254256614958, guid: 0f1e74da8dd252644b4c61c8430ac85f,
+    type: 3}
+--- !u!114 &1891417792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8231577407623796718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edddab5ffdd329542b8906c6f900d2f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNPC: 0
+  mode: 0
+  spline: {fileID: 0}
+  runDuration: 20
+  crouchDuration: 30
+  lookForward: 0
 --- !u!1 &8231577407766563613
 GameObject:
   m_ObjectHideFlags: 0
