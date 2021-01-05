@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LevelLoader : MonoBehaviour
 {
-    public TestLevel levelData;
+    [SerializeField] public LevelData levelData;
 
-    private void Start()
+    private void Update()
     {
-        Instantiate(levelData.levelRooms[0]);
+        Debug.Log(levelData.rooms[0].player.tag);
     }
 }
