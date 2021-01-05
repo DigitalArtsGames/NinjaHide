@@ -861,6 +861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1571737975}
   - component: {fileID: 1571737974}
+  - component: {fileID: 1571737976}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -918,6 +919,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 35.349003, y: -90.00001, z: 0}
+--- !u!114 &1571737976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571737973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e96f17242827346a45721c37a19096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cinemaVirCam: {fileID: 1571737974}
 --- !u!1 &1861821072
 GameObject:
   m_ObjectHideFlags: 0

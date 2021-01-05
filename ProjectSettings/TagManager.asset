@@ -11,6 +11,7 @@ TagManager:
   - Target
   - ExitSpot
   - Circle
+  - Camera
   layers:
   - Default
   - TransparentFX
