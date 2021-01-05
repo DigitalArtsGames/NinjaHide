@@ -9,7 +9,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
 
-    [Header("Enemy Detection Settings")]
+    [Header("Player Detection Settings")]
     public int detectionTime;
     public int currentDetectionValue;
 
@@ -27,10 +27,8 @@ public class EnemyScript : MonoBehaviour
     private Transform target;
     private bool isSeeingPlayer;
     private List<Transform> targets;
-
-    private SplineWalker splineWalker;
     private ObjectPoolerScript objectPooler;
-    
+
     void Start()
     {
         objectPooler = ObjectPoolerScript.Instance;
@@ -44,10 +42,6 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
-        if (GetComponent<SplineWalker>() != null)
-        {
-            splineWalker = GetComponent<SplineWalker>();
-        }
         targets = GetComponent<FieldOfView>().visibleTargets;
         GetTargets();
         SeeingPlayer();
