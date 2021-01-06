@@ -6,8 +6,8 @@ public class LevelLoader : MonoBehaviour
 {
     [SerializeField] public LevelData levelData;
 
-    private void Start()
+    private void Update()
     {
-        Instantiate(levelData.rooms[0]);
+        Debug.Log(levelData.rooms[0].player.tag);
     }
 }
