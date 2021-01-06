@@ -48,9 +48,9 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         RotateToPlayer();
-        hidingSpotNearby = GameObject.FindGameObjectWithTag("HidingSpot");
-        exitSpotNearby = GameObject.FindGameObjectWithTag("ExitSpot");
-        FindHidingSpot();
+        //hidingSpotNearby = GameObject.FindGameObjectWithTag("HidingSpot");
+        //exitSpotNearby = GameObject.FindGameObjectWithTag("ExitSpot");
+        GoToHidingSpot();
 
         if (enemyTarget == null)
             return;
@@ -77,6 +77,11 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    void FindHidingSpot()
+    {
+
+    }
+
     void RotatePlayer()
     {
         Vector3 dir = enemyTarget.position - transform.position;
@@ -99,7 +104,15 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.CompareTag("HidingSpot"))
         {
             canHide = true;
+            hidingSpotNearby = other.gameObject;
+
+            HidingSpotScript hidingSpot = hidingSpotNearby.GetComponent<HidingSpotScript>();
+            exitSpotNearby = hidingSpot.GetExitSpot();
         }
+        //if(other.gameObject.CompareTag("Finish"))
+        //{
+
+        //}
     }
 
     private void OnTriggerExit(Collider other)
@@ -107,6 +120,8 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.CompareTag("HidingSpot"))
         {
             canHide = false;
+            hidingSpotNearby = null;
+            exitSpotNearby = null;
         }
     }
 
@@ -163,7 +178,7 @@ public class PlayerScript : MonoBehaviour
         Debug.DrawLine(start, end, color);
     }
 
-    void FindHidingSpot()
+    void GoToHidingSpot()
     {
         IsPressedButton();
         int speed = 2;
@@ -213,12 +228,15 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            if (transform.position != exitSpotNearby.transform.position)
+            if(exitSpotNearby != null)
             {
-                Vector3 dirToExitSpot = (exitSpotNearby.transform.position - transform.position);
-                transform.Translate(dirToExitSpot * Time.deltaTime * speed);
+                if (transform.position != exitSpotNearby.transform.position)
+                {
+                    Vector3 dirToExitSpot = (exitSpotNearby.transform.position - transform.position);
+                    transform.Translate(dirToExitSpot * Time.deltaTime * speed);
+                }
+                splineWalker.enabled = true;
             }
-            splineWalker.enabled = true;
         }
     }
 }

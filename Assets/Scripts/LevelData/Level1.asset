@@ -15,3 +15,4 @@ MonoBehaviour:
   name: Level1
   rooms:
   - {fileID: 8139895467623713125, guid: 89011283d2acbfd49a2903fbac7504c6, type: 3}
+  - {fileID: 7804508030252114944, guid: 9ea7d861e974ff24a9ff83b0fe3b68c6, type: 3}

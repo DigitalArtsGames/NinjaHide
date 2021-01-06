@@ -12,6 +12,7 @@ TagManager:
   - ExitSpot
   - Circle
   - Camera
+  - LevelManager
   layers:
   - Default
   - TransparentFX

@@ -5,9 +5,22 @@ using UnityEngine;
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField] public LevelData levelData;
+    
+    public int currentLevelIndex = 0;
+    public Room currentLevel;
 
-    private void Update()
+    private void Start()
     {
-        Debug.Log(levelData.rooms[0].player.tag);
+        currentLevelIndex = 0;
+        currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
+    }
+
+    public void LoadNextLevel()
+    {
+        if(levelData.rooms.Length >= currentLevelIndex + 1)
+        {
+            Destroy(currentLevel.gameObject);
+            currentLevel = Instantiate(levelData.rooms[currentLevelIndex + 1]);
+        }
     }
 }
