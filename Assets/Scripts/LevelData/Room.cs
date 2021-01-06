@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    [Header("Player Settings")]
     public GameObject player;
     public GameObject playerSpline;
-    
+
+    [Header("Enemies Settings")]
     public EnemyScript[] enemiesScript;
-    public GameObject enemySpline;
+    public GameObject[] enemiesSplines;
     
     public GameObject[] roomObjects;
 

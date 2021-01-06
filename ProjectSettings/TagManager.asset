@@ -12,6 +12,7 @@ TagManager:
   - ExitSpot
   - Circle
   - Camera
+  - MenuPlayer
   layers:
   - Default
   - TransparentFX
