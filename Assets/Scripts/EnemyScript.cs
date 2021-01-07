@@ -40,7 +40,7 @@ public class EnemyScript : MonoBehaviour
         shotsCount = 0;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         targets = GetComponent<FieldOfView>().visibleTargets;
         GetTargets();

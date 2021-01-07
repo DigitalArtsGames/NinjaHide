@@ -18,7 +18,7 @@ public class SplineWalker : MonoBehaviour
 
     private float duration;
 
-    private float progress;
+    [HideInInspector] public float progress;
 
     public bool lookForward;
 

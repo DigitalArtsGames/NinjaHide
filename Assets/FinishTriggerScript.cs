@@ -11,14 +11,16 @@ public class FinishTriggerScript : MonoBehaviour
         levelLoader = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if(other.gameObject.CompareTag("Player"))
+        FinishedPath();
+    }
+
+    void FinishedPath()
+    {
+        if(PlayerScript.splineWalker.progress == 1)
         {
-            if(levelLoader != null)
-            {
-                levelLoader.LoadNextLevel();
-            }
+            levelLoader.LoadNextLevel();
         }
     }
 }

@@ -8,7 +8,7 @@ public class BillboardScript : MonoBehaviour
 
     public Transform camera;
 
-    void Update()
+    void FixedUpdate()
     {
         if(camera != null)
         {

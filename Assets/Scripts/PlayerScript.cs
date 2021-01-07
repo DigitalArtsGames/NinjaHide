@@ -23,7 +23,7 @@ public class PlayerScript : MonoBehaviour
     private int score;
 
     private bool buttonPressed;
-    private SplineWalker splineWalker;
+    [HideInInspector] public static SplineWalker splineWalker;
 
     private GameObject hidingSpotNearby;
     private GameObject exitSpotNearby;
