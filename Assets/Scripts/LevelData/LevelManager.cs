@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelLoader : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     [SerializeField] public LevelData levelData;
     
@@ -12,14 +12,20 @@ public class LevelLoader : MonoBehaviour
     private void Start()
     {
         currentLevelIndex = 0;
-        currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
+        //if(3 > 5)
+        //{
+        //    currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
+        //}
     }
 
     public void LoadNextLevel()
     {
         if(levelData.rooms.Length >= currentLevelIndex + 1)
         {
-            Destroy(currentLevel.gameObject);
+            if(currentLevel != null)
+            {
+                Destroy(currentLevel.gameObject);
+            }
             currentLevel = Instantiate(levelData.rooms[currentLevelIndex + 1]);
         }
     }

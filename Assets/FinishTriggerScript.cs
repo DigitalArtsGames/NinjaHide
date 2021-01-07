@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FinishTriggerScript : MonoBehaviour
 {
-    private LevelLoader levelLoader;
+    private LevelManager levelLoader;
 
     private void Start()
     {
-        levelLoader = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelLoader>();
+        levelLoader = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
     }
 
     private void OnTriggerEnter(Collider other)
