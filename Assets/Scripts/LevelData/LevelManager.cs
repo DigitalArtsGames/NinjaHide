@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour
     public GameObject timeLine; 
     public int currentLevelIndex = 0;
     public Room currentLevel;
+    public GameObject rewardMenu;
+    public StarsManager starsContainer;
 
     private void Start()
     {
@@ -54,5 +56,11 @@ public class LevelManager : MonoBehaviour
     {
         Destroy(currentLevel.gameObject);
         Time.timeScale = 1f;
+    }
+
+    public void LoadRewardMenu()
+    {
+        rewardMenu.SetActive(true);
+        starsContainer.CollectStars(3);
     }
 }

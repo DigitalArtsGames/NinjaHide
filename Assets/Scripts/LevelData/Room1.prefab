@@ -416,6 +416,7 @@ MonoBehaviour:
   spline: {fileID: 8139895467861069821}
   runDuration: 10
   crouchDuration: 0
+  progress: 0
   lookForward: 1
 --- !u!1001 &201192791051239503
 PrefabInstance:
@@ -428,6 +429,10 @@ PrefabInstance:
       propertyPath: spline
       value: 
       objectReference: {fileID: 8139895469134239128}
+    - target: {fileID: 1891417792, guid: 5b77a00f36aabca46bdc500f5aab7591, type: 3}
+      propertyPath: runDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8231577407623796714, guid: 5b77a00f36aabca46bdc500f5aab7591,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -496,7 +501,37 @@ PrefabInstance:
     - target: {fileID: 8231577407766563608, guid: 5b77a00f36aabca46bdc500f5aab7591,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.88
+      value: 2.9499998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231577407766563608, guid: 5b77a00f36aabca46bdc500f5aab7591,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.008830526
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231577407766563608, guid: 5b77a00f36aabca46bdc500f5aab7591,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.87977076
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231577407766563608, guid: 5b77a00f36aabca46bdc500f5aab7591,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.016354235
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231577407766563608, guid: 5b77a00f36aabca46bdc500f5aab7591,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.47503474
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231577407766563608, guid: 5b77a00f36aabca46bdc500f5aab7591,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231577407766563608, guid: 5b77a00f36aabca46bdc500f5aab7591,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.96
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b77a00f36aabca46bdc500f5aab7591, type: 3}

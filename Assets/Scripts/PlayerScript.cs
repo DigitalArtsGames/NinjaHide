@@ -77,7 +77,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void FindHidingSpot()
+    void CalcRating()
     {
 
     }

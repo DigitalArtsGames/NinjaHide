@@ -8,6 +8,7 @@ public class FinishTriggerScript : MonoBehaviour
 
     private void Start()
     {
+        
         levelLoader = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
     }
 
@@ -20,7 +21,7 @@ public class FinishTriggerScript : MonoBehaviour
     {
         if(PlayerScript.splineWalker.progress == 1)
         {
-            levelLoader.LoadNextLevel();
+            levelLoader.LoadRewardMenu();
         }
     }
 }
