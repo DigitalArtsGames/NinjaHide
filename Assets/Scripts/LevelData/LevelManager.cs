@@ -35,4 +35,24 @@ public class LevelManager : MonoBehaviour
             Debug.Log("THE END!");
         }
     }
+
+    public void LoadCurrentLevel()
+    {
+        if (levelData.rooms.Length != currentLevelIndex)
+        {
+            currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
+        }
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("Quiting...");
+        Application.Quit();
+    }
+
+    public void LoadMainMenu()
+    {
+        Destroy(currentLevel.gameObject);
+        Time.timeScale = 1f;
+    }
 }
