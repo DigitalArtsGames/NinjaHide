@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BezierSpline : MonoBehaviour
 {
-    [SerializeField]
     public Vector3[] points;
 
     [SerializeField]

@@ -49,8 +49,8 @@ public class PlayerScript : MonoBehaviour
     }
     void Update()
     {
-        RotateToPlayer();
-        GoToHidingSpot();
+        //RotateToPlayer();
+        //GoToHidingSpot();
 
         if (enemyTarget == null)
             return;
@@ -226,7 +226,7 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            oldPosition = splineWalker.spline.GetPoint(splineWalker.progress);
+            //oldPosition = splineWalker.spline.GetPoint(splineWalker.progress);
             Vector3 dirToExitHidingSpot = (oldPosition - transform.position);
             transform.Translate(dirToExitHidingSpot * Time.deltaTime * 10);
             //splineWalker.enabled = true;

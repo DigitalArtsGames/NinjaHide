@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SplineWalker : MonoBehaviour
 {
+    public event Action onSplineEnded;
 
     public bool isNPC;
 
@@ -18,74 +20,33 @@ public class SplineWalker : MonoBehaviour
     public float runDuration;
     public float crouchDuration;
 
-    private float duration;
+    public int currentIndex;
 
-    [HideInInspector] public float progress;
-
-    public bool lookForward;
-
+    [SerializeField] private float nextPointTreshhold = 0.01f;
     private void Update()
     {
-        Crouch();
-        if (goingForward)
+        if(Vector3.Distance(spline.transform.GetChild(currentIndex).position, transform.position) < nextPointTreshhold)
         {
-            progress += Time.deltaTime / duration;
-            if (progress > 1f)
-            {
-                if (mode == SplineWalkerMode.Once)
-                {
-                    progress = 1f;
-                }
-                else if (mode == SplineWalkerMode.Loop)
-                {
-                    progress -= 1f;
-                }
-                else
-                {
-                    progress = 2f - progress;
-                    goingForward = false;
-                }
-            }
-        }
-        else
-        {
-            progress -= Time.deltaTime / duration;
-            if (progress < 0f)
-            {
-                progress = -progress;
-                goingForward = true;
-            }
+            GetNextPoint();
         }
 
-        Vector3 position = spline.GetPoint(progress);
-        transform.localPosition = position;
-        if (lookForward)
-        {
-            transform.LookAt(position + spline.GetDirection(progress));
-        }
+        var target = spline.transform.GetChild(currentIndex).position;
+        print(target);  
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
 
-    void Crouch()
+
+    private void GetNextPoint()
     {
-        if (Input.GetButton("Crouch") && !isNPC)
+        if (currentIndex + 1 >= spline.transform.childCount)
         {
-            duration = crouchDuration;
+            onSplineEnded?.Invoke();
+            return;
         }
-        else
-        {
-            duration = GetPathLenght();
-        }
+
+        currentIndex++;
     }
 
-    float GetPathLenght()
-    {
-        if (spline.points.Length != 0)
-        {
-            int length = spline.points.Length * 10;
-            return length / speed;
-        }
-        return 0;
-        //s=v*t
-        //t=s/v
-    }
 }
+
+

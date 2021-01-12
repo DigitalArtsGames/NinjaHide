@@ -146,7 +146,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -708,7 +708,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1268,13 +1268,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNPC: 0
-  speed: 30
+  speed: 5
   mode: 0
   spline: {fileID: 7446265503624070526}
   runDuration: 20
   crouchDuration: 25
-  progress: 0
-  lookForward: 0
+  currentIndex: 0
+  nextPointTreshhold: 0.01
 --- !u!54 &1702577035799522439
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1529,7 +1529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3588121368328746340
 Transform:
   m_ObjectHideFlags: 0
@@ -1766,7 +1766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4251148569597514380
 Transform:
   m_ObjectHideFlags: 0
@@ -1925,8 +1925,8 @@ MonoBehaviour:
   spline: {fileID: 7446265504901570331}
   runDuration: 10
   crouchDuration: 0
-  progress: 0
-  lookForward: 1
+  currentIndex: 0
+  nextPointTreshhold: 0.01
 --- !u!1 &5829010176096608460
 GameObject:
   m_ObjectHideFlags: 0

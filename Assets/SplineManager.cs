@@ -11,25 +11,31 @@ public class SplineManager : MonoBehaviour
 
     private void Start()
     {
+        playerSplineWalker.onSplineEnded += OnCurrentSplineEnded;
+
         currentSplineIndex = 0;
         splines = GetComponentsInChildren<BezierSpline>();
         playerSplineWalker.spline = splines[currentSplineIndex];
     }
 
-    private void Update()
+    private void OnCurrentSplineEnded()
     {
-        GetNextSpline();
-    }
-
-    public void GetNextSpline()
-    {
-        if (PlayerScript.splineWalker.progress == 1)
+        if (GetNextSpline())
         {
-            if (currentSplineIndex + 1 >= splines.Length) return;
-
-            currentSplineIndex++;
-            playerSplineWalker.progress = 0;
+            playerSplineWalker.currentIndex = 0;
             playerSplineWalker.spline = splines[currentSplineIndex];
         }
+        else
+        {
+            //TODO: Level finish
+        }
+    }
+
+    private bool GetNextSpline()
+    {
+        if (currentSplineIndex + 1 >= splines.Length) return false;
+
+        currentSplineIndex++;
+        return true;
     }
 }
