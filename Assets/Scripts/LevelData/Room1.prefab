@@ -431,7 +431,11 @@ PrefabInstance:
       objectReference: {fileID: 8139895469134239128}
     - target: {fileID: 1891417792, guid: 5b77a00f36aabca46bdc500f5aab7591, type: 3}
       propertyPath: runDuration
-      value: 5
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891417792, guid: 5b77a00f36aabca46bdc500f5aab7591, type: 3}
+      propertyPath: crouchDuration
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8231577407623796714, guid: 5b77a00f36aabca46bdc500f5aab7591,
         type: 3}

@@ -35,6 +35,8 @@ public class PlayerScript : MonoBehaviour
 
     private ObjectPoolerScript objectPooler;
 
+    private Vector3 oldPosition;
+
     void Start()
     {
         objectPooler = ObjectPoolerScript.Instance;
@@ -48,8 +50,6 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         RotateToPlayer();
-        //hidingSpotNearby = GameObject.FindGameObjectWithTag("HidingSpot");
-        //exitSpotNearby = GameObject.FindGameObjectWithTag("ExitSpot");
         GoToHidingSpot();
 
         if (enemyTarget == null)
@@ -168,9 +168,11 @@ public class PlayerScript : MonoBehaviour
 
     void IsPressedButton()
     {
-        //if (Input.GetButtonDown("Hide") && canHide)
-        if (Input.GetButtonDown("Fire1") && canHide)
-            buttonPressed = !buttonPressed;
+        //if (Input.GetButton("Fire1") && canHide)
+        if (Input.GetMouseButtonDown(0) && canHide)
+            buttonPressed = true;
+        if (Input.GetMouseButtonUp(0) && canHide)
+            buttonPressed = false;
     }
 
     void ShowPathToHidingSpot(Vector3 start, Vector3 end, Color color)
@@ -181,7 +183,6 @@ public class PlayerScript : MonoBehaviour
     void GoToHidingSpot()
     {
         IsPressedButton();
-        int speed = 2;
 
         if (hidingSpotNearby != null && canHide)
         {
@@ -220,23 +221,15 @@ public class PlayerScript : MonoBehaviour
         if (buttonPressed)
         {
             splineWalker.enabled = false;
-            if (transform.position != hidingSpotNearby.transform.position)
-            {
-                Vector3 dirToHidingSpot = (hidingSpotNearby.transform.position - transform.position);
-                transform.Translate(dirToHidingSpot * Time.deltaTime * speed);
-            }
+            Vector3 dirToHidingSpot = (hidingSpotNearby.transform.position - transform.position);
+            transform.Translate(dirToHidingSpot * Time.deltaTime * 10);
         }
         else
         {
-            if(exitSpotNearby != null)
-            {
-                if (transform.position != exitSpotNearby.transform.position)
-                {
-                    Vector3 dirToExitSpot = (exitSpotNearby.transform.position - transform.position);
-                    transform.Translate(dirToExitSpot * Time.deltaTime * speed);
-                }
-                splineWalker.enabled = true;
-            }
+            oldPosition = splineWalker.spline.GetPoint(splineWalker.progress);
+            Vector3 dirToExitHidingSpot = (oldPosition - transform.position);
+            transform.Translate(dirToExitHidingSpot * Time.deltaTime * 10);
+            //splineWalker.enabled = true;
         }
     }
 }
