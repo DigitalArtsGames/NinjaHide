@@ -7,6 +7,8 @@ public class SplineWalker : MonoBehaviour
 
     public bool isNPC;
 
+    public int speed = 20;
+
     public SplineWalkerMode mode;
 
     private bool goingForward = true;
@@ -71,7 +73,19 @@ public class SplineWalker : MonoBehaviour
         }
         else
         {
-            duration = runDuration;
+            duration = GetPathLenght();
         }
+    }
+
+    float GetPathLenght()
+    {
+        if (spline.points.Length != 0)
+        {
+            int length = spline.points.Length * 10;
+            return length / speed;
+        }
+        return 0;
+        //s=v*t
+        //t=s/v
     }
 }

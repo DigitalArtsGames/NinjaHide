@@ -14,14 +14,14 @@ public class FinishTriggerScript : MonoBehaviour
 
     private void Update()
     {
-        FinishedPath();
+        //FinishedPath();
     }
 
-    void FinishedPath()
-    {
-        if(PlayerScript.splineWalker.progress == 1)
-        {
-            levelLoader.LoadRewardMenu();
-        }
-    }
+    //void FinishedPath()
+    //{
+    //    if (PlayerScript.splineWalker.progress == 1)
+    //    {
+    //        levelLoader.LoadRewardMenu();
+    //    }
+    //}
 }
