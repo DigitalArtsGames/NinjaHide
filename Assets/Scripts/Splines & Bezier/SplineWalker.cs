@@ -25,14 +25,18 @@ public class SplineWalker : MonoBehaviour
     [SerializeField] private float nextPointTreshhold = 0.01f;
     private void Update()
     {
-        if(Vector3.Distance(spline.transform.GetChild(currentIndex).position, transform.position) < nextPointTreshhold)
+        if(spline.transform.childCount > currentIndex)
         {
-            GetNextPoint();
-        }
+            if(Vector3.Distance(spline.transform.GetChild(currentIndex).position, transform.position) < nextPointTreshhold)
+            {
+                GetNextPoint();
+            }
 
-        var target = spline.transform.GetChild(currentIndex).position;
-        print(target);  
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            var target = spline.transform.GetChild(currentIndex).position;
+            print(target);  
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+
+        }
     }
 
 
