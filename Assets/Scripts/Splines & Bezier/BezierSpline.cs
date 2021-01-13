@@ -25,6 +25,25 @@ public class BezierSpline : MonoBehaviour
         return points;
     }
 
+    //public int GetSplinePointByVector(Vector3 pointVector)
+    //{
+    //    List<Transform> childPoints = new List<Transform>();
+    //    for (int i = 0; i < transform.childCount; i++)
+    //    {
+    //        childPoints.Add(transform.GetChild(i));
+    //    }
+
+    //    foreach (var childPoint in childPoints)
+    //    {
+    //        if(childPoint.position == pointVector)
+    //        {
+    //            return childPoint.Index
+    //        }
+    //    }
+
+    //    return points;
+    //}
+
     public Vector3 GetControlPoint(int index)
     {
         return points[index];

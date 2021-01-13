@@ -28,14 +28,13 @@ public class PlayerScript : MonoBehaviour
     private GameObject hidingSpotNearby;
     private GameObject exitSpotNearby;
 
+    private bool isHiding;
     private bool canHide;
     private SphereCollider sphereCollider;
 
     private LineRenderer lineRenderer;
 
     private ObjectPoolerScript objectPooler;
-
-    private Vector3 oldPosition;
 
     void Start()
     {
@@ -50,7 +49,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         //RotateToPlayer();
-        //GoToHidingSpot();
+        GoToHidingSpot();
 
         if (enemyTarget == null)
             return;
@@ -64,35 +63,30 @@ public class PlayerScript : MonoBehaviour
     }
 
     //Поварачивает игрока в сторону стрельбы
-    void RotateToPlayer()
-    {
-        if (enemyTarget != null)
-        {
-            Vector3 targetDirection = enemyTarget.position - transform.position;
-            float singleStep = 1 * Time.deltaTime;
+    //void RotateToPlayer()
+    //{
+    //    if (enemyTarget != null)
+    //    {
+    //        Vector3 targetDirection = enemyTarget.position - transform.position;
+    //        float singleStep = 1 * Time.deltaTime;
 
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-            transform.rotation = Quaternion.LookRotation(newDirection);
+    //        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+    //        transform.rotation = Quaternion.LookRotation(newDirection);
 
-        }
-    }
+    //    }
+    //}
 
-    void CalcRating()
-    {
-
-    }
-
-    void RotatePlayer()
-    {
-        Vector3 dir = enemyTarget.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
+    //void RotatePlayer()
+    //{
+    //    Vector3 dir = enemyTarget.position - transform.position;
+    //    Quaternion lookRotation = Quaternion.LookRotation(dir);
 
 
-        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 3).eulerAngles;
-        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+    //    Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 3).eulerAngles;
+    //    transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-        Debug.DrawRay(transform.position, dir, Color.red);
-    }
+    //    Debug.DrawRay(transform.position, dir, Color.red);
+    //}
 
     void OnTriggerEnter(Collider other)
     {
@@ -107,12 +101,8 @@ public class PlayerScript : MonoBehaviour
             hidingSpotNearby = other.gameObject;
 
             HidingSpotScript hidingSpot = hidingSpotNearby.GetComponent<HidingSpotScript>();
-            exitSpotNearby = hidingSpot.GetExitSpot();
-        }
-        //if(other.gameObject.CompareTag("Finish"))
-        //{
 
-        //}
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -168,16 +158,56 @@ public class PlayerScript : MonoBehaviour
 
     void IsPressedButton()
     {
-        //if (Input.GetButton("Fire1") && canHide)
+        //if (Input.GetButton("Fire1"))
+        //{
+        //    buttonPressed = true;
+        //}
+        //buttonPressed = false;
+
+
         if (Input.GetMouseButtonDown(0) && canHide)
+        {
             buttonPressed = true;
-        if (Input.GetMouseButtonUp(0) && canHide)
+            isHiding = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
             buttonPressed = false;
+        }
     }
 
     void ShowPathToHidingSpot(Vector3 start, Vector3 end, Color color)
     {
         Debug.DrawLine(start, end, color);
+    }
+
+    List<Transform> GetSplinePoints()
+    {
+        List<Transform> points = new List<Transform>();
+        for (int i = 0; i < splineWalker.spline.transform.childCount; i++)
+        {
+            points.Add(splineWalker.spline.transform.GetChild(i));
+        }
+        return points;
+    }
+
+    Transform FindExitSpotNearby()
+    {
+        Transform bestTarget = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+        foreach (Transform potentialTarget in GetSplinePoints())
+        {
+            Vector3 directionToTarget = potentialTarget.position - currentPosition;
+            float dSqrToTarget = directionToTarget.sqrMagnitude;
+            if (dSqrToTarget < closestDistanceSqr)
+            {
+                closestDistanceSqr = dSqrToTarget;
+                bestTarget = potentialTarget.transform;
+                
+            }
+        }
+        return bestTarget;
     }
 
     void GoToHidingSpot()
@@ -218,18 +248,33 @@ public class PlayerScript : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("Circle"));
         }
 
-        if (buttonPressed)
+        if (canHide)
         {
-            splineWalker.enabled = false;
-            Vector3 dirToHidingSpot = (hidingSpotNearby.transform.position - transform.position);
-            transform.Translate(dirToHidingSpot * Time.deltaTime * 10);
-        }
-        else
-        {
-            //oldPosition = splineWalker.spline.GetPoint(splineWalker.progress);
-            Vector3 dirToExitHidingSpot = (oldPosition - transform.position);
-            transform.Translate(dirToExitHidingSpot * Time.deltaTime * 10);
-            //splineWalker.enabled = true;
+            if (buttonPressed)
+            {
+                splineWalker.enabled = false;
+                Vector3 dirToHidingSpot = (hidingSpotNearby.transform.position - transform.position);
+                transform.Translate(dirToHidingSpot * Time.deltaTime * 10);
+            }
+            else
+            {
+                if (isHiding)
+                {
+                    if (Vector3.Distance(transform.position, FindExitSpotNearby().position) > 0f)
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, FindExitSpotNearby().position, Time.deltaTime * 10);
+                    }
+                    else
+                    {
+                        isHiding = false;
+                        splineWalker.SetPositionIndex(GetSplinePoints().IndexOf(FindExitSpotNearby()));
+                        splineWalker.enabled = true;
+                    }
+                    //Debug.Log(FindExitSpotNearby());
+                    //Debug.DrawLine(transform.position, FindExitSpotNearby());
+
+                }
+            }
         }
     }
 }

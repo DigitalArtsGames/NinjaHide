@@ -33,13 +33,15 @@ public class SplineWalker : MonoBehaviour
             }
 
             var target = spline.transform.GetChild(currentIndex).position;
-            print(target);  
+            //print(target);  
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-
         }
     }
 
-
+    public void SetPositionIndex(int index)
+    {
+        currentIndex = index;
+    }
     private void GetNextPoint()
     {
         if (currentIndex + 1 >= spline.transform.childCount)
@@ -47,7 +49,6 @@ public class SplineWalker : MonoBehaviour
             onSplineEnded?.Invoke();
             return;
         }
-
         currentIndex++;
     }
 
