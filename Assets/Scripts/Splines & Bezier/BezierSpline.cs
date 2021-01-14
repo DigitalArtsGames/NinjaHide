@@ -7,11 +7,25 @@ public class BezierSpline : MonoBehaviour
 {
     public Vector3[] points;
 
-    [SerializeField]
-    private bool loop;
+    public List<Vector3> bezierPoints;
 
-    [SerializeField]
-    private BezierControlPointMode[] modes;
+    [SerializeField] private bool loop;
+
+    [SerializeField] private BezierControlPointMode[] modes;
+
+    private SplineRender splineRender;
+
+    [Header("Bezier Settings")]
+    public float frequency;
+
+    private void Start()
+    {
+        CreatePoints();
+        splineRender = GetComponent<SplineRender>();
+        splineRender.RenderLine();
+        print(bezierPoints.Count);
+    }
+
     public int ControlPointCount
     {
         get
@@ -24,25 +38,6 @@ public class BezierSpline : MonoBehaviour
     {
         return points;
     }
-
-    //public int GetSplinePointByVector(Vector3 pointVector)
-    //{
-    //    List<Transform> childPoints = new List<Transform>();
-    //    for (int i = 0; i < transform.childCount; i++)
-    //    {
-    //        childPoints.Add(transform.GetChild(i));
-    //    }
-
-    //    foreach (var childPoint in childPoints)
-    //    {
-    //        if(childPoint.position == pointVector)
-    //        {
-    //            return childPoint.Index
-    //        }
-    //    }
-
-    //    return points;
-    //}
 
     public Vector3 GetControlPoint(int index)
     {
@@ -262,8 +257,26 @@ public class BezierSpline : MonoBehaviour
             EnforceMode(0);
         }
     }
+
+    #region Nijat Made
+    public void CreatePoints()
+    {
+        if (frequency <= 0)
+            throw new Exception("Frequency is equals zero");
+
+
+        for (int f = 0; f < frequency; f++)
+        {
+            Vector3 position = GetPoint(f / frequency);
+            bezierPoints.Add(position);
+        }
+    }
+
+    #endregion
+
+
     private void OnGUI()
     {
-        
+
     }
 }

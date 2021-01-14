@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SplineRender : MonoBehaviour
 {
-    public SplineDecorator bezierSpline;
+    //public SplineDecorator splineDecorator;
     public Material lineMaterial;
     public bool isGlowing;
 
@@ -12,11 +12,17 @@ public class SplineRender : MonoBehaviour
     private LineRenderer lineRenderer;
     private bool isEnable;
 
-    private void Start()
+    private BezierSpline bezierSpline;
+
+    public void RenderLine()
     {
+
+        print("splineRenderer");
+
+        bezierSpline = GetComponent<BezierSpline>();
         if(isGlowing)
         {
-            InvokeRepeating("EnableCircle", 0f, 0.3f);
+            //InvokeRepeating("EnableCircle", 0f, 0.3f);
             //StartCoroutine(Glow());
         }
 
@@ -24,22 +30,24 @@ public class SplineRender : MonoBehaviour
         {
             lineRenderer = gameObject.AddComponent<LineRenderer>();
         }
-        points = bezierSpline.points.ToArray();
+        
+        points = bezierSpline.bezierPoints.ToArray();
 
         for (int i = 0; i < points.Length; i++)
         {
             Vector3 newpos = new Vector3(points[i].x, points[i].y - 0.9f, points[i].z);
             points[i].Set(newpos.x, newpos.y, newpos.z);
+
         }
+        
+        lineRenderer.positionCount = points.Length;
+        lineRenderer.SetPositions(points);
         
         lineRenderer.material = lineMaterial;
         lineRenderer.widthMultiplier = 0.2f;
-        
-        lineRenderer.positionCount = points.Length;
-        for (int i = 0; i < points.Length; i++)
-        {
-            lineRenderer.SetPosition(i, points[i]);
-        }  
+
+
+        Debug.Log("Draw!" + name);
         
     }
 

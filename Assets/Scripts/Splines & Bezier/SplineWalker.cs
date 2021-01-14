@@ -17,18 +17,25 @@ public class SplineWalker : MonoBehaviour
 
     public int currentIndex;
 
+    [HideInInspector] public List<Vector3> points;
+
+    private void Start()
+    {
+        points = spline.bezierPoints;
+    }
+
     [SerializeField] private float nextPointTreshhold = 0.01f;
     private void Update()
     {
-        if(spline.transform.childCount > currentIndex)
+        if(points.Count > currentIndex)
         {
-            if(Vector3.Distance(spline.transform.GetChild(currentIndex).position, transform.position) < nextPointTreshhold)
+            if(Vector3.Distance(points[currentIndex], transform.position) < nextPointTreshhold)
             {
                 GetNextPoint();
-                progress += Time.deltaTime;
+                //progress += Time.deltaTime;
             }
 
-            var target = spline.transform.GetChild(currentIndex).position;
+            var target = points[currentIndex];
             //print(target);  
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
@@ -40,7 +47,7 @@ public class SplineWalker : MonoBehaviour
     }
     private void GetNextPoint()
     {
-        if (currentIndex + 1 >= spline.transform.childCount)
+        if (currentIndex + 1 >= points.Count)
         {
             onSplineEnded?.Invoke();
             return;

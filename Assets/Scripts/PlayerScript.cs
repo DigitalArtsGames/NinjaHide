@@ -158,12 +158,6 @@ public class PlayerScript : MonoBehaviour
 
     void IsPressedButton()
     {
-        //if (Input.GetButton("Fire1"))
-        //{
-        //    buttonPressed = true;
-        //}
-        //buttonPressed = false;
-
 
         if (Input.GetMouseButtonDown(0) && canHide)
         {
@@ -181,29 +175,24 @@ public class PlayerScript : MonoBehaviour
         Debug.DrawLine(start, end, color);
     }
 
-    List<Transform> GetSplinePoints()
+    List<Vector3> GetSplinePoints()
     {
-        List<Transform> points = new List<Transform>();
-        for (int i = 0; i < splineWalker.spline.transform.childCount; i++)
-        {
-            points.Add(splineWalker.spline.transform.GetChild(i));
-        }
-        return points;
+        return splineWalker.points;
     }
 
-    Transform FindExitSpotNearby()
+    Vector3 FindExitSpotNearby()
     {
-        Transform bestTarget = null;
+        Vector3 bestTarget = Vector3.zero;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
-        foreach (Transform potentialTarget in GetSplinePoints())
+        foreach (Vector3 potentialTarget in GetSplinePoints())
         {
-            Vector3 directionToTarget = potentialTarget.position - currentPosition;
+            Vector3 directionToTarget = potentialTarget - currentPosition;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
             if (dSqrToTarget < closestDistanceSqr)
             {
                 closestDistanceSqr = dSqrToTarget;
-                bestTarget = potentialTarget.transform;
+                bestTarget = potentialTarget;
                 
             }
         }
@@ -260,9 +249,9 @@ public class PlayerScript : MonoBehaviour
             {
                 if (isHiding)
                 {
-                    if (Vector3.Distance(transform.position, FindExitSpotNearby().position) > 0f)
+                    if (Vector3.Distance(transform.position, FindExitSpotNearby()) > 0f)
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, FindExitSpotNearby().position, Time.deltaTime * 10);
+                        transform.position = Vector3.MoveTowards(transform.position, FindExitSpotNearby(), Time.deltaTime * 10);
                     }
                     else
                     {
