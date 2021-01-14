@@ -7,18 +7,13 @@ public class SplineWalker : MonoBehaviour
 {
     public event Action onSplineEnded;
 
-    public bool isNPC;
-
     public int speed = 20;
-
-    public SplineWalkerMode mode;
-
-    private bool goingForward = true;
 
     public BezierSpline spline;
 
-    public float runDuration;
-    public float crouchDuration;
+    public float progress;
+
+    public SplineWalkerMode mode;
 
     public int currentIndex;
 
@@ -30,6 +25,7 @@ public class SplineWalker : MonoBehaviour
             if(Vector3.Distance(spline.transform.GetChild(currentIndex).position, transform.position) < nextPointTreshhold)
             {
                 GetNextPoint();
+                progress += Time.deltaTime;
             }
 
             var target = spline.transform.GetChild(currentIndex).position;
@@ -50,6 +46,10 @@ public class SplineWalker : MonoBehaviour
             return;
         }
         currentIndex++;
+    }
+    private void GetProgress()
+    {
+
     }
 
 }
