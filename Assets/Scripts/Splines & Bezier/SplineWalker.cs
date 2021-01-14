@@ -7,7 +7,7 @@ public class SplineWalker : MonoBehaviour
 {
     public event Action onSplineEnded;
 
-    public int speed = 20;
+    [HideInInspector] public int speed;
 
     public BezierSpline spline;
 
@@ -27,6 +27,7 @@ public class SplineWalker : MonoBehaviour
     [SerializeField] private float nextPointTreshhold = 0.01f;
     private void Update()
     {
+        progress = spline.GetProgress();
         if(points.Count > currentIndex)
         {
             if(Vector3.Distance(points[currentIndex], transform.position) < nextPointTreshhold)
@@ -50,13 +51,25 @@ public class SplineWalker : MonoBehaviour
         if (currentIndex + 1 >= points.Count)
         {
             onSplineEnded?.Invoke();
+            points = spline.bezierPoints;
             return;
         }
         currentIndex++;
     }
-    private void GetProgress()
+
+    public void UpdateTarget()
     {
 
+    }
+
+    public void SetSpeed(int speed)
+    {
+        this.speed = speed;
+    }
+
+    private void GetProgress()
+    {
+        
     }
 
 }

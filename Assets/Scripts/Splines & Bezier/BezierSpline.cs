@@ -23,7 +23,6 @@ public class BezierSpline : MonoBehaviour
         CreatePoints();
         splineRender = GetComponent<SplineRender>();
         splineRender.RenderLine();
-        print(bezierPoints.Count);
     }
 
     public int ControlPointCount
@@ -258,11 +257,10 @@ public class BezierSpline : MonoBehaviour
         }
     }
 
-    #region Nijat Made
     public void CreatePoints()
     {
         if (frequency <= 0)
-            throw new Exception("Frequency is equals zero");
+            throw new Exception("Frequency is equals zero" + name);
 
 
         for (int f = 0; f < frequency; f++)
@@ -272,8 +270,14 @@ public class BezierSpline : MonoBehaviour
         }
     }
 
-    #endregion
-
+    public float GetProgress()
+    {
+        for (float i = 0; i < frequency; i++)
+        {
+            return i / frequency; 
+        }
+        return 0;
+    }
 
     private void OnGUI()
     {

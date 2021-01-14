@@ -1308,7 +1308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  spline: {fileID: 3605214735156043980}
+  spline: {fileID: 907707480078494532}
   progress: 0
   mode: 0
   currentIndex: 0
@@ -1432,7 +1432,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4275314677360081107}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2, y: -1.193826, z: -2.459219}
+  m_LocalPosition: {x: 2.29, y: -1.193826, z: -2.459219}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3728603020987793174}
@@ -1492,7 +1492,8 @@ MonoBehaviour:
   points: []
   frequency: 200
   lookForward: 1
-  items: []
+  items:
+  - {fileID: 8991902517060700460, guid: b52ff49689bf27448963fab8140a8f0b, type: 3}
 --- !u!1 &4321868933655540413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2756,7 +2757,7 @@ MonoBehaviour:
   bezierPoints: []
   loop: 1
   modes: 0000000000000000000000000000000000000000
-  frequency: 0
+  frequency: 100
 --- !u!114 &515711758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2764,14 +2765,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7446265504901570328}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4d34cb3797265749a7115513502647f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 7446265504901570331}
   points: []
-  frequency: 200
+  frequency: 100
   lookForward: 0
   items: []
 --- !u!1 &7446265505067489664

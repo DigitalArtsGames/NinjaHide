@@ -16,13 +16,11 @@ public class SplineRender : MonoBehaviour
 
     public void RenderLine()
     {
-
-        print("splineRenderer");
-
         bezierSpline = GetComponent<BezierSpline>();
         if(isGlowing)
         {
-            //InvokeRepeating("EnableCircle", 0f, 0.3f);
+            //Pokachto
+            InvokeRepeating("EnableCircle", 0f, 0.3f);
             //StartCoroutine(Glow());
         }
 
@@ -44,11 +42,7 @@ public class SplineRender : MonoBehaviour
         lineRenderer.SetPositions(points);
         
         lineRenderer.material = lineMaterial;
-        lineRenderer.widthMultiplier = 0.2f;
-
-
-        Debug.Log("Draw!" + name);
-        
+        lineRenderer.widthMultiplier = 0.2f;  
     }
 
     private void Update()
@@ -57,8 +51,11 @@ public class SplineRender : MonoBehaviour
 
     IEnumerator Glow()
     {
-        yield return new WaitForSeconds(0.5f);
-        EnableCircle();
+        while(true)
+        {
+            EnableCircle();
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     void EnableCircle()

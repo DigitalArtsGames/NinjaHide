@@ -11,8 +11,8 @@ public class PlayerScript : MonoBehaviour
     public Transform firePoint;
 
     [Header("Player Parameters")]
-    public float runSpeed = 10f;
-    public float crouchSpeed = 5f;
+    public int runSpeed = 10;
+    public int crouchSpeed = 5;
     public Material lineMaterial;
     public GameObject circlePrefab;
 
@@ -29,6 +29,7 @@ public class PlayerScript : MonoBehaviour
     private GameObject exitSpotNearby;
 
     private bool isHiding;
+    private bool isRunning;
     private bool canHide;
     private SphereCollider sphereCollider;
 
@@ -49,6 +50,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         //RotateToPlayer();
+        CheckSpeed();
         GoToHidingSpot();
 
         if (enemyTarget == null)
@@ -59,6 +61,18 @@ public class PlayerScript : MonoBehaviour
         {
             nextFire = Time.time + fireRate;
             Shoot();
+        }
+    }
+
+    public void CheckSpeed()
+    {
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            splineWalker.speed = crouchSpeed;
+        }
+        else
+        {
+            splineWalker.speed = runSpeed;
         }
     }
 

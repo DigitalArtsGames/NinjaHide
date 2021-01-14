@@ -53,8 +53,10 @@ MonoBehaviour:
   - {x: 0.80256915, y: 0, z: 1.1864011}
   - {x: -0.89371765, y: 0, z: 1.0546292}
   - {x: -0.87566113, y: 0, z: 0.04111269}
+  bezierPoints: []
   loop: 0
   modes: 000000000000000000000000
+  frequency: 500
 --- !u!114 &34219254256614959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +64,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34219254256614958}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4d34cb3797265749a7115513502647f, type: 3}
   m_Name: 
@@ -85,6 +87,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478dc45a4f0bffc49beed9dcb85d4e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierSpline: {fileID: 34219254256614959}
   lineMaterial: {fileID: 2100000, guid: 27f051cab0b14f0498ecb58738cd7073, type: 2}
   isGlowing: 1
