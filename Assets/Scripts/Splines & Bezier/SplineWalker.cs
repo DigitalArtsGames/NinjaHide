@@ -27,7 +27,7 @@ public class SplineWalker : MonoBehaviour
     [SerializeField] private float nextPointTreshhold = 0.01f;
     private void Update()
     {
-        progress = spline.GetProgress();
+        progress = spline.GetProgress(currentIndex);
         if(points.Count > currentIndex)
         {
             if(Vector3.Distance(points[currentIndex], transform.position) < nextPointTreshhold)

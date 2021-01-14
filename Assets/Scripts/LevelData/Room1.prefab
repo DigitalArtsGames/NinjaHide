@@ -2237,7 +2237,7 @@ MonoBehaviour:
   speed: 10
   spline: {fileID: 7446265504901570331}
   progress: 0
-  mode: 0
+  mode: 1
   currentIndex: 0
   points: []
   nextPointTreshhold: 0.01
