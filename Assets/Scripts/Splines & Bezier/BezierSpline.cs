@@ -9,7 +9,6 @@ public class BezierSpline : MonoBehaviour
 
     public List<Vector3> bezierPoints;
 
-    [SerializeField] private bool loop;
 
     [SerializeField] private BezierControlPointMode[] modes;
 
@@ -17,12 +16,19 @@ public class BezierSpline : MonoBehaviour
 
     [Header("Bezier Settings")]
     public float frequency;
+   
+    [SerializeField] private bool EnemySpline;
+
+    [SerializeField] private bool loop;
 
     private void Start()
     {
         CreatePoints();
-        splineRender = GetComponent<SplineRender>();
-        splineRender.RenderLine();
+        if(!EnemySpline)
+        {
+            splineRender = GetComponent<SplineRender>();
+            splineRender.RenderLine();
+        }
     }
 
     public int ControlPointCount

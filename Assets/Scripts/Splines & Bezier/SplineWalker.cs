@@ -50,9 +50,17 @@ public class SplineWalker : MonoBehaviour
     {
         if (currentIndex + 1 >= points.Count)
         {
-            onSplineEnded?.Invoke();
-            points = spline.bezierPoints;
-            return;
+            if(mode == SplineWalkerMode.Once)
+            {
+                onSplineEnded?.Invoke();
+                points = spline.bezierPoints;
+                return;
+            }
+            if(mode == SplineWalkerMode.Loop)
+            {
+                progress = 0f;
+                currentIndex = 0;
+            }
         }
         currentIndex++;
     }
