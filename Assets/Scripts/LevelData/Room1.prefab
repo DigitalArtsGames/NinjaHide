@@ -732,39 +732,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &1901500900
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147538218497}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: caf9fd65901ae314e97be8ee79299e66, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1901500901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147538218497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44df1201c8b52814aaddcdad1ce11b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationController: {fileID: 1901500900}
-  splineWalker: {fileID: 3386925352978522546}
 --- !u!1 &2135021311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,6 +1256,39 @@ MonoBehaviour:
   frequency: 200
   lookForward: 1
   items: []
+--- !u!95 &1901500900
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147538218497}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: caf9fd65901ae314e97be8ee79299e66, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1901500901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147538218497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44df1201c8b52814aaddcdad1ce11b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationController: {fileID: 1901500900}
+  splineWalker: {fileID: 3386925352978522546}
 --- !u!1 &1118902697086388997
 GameObject:
   m_ObjectHideFlags: 0
@@ -4181,7 +4181,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5b277ee7132bc1f488a95686e203012e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5000001
+      value: 1.5000004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b277ee7132bc1f488a95686e203012e,
         type: 3}
@@ -4191,7 +4191,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5b277ee7132bc1f488a95686e203012e,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5000001
+      value: 1.5000004
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5b277ee7132bc1f488a95686e203012e,
         type: 3}
