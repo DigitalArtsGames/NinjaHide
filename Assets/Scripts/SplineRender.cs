@@ -38,12 +38,10 @@ public class SplineRender : MonoBehaviour
         lineRenderer.material = lineMaterial;
 
  
-        lineRenderer.widthMultiplier = 0.2f;  
-        
-        if(isGlowing)
+        lineRenderer.widthMultiplier = 0.2f;
+
+        if (isGlowing)
         {
-            //Pokachto
-            //InvokeRepeating("EnableCircle", 0f, 0.3f);
             StartCoroutine(Glow());
         }
     }
@@ -61,18 +59,6 @@ public class SplineRender : MonoBehaviour
         }
     }
 
-    void EnableCircle()
-    {
-        isEnable = (lineRenderer.enabled = !isEnable);
-        //if (isEnable)
-        //{
-        //    lineRenderer.enabled = false;
-        //    isEnable = false;
-        //} else
-        //{
-        //    lineRenderer.enabled = true;
-        //    isEnable = true;
-        //}
-    }
+    void EnableCircle() => isEnable = (lineRenderer.enabled = !isEnable);
 
 }
