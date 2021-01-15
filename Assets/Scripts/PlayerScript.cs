@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public static PlayerScript Instance;
     private Transform enemyTarget;
 
     [Header("Prefabs")]
@@ -22,13 +23,13 @@ public class PlayerScript : MonoBehaviour
 
     private int score;
 
-    private bool buttonPressed;
+    [HideInInspector] public bool canHide;
+    [HideInInspector] public bool isHiding;
+    [HideInInspector] public bool buttonPressed;
     [HideInInspector] public static SplineWalker splineWalker;
 
     private GameObject hidingSpotNearby;
 
-    private bool isHiding;
-    private bool canHide;
     private SphereCollider sphereCollider;
 
     private LineRenderer lineRenderer;
@@ -37,6 +38,7 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
+        CheckInstance();
         objectPooler = ObjectPoolerScript.Instance;
         enemyTarget = null;
         score = 0;
@@ -54,7 +56,6 @@ public class PlayerScript : MonoBehaviour
         if (enemyTarget == null)
             return;
 
-
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
@@ -62,9 +63,21 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public void CheckInstance()
+    {
+        if (Instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     public void CheckSpeed()
     {
-        if(Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             splineWalker.speed = crouchSpeed;
         }
@@ -169,7 +182,6 @@ public class PlayerScript : MonoBehaviour
 
     void IsPressedButton()
     {
-
         if (Input.GetMouseButtonDown(0) && canHide)
         {
             buttonPressed = true;
@@ -204,7 +216,7 @@ public class PlayerScript : MonoBehaviour
             {
                 closestDistanceSqr = dSqrToTarget;
                 bestTarget = potentialTarget;
-                
+
             }
         }
         return bestTarget;
@@ -212,7 +224,7 @@ public class PlayerScript : MonoBehaviour
 
     void GoToHidingSpot()
     {
-        IsPressedButton();
+        //IsPressedButton();
 
         if (hidingSpotNearby != null && canHide)
         {
