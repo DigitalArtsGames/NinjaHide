@@ -7,21 +7,17 @@ public class SplineWalker : MonoBehaviour
 {
     public event Action onSplineEnded;
 
-    [Header("SplineWalker Settings")]
+    [HideInInspector] public int speed;
 
-    [SerializeField] private SplineWalkerMode mode;
-    
-    [SerializeField] private bool lookForward;
+    public BezierSpline spline;
 
-    [HideInInspector] public BezierSpline spline;
-    
-    [HideInInspector] public float speed;
+    public float progress;
 
-    [HideInInspector] public int currentIndex;
+    public SplineWalkerMode mode;
+
+    public int currentIndex;
 
     [HideInInspector] public List<Vector3> points;
-    
-    [HideInInspector] public float progress;
 
     private void Start()
     {
@@ -43,13 +39,6 @@ public class SplineWalker : MonoBehaviour
             var target = points[currentIndex];
             //print(target);  
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        }
-
-        Vector3 position = spline.GetPoint(progress);
-        //transform.localPosition = position;
-        if (lookForward)
-        {
-            transform.LookAt(position + spline.GetDirection(progress));
         }
     }
 

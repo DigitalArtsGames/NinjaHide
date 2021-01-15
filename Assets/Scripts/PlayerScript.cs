@@ -11,8 +11,8 @@ public class PlayerScript : MonoBehaviour
     public Transform firePoint;
 
     [Header("Player Parameters")]
-    public float runSpeed = 10;
-    public float crouchSpeed = 5;
+    public int runSpeed = 10;
+    public int crouchSpeed = 5;
     public Material lineMaterial;
     public GameObject circlePrefab;
 
