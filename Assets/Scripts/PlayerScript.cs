@@ -23,6 +23,7 @@ public class PlayerScript : MonoBehaviour
 
     private int score;
 
+    [HideInInspector] public bool isRunning;
     [HideInInspector] public bool canHide;
     [HideInInspector] public bool isHiding;
     [HideInInspector] public bool buttonPressed;
@@ -45,21 +46,39 @@ public class PlayerScript : MonoBehaviour
         sphereCollider = GetComponentInChildren<SphereCollider>();
         splineWalker = GetComponent<SplineWalker>();
         StartCoroutine(UpdateTarget());
-
     }
+
     void Update()
     {
-        //RotateToPlayer();
+        //RotatePlayer();
+
+        LookAtTarget(GetTarget());
         CheckSpeed();
         GoToHidingSpot();
 
         if (enemyTarget == null)
             return;
+        print(enemyTarget);
 
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             Shoot();
+        }
+    }
+
+    public void LookAtTarget(Transform target)
+    {
+        if (target != null)
+        {
+            splineWalker.enableLookForward = false;
+            Vector3 dir = target.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 10 * Time.deltaTime);
+        }
+        else
+        {
+            splineWalker.enableLookForward = true;
         }
     }
 
@@ -80,10 +99,27 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             splineWalker.speed = crouchSpeed;
+            isRunning = false;
         }
         else
         {
+            if(!isHiding)
+                isRunning = true;
+            
             splineWalker.speed = runSpeed;
+        }
+    }
+
+    void RotatePlayer()
+    {
+        if (enemyTarget != null)
+        {
+            Vector3 targetDirection = enemyTarget.position - transform.position;
+            float singleStep = 1 * Time.deltaTime;
+
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+            //Debug.DrawLine(transform.position, newDirection, Color.red);
+            transform.rotation = Quaternion.LookRotation(newDirection);
         }
     }
 
@@ -156,27 +192,32 @@ public class PlayerScript : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(.5f);
-            List<GameObject> enemies = sphereCollider.GetComponent<SphereColliderScript>().enemies;
-            float shortestDistance = Mathf.Infinity;
-            GameObject nearestEnemy = null;
-            foreach (GameObject enemy in enemies)
-            {
-                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distanceToEnemy < shortestDistance)
-                {
-                    shortestDistance = distanceToEnemy;
-                    nearestEnemy = enemy;
-                }
-            }
+            enemyTarget = GetTarget();
+        }
+    }
 
-            if (nearestEnemy != null && shortestDistance <= sphereCollider.radius)
+    public Transform GetTarget()
+    {
+        List<GameObject> enemies = sphereCollider.GetComponent<SphereColliderScript>().enemies;
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestEnemy = null;
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < shortestDistance)
             {
-                enemyTarget = nearestEnemy.transform;
+                shortestDistance = distanceToEnemy;
+                nearestEnemy = enemy;
             }
-            else
-            {
-                enemyTarget = null;
-            }
+        }
+
+        if (nearestEnemy != null && shortestDistance <= sphereCollider.radius)
+        {
+            return nearestEnemy.transform;
+        }
+        else
+        {
+            return null;
         }
     }
 
@@ -221,6 +262,8 @@ public class PlayerScript : MonoBehaviour
         }
         return bestTarget;
     }
+
+
 
     void GoToHidingSpot()
     {

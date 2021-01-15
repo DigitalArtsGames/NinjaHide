@@ -9,7 +9,9 @@ public class TouchPad : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         PlayerScript.Instance.buttonPressed = true;    
-        PlayerScript.Instance.isHiding = PlayerScript.Instance.canHide;    
+        PlayerScript.Instance.isHiding = PlayerScript.Instance.canHide;
+        PlayerScript.Instance.isRunning = false;
+        
     }
 
     public void OnPointerUp(PointerEventData eventData)

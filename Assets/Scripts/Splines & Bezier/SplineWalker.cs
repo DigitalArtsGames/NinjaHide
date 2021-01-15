@@ -15,7 +15,7 @@ public class SplineWalker : MonoBehaviour
 
     [SerializeField] private float nextPointTreshhold = 0.01f;
 
-    [SerializeField] private bool enableLookForward;
+    public bool enableLookForward;
     #endregion
 
     #region HiddenVariables
@@ -51,9 +51,9 @@ public class SplineWalker : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
 
-        Vector3 position = spline.GetPoint(progress);
         if (enableLookForward)
         {
+            Vector3 position = spline.GetPoint(progress);
             transform.LookAt(position + spline.GetDirection(progress));
         }
 
