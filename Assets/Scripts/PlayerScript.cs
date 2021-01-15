@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
     private int score;
 
     [HideInInspector] public bool isRunning;
+    [HideInInspector] public bool isShooting;
     [HideInInspector] public bool canHide;
     [HideInInspector] public bool isHiding;
     [HideInInspector] public bool buttonPressed;
@@ -65,6 +66,17 @@ public class PlayerScript : MonoBehaviour
             nextFire = Time.time + fireRate;
             Shoot();
         }
+        
+    }
+
+    public Vector3 GetPlayerDirection()
+    {
+        if(GetTarget() != null)
+        {
+            Vector3 dir = GetTarget().position - transform.position;
+            return transform.InverseTransformDirection(dir);
+        }
+        return Vector3.zero;
     }
 
     public void LookAtTarget(Transform target)

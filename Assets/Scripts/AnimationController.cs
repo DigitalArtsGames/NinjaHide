@@ -5,7 +5,10 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] private Animator animationController;
+    [SerializeField] private SplineWalker splineWalker;
 
+
+    private Vector3 playerDirection;
     private void Update()
     {
         ManageAnimation();
@@ -13,22 +16,20 @@ public class AnimationController : MonoBehaviour
 
     void ManageAnimation()
     {
-        if(PlayerScript.Instance.isRunning)
+        if (PlayerScript.Instance.GetTarget() != null)
         {
-            animationController.SetBool("isRunning", true);
+            playerDirection = PlayerScript.Instance.GetPlayerDirection();
         }
         else
         {
-            animationController.SetBool("isRunning", false);
+            playerDirection = splineWalker.GetPlayerDirection();
         }
 
-        if(PlayerScript.Instance.isHiding)
-        {
-            animationController.SetBool("isHiding", true);
-        }
-        else
-        {
-            animationController.SetBool("isHiding", false);
-        }
+        //playerDirection = PlayerScript.Instance.GetPlayerDirection();
+        float velocityX = playerDirection.x * Time.deltaTime;
+        float velocityZ = playerDirection.z * Time.deltaTime;
+
+        animationController.SetFloat("MoveX", velocityX);
+        animationController.SetFloat("MoveZ", velocityZ);
     }
 }
