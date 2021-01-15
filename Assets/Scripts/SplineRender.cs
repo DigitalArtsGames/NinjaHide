@@ -17,12 +17,6 @@ public class SplineRender : MonoBehaviour
     public void RenderLine()
     {
         bezierSpline = GetComponent<BezierSpline>();
-        if(isGlowing)
-        {
-            //Pokachto
-            InvokeRepeating("EnableCircle", 0f, 0.3f);
-            //StartCoroutine(Glow());
-        }
 
         if (gameObject.GetComponent<LineRenderer>() == null)
         {
@@ -40,9 +34,18 @@ public class SplineRender : MonoBehaviour
         
         lineRenderer.positionCount = points.Length;
         lineRenderer.SetPositions(points);
-        
+
         lineRenderer.material = lineMaterial;
+
+ 
         lineRenderer.widthMultiplier = 0.2f;  
+        
+        if(isGlowing)
+        {
+            //Pokachto
+            //InvokeRepeating("EnableCircle", 0f, 0.3f);
+            StartCoroutine(Glow());
+        }
     }
 
     private void Update()
@@ -60,15 +63,16 @@ public class SplineRender : MonoBehaviour
 
     void EnableCircle()
     {
-        if(isEnable)
-        {
-            lineRenderer.enabled = false;
-            isEnable = false;
-        } else
-        {
-            lineRenderer.enabled = true;
-            isEnable = true;
-        }
+        isEnable = (lineRenderer.enabled = !isEnable);
+        //if (isEnable)
+        //{
+        //    lineRenderer.enabled = false;
+        //    isEnable = false;
+        //} else
+        //{
+        //    lineRenderer.enabled = true;
+        //    isEnable = true;
+        //}
     }
 
 }

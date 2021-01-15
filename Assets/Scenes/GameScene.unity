@@ -3302,11 +3302,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7446265504901570331, guid: 5219368e9f1d37d42a3b9cda42296210,
-        type: 3}
-      propertyPath: EnemySpline
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7446265505067489664, guid: 5219368e9f1d37d42a3b9cda42296210,
         type: 3}
       propertyPath: m_Name
@@ -3915,7 +3910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1481517923
 MeshRenderer:
   m_ObjectHideFlags: 0

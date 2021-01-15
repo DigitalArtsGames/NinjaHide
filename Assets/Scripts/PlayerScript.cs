@@ -6,15 +6,15 @@ public class PlayerScript : MonoBehaviour
 {
     private Transform enemyTarget;
 
-    [Header("Prefabs and Points")]
+    [Header("Prefabs")]
     public GameObject bulletPrefab;
+    public GameObject circlePrefab;
     public Transform firePoint;
 
     [Header("Player Parameters")]
     public int runSpeed = 10;
     public int crouchSpeed = 5;
     public Material lineMaterial;
-    public GameObject circlePrefab;
 
     [Header("Fire Rate")]
     private float fireRate = 1f;
@@ -26,10 +26,8 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector] public static SplineWalker splineWalker;
 
     private GameObject hidingSpotNearby;
-    private GameObject exitSpotNearby;
 
     private bool isHiding;
-    private bool isRunning;
     private bool canHide;
     private SphereCollider sphereCollider;
 
@@ -125,7 +123,6 @@ public class PlayerScript : MonoBehaviour
         {
             canHide = false;
             hidingSpotNearby = null;
-            exitSpotNearby = null;
         }
     }
 
@@ -256,8 +253,7 @@ public class PlayerScript : MonoBehaviour
             if (buttonPressed)
             {
                 splineWalker.enabled = false;
-                Vector3 dirToHidingSpot = (hidingSpotNearby.transform.position - transform.position);
-                transform.Translate(dirToHidingSpot * Time.deltaTime * 10);
+                transform.position = Vector3.MoveTowards(transform.position, hidingSpotNearby.transform.position, 10 * Time.deltaTime);
             }
             else
             {
@@ -273,9 +269,6 @@ public class PlayerScript : MonoBehaviour
                         splineWalker.SetPositionIndex(GetSplinePoints().IndexOf(FindExitSpotNearby()));
                         splineWalker.enabled = true;
                     }
-                    //Debug.Log(FindExitSpotNearby());
-                    //Debug.DrawLine(transform.position, FindExitSpotNearby());
-
                 }
             }
         }

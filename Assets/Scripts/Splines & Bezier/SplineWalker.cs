@@ -5,26 +5,36 @@ using UnityEngine;
 
 public class SplineWalker : MonoBehaviour
 {
+
+    #region SplineWalker Settings
+    [Header("SplineWalker Settings")]
+    
+    public BezierSpline spline;
+
+    [SerializeField] private SplineWalkerMode mode;
+
+    [SerializeField] private float nextPointTreshhold = 0.01f;
+
+    [SerializeField] private bool enableLookForward;
+    #endregion
+
+    #region HiddenVariables
     public event Action onSplineEnded;
 
     [HideInInspector] public int speed;
 
-    public BezierSpline spline;
+    [HideInInspector] public float progress;
 
-    public float progress;
-
-    public SplineWalkerMode mode;
-
-    public int currentIndex;
+    [HideInInspector] public int currentIndex;
 
     [HideInInspector] public List<Vector3> points;
+    #endregion
 
     private void Start()
     {
         points = spline.bezierPoints;
     }
 
-    [SerializeField] private float nextPointTreshhold = 0.01f;
     private void Update()
     {
         progress = spline.GetProgress(currentIndex);
@@ -40,6 +50,13 @@ public class SplineWalker : MonoBehaviour
             //print(target);  
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
+
+        Vector3 position = spline.GetPoint(progress);
+        if (enableLookForward)
+        {
+            transform.LookAt(position + spline.GetDirection(progress));
+        }
+
     }
 
     public void SetPositionIndex(int index)

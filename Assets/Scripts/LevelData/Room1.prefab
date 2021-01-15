@@ -307,13 +307,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565542718366291743}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.266, y: 0.009, z: 0.558}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.5, y: 0.008999944, z: 0.325}
   m_LocalScale: {x: 1.000001, y: 0.20288117, z: 0.21718697}
   m_Children: []
   m_Father: {fileID: 3269797225836993444}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &130303068794204730
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -424,9 +424,10 @@ MonoBehaviour:
   - {x: -1.2076378, y: 0, z: -2.0413327}
   - {x: -0.20763779, y: 0, z: 1.5720305}
   bezierPoints: []
-  loop: 1
   modes: 0000000000000000
   frequency: 0
+  EnemySpline: 0
+  loop: 1
 --- !u!114 &1666852692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,9 +529,10 @@ MonoBehaviour:
   - {x: -13.590963, y: 0, z: 8.64339}
   - {x: -27.407166, y: 0, z: 9.302269}
   bezierPoints: []
-  loop: 0
   modes: 00000000000000000000000000000000000000000000000000000000
   frequency: 100
+  EnemySpline: 0
+  loop: 0
 --- !u!114 &1480088833513974422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,7 +1205,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3960428339370708891}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 7.5, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1213,7 +1215,7 @@ Transform:
   - {fileID: 1478203911751495282}
   m_Father: {fileID: 7446265505067489666}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &3550071796699794137
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1314,6 +1316,7 @@ MonoBehaviour:
   currentIndex: 0
   points: []
   nextPointTreshhold: 0.01
+  enableLookForward: 1
 --- !u!54 &1702577035799522439
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1459,9 +1462,10 @@ MonoBehaviour:
   - {x: -13.590963, y: 0, z: 8.64339}
   - {x: -27.407166, y: 0, z: 9.302269}
   bezierPoints: []
-  loop: 0
   modes: 00000000000000000000000000000000000000000000000000000000
   frequency: 100
+  EnemySpline: 0
+  loop: 0
 --- !u!114 &7275131348105157019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2241,6 +2245,7 @@ MonoBehaviour:
   currentIndex: 0
   points: []
   nextPointTreshhold: 0.01
+  enableLookForward: 1
 --- !u!1 &5563090240202572683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2610,8 +2615,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7237811818461894308}
-  m_LocalRotation: {x: 0.008830526, y: -0.87977076, z: 0.016354235, w: 0.47503474}
-  m_LocalPosition: {x: 2.9499998, y: 0.51, z: 2.96}
+  m_LocalRotation: {x: 0.017808316, y: -0.28619158, z: 0.005320066, w: 0.9579922}
+  m_LocalPosition: {x: 2.96, y: 0.51, z: -2.9500003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3269797225836993444}
@@ -2755,9 +2760,10 @@ MonoBehaviour:
   - {x: -28.257174, y: 0, z: -6.742796}
   - {x: -6.369997, y: 0, z: -6.742796}
   bezierPoints: []
-  loop: 1
   modes: 0000000000000000000000000000000000000000
   frequency: 100
+  EnemySpline: 1
+  loop: 1
 --- !u!114 &515711758
 MonoBehaviour:
   m_ObjectHideFlags: 0
