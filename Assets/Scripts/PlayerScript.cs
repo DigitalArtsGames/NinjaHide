@@ -74,7 +74,7 @@ public class PlayerScript : MonoBehaviour
         if(GetTarget() != null)
         {
             Vector3 dir = GetTarget().position - transform.position;
-            return transform.InverseTransformDirection(dir);
+            return dir;
         }
         return Vector3.zero;
     }

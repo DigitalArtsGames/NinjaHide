@@ -32,4 +32,10 @@ public class AnimationController : MonoBehaviour
         animationController.SetFloat("MoveX", velocityX);
         animationController.SetFloat("MoveZ", velocityZ);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, playerDirection);
+    }
 }

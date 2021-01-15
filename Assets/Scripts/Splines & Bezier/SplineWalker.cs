@@ -62,7 +62,10 @@ public class SplineWalker : MonoBehaviour
     public Vector3 GetPlayerDirection()
     {
         Vector3 position = spline.GetPoint(progress);
-        return transform.InverseTransformDirection(position + spline.GetDirection(progress));
+        Vector3 dir = position + spline.GetDirection(progress);
+        
+        return dir;
+
     }
 
     public void SetPositionIndex(int index)
