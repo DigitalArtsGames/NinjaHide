@@ -69,6 +69,11 @@ public class PlayerScript : MonoBehaviour
         
     }
 
+    public Vector3 GetHidingSpotDirection()
+    {
+        return hidingSpotNearby.transform.position - transform.position;
+    }
+
     public Vector3 GetPlayerDirection()
     {
         if(GetTarget() != null)
@@ -274,8 +279,6 @@ public class PlayerScript : MonoBehaviour
         }
         return bestTarget;
     }
-
-
 
     void GoToHidingSpot()
     {

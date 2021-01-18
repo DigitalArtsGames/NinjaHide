@@ -6,6 +6,7 @@ public class AnimationController : MonoBehaviour
 {
     [SerializeField] private Animator animationController;
     [SerializeField] private SplineWalker splineWalker;
+    [SerializeField] private PlayerScript playerScript;
 
 
     private Vector3 playerDirection;
@@ -16,21 +17,31 @@ public class AnimationController : MonoBehaviour
 
     void ManageAnimation()
     {
-        if (PlayerScript.Instance.GetTarget() != null)
+
+        //playerDirection = PlayerScript.splineWalker.GetPlayerDirection();
+        if (playerScript.GetTarget() != null)
         {
-            playerDirection = PlayerScript.Instance.GetPlayerDirection();
+            playerDirection = playerScript.GetPlayerDirection();
+            Debug.Log("Direction to Enemy!");
+        }
+        else if(playerScript.isHiding)
+        {
+            playerDirection = playerScript.GetHidingSpotDirection();
         }
         else
         {
-            playerDirection = splineWalker.GetPlayerDirection();
+            playerDirection = transform.rotation * Vector3.right;
+            playerDirection = transform.InverseTransformDirection(playerDirection);
         }
 
-        //playerDirection = PlayerScript.Instance.GetPlayerDirection();
-        float velocityX = playerDirection.x * Time.deltaTime;
-        float velocityZ = playerDirection.z * Time.deltaTime;
+        float velocityX = +playerDirection.x * Time.deltaTime * 2;
+        float velocityZ = +playerDirection.z * Time.deltaTime * 2;
+
+        //print(velocityX.ToString() + " " + velocityZ.ToString());
 
         animationController.SetFloat("MoveX", velocityX);
         animationController.SetFloat("MoveZ", velocityZ);
+
     }
 
     private void OnDrawGizmos()

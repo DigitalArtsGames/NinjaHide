@@ -63,9 +63,8 @@ public class SplineWalker : MonoBehaviour
     {
         Vector3 position = spline.GetPoint(progress);
         Vector3 dir = position + spline.GetDirection(progress);
-        
-        return dir;
 
+        return dir;
     }
 
     public void SetPositionIndex(int index)
