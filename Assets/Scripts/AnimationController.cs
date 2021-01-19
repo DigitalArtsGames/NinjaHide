@@ -23,7 +23,7 @@ public class AnimationController : MonoBehaviour
         if (playerScript.GetTarget() != null)
         {
             playerDirection = playerScript.GetPlayerDirection();
-            Debug.Log("Direction to Enemy!");
+            //Debug.Log("Direction to Enemy!");
         }
         else if(playerScript.isHiding)
         {
@@ -36,8 +36,8 @@ public class AnimationController : MonoBehaviour
             playerDirection = transform.InverseTransformDirection(playerDirection);
         }
 
-        float velocityX = +playerDirection.x * Time.deltaTime * 2;
-        float velocityZ = +playerDirection.z * Time.deltaTime * 2;
+        float velocityX = playerDirection.x * Time.deltaTime * 1000;
+        float velocityZ = playerDirection.z * Time.deltaTime * 1000;
 
         //print(velocityX.ToString() + " " + velocityZ.ToString());
 

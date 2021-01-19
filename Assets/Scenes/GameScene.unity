@@ -478,8 +478,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4279566528
+  m_fontColor: {r: 0.754717, g: 0, b: 0.083514884, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1345,6 +1345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 872573254}
   - component: {fileID: 872573255}
+  - component: {fileID: 872573256}
   m_Layer: 0
   m_Name: Main Menu
   m_TagString: Untagged
@@ -1402,6 +1403,21 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 328101341}
+--- !u!114 &872573256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872573253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e96f17242827346a45721c37a19096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cinemaVirCam: {fileID: 872573255}
+  menuCameraPosition: {x: 0, y: 0, z: 0}
+  menuCameraRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &898771610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1829,7 +1845,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 602212646}
-        m_MethodName: SwitchToGameCamera
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

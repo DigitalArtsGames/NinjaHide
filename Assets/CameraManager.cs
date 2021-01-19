@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
+    [SerializeField] private Camera mainCamera;
 
     [SerializeField] private CinemachineVirtualCamera gameCamera;
     [SerializeField] private CinemachineVirtualCamera mainMenuCamera;
@@ -14,7 +15,8 @@ public class CameraManager : MonoBehaviour
 
     public void Start()
     {
-        SwitchToMainMenuCamera();
+        //SwitchToMainMenuCamera();
+        SwitchToGameCamera();
     }
 
     public void Update()
@@ -24,13 +26,16 @@ public class CameraManager : MonoBehaviour
 
     public void LateUpdate()
     {
-        if(gameCamera.Follow == null)
+        //if(playerTransform != null)
+        //    gameCamera.gameObject.transform.position = playerTransform.position + new Vector3(-10, 14, 14) * Time.deltaTime;
+
+        if (playerTransform != null)
         {
-            if(playerTransform!= null)
-            {
-                gameCamera.Follow = playerTransform;
-            }
+            gameCamera.transform.position = playerTransform.position + new Vector3(13, 13, 0);
+
+            gameCamera.transform.rotation = Quaternion.Euler(35, -90, 0);
         }
+
     }
 
     private void FindCamera()
@@ -46,9 +51,9 @@ public class CameraManager : MonoBehaviour
         mainMenuCamera.gameObject.GetComponent<CinemachineVirtualCamera>().enabled = false;
         gameCamera.gameObject.GetComponent<CinemachineVirtualCamera>().enabled = true;
         isGameCamera = true;
-        
+
     }
-    
+
     public void SwitchToMainMenuCamera()
     {
         gameCamera.gameObject.GetComponent<CinemachineVirtualCamera>().enabled = false;
@@ -56,3 +61,12 @@ public class CameraManager : MonoBehaviour
         gameCamera.Follow = null;
     }
 }
+
+//if(gameCamera.Follow == null)
+//{
+//    if(playerTransform != null)
+//    {
+//        gameCamera.Follow = playerTransform;
+//        gameCamera.transform.rotation = Quaternion.Euler(35, -90, 0);
+//    }
+//}

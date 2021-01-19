@@ -60,7 +60,7 @@ public class PlayerScript : MonoBehaviour
 
         if (enemyTarget == null)
             return;
-        print(enemyTarget);
+        //print(enemyTarget);
 
         if (Time.time > nextFire)
         {
@@ -228,11 +228,15 @@ public class PlayerScript : MonoBehaviour
         GameObject nearestEnemy = null;
         foreach (GameObject enemy in enemies)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
+            if (enemy != null)
             {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+
+                if (distanceToEnemy < shortestDistance)
+                {
+                    shortestDistance = distanceToEnemy;
+                    nearestEnemy = enemy;
+                }
             }
         }
 

@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraScript : MonoBehaviour
 {
-    public Cinemachine.CinemachineVirtualCamera cinemaVirCam;
+    public CinemachineVirtualCamera cinemaVirCam;
 
     private GameObject player;
-    private Vector3 menuCameraPosition;
-    private Quaternion menuCameraRotation;
+    public Vector3 menuCameraPosition;
+    public Quaternion menuCameraRotation;
 
     private void Start()
     {
