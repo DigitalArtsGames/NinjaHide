@@ -18,7 +18,7 @@ public class AnimationController : MonoBehaviour
     void ManageAnimation()
     {
 
-        print(playerScript.isHiding);
+        //print(playerScript.isHiding);
         //playerDirection = PlayerScript.splineWalker.GetPlayerDirection();
         if (playerScript.GetTarget() != null)
         {

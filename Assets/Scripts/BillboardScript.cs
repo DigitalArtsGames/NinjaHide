@@ -15,7 +15,7 @@ public class BillboardScript : MonoBehaviour
             transform.LookAt(transform.position + camera.forward);
         } else
         {
-            camera = GameObject.FindGameObjectWithTag("Camera").transform;
+            camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
         }
     }
 }
