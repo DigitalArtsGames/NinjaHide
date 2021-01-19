@@ -6,16 +6,23 @@ using UnityEngine.EventSystems;
 
 public class TouchPad : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        PlayerScript.Instance.buttonPressed = true;    
-        PlayerScript.Instance.isHiding = PlayerScript.Instance.canHide;
-        PlayerScript.Instance.isRunning = false;
+        if(PlayerScript.Instance.canHide)
+        {
+            PlayerScript.Instance.buttonPressed = true;    
+            PlayerScript.Instance.isHiding = PlayerScript.Instance.canHide;
+            PlayerScript.Instance.isRunning = false;
+        }
         
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        PlayerScript.Instance.buttonPressed = false;
+        if(PlayerScript.Instance.canHide)
+        {
+            PlayerScript.Instance.buttonPressed = false;
+        }
     }
 }

@@ -18,6 +18,7 @@ public class AnimationController : MonoBehaviour
     void ManageAnimation()
     {
 
+        print(playerScript.isHiding);
         //playerDirection = PlayerScript.splineWalker.GetPlayerDirection();
         if (playerScript.GetTarget() != null)
         {
@@ -27,6 +28,7 @@ public class AnimationController : MonoBehaviour
         else if(playerScript.isHiding)
         {
             playerDirection = playerScript.GetHidingSpotDirection();
+            playerScript.transform.rotation = Quaternion.Euler(0, -90, 0);
         }
         else
         {

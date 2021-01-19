@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189548713}
   m_LocalRotation: {x: -0, y: 0.5423276, z: -0, w: 0.84016716}
-  m_LocalPosition: {x: -9.54, y: 1.57, z: 1.41}
+  m_LocalPosition: {x: -10, y: 1.57, z: 4.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1141838765}
@@ -1289,6 +1289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationController: {fileID: 1901500900}
   splineWalker: {fileID: 3386925352978522546}
+  playerScript: {fileID: 6046311316801824183}
 --- !u!1 &1118902697086388997
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,6 +2147,7 @@ MonoBehaviour:
   isShooting: 0
   canHide: 0
   isHiding: 0
+  isGoingRight: 0
   buttonPressed: 0
 --- !u!114 &3386925352978522546
 MonoBehaviour:
@@ -2162,7 +2164,7 @@ MonoBehaviour:
   spline: {fileID: 907707480078494532}
   mode: 0
   nextPointTreshhold: 0.01
-  enableLookForward: 0
+  enableLookForward: 1
   speed: 5
   progress: 0
   currentIndex: 0
@@ -2305,7 +2307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points:
   - {x: 5, y: 0, z: 0}
-  - {x: -10, y: 0, z: 4.399105}
+  - {x: -10, y: 0, z: -1.1976008}
   - {x: -4.7182407, y: 0, z: -0.6793747}
   - {x: -14.266424, y: 0, z: -1.3939877}
   - {x: -24.266426, y: 0, z: -3.065495}
@@ -2586,7 +2588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3588121368328746340
 Transform:
   m_ObjectHideFlags: 0
@@ -2595,7 +2597,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4734331058507467418}
   m_LocalRotation: {x: -0, y: 0.9075394, z: -0, w: 0.41996694}
-  m_LocalPosition: {x: -3.77, y: 1.57, z: 4.17}
+  m_LocalPosition: {x: -3.24, y: 1.57, z: -3.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7688274061351742930}

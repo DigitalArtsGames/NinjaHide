@@ -27,6 +27,7 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector] public bool isShooting;
     [HideInInspector] public bool canHide;
     [HideInInspector] public bool isHiding;
+    [HideInInspector] public bool isGoingRight;
     [HideInInspector] public bool buttonPressed;
     [HideInInspector] public static SplineWalker splineWalker;
 
@@ -71,7 +72,14 @@ public class PlayerScript : MonoBehaviour
 
     public Vector3 GetHidingSpotDirection()
     {
-        return hidingSpotNearby.transform.position - transform.position;
+        if(isGoingRight)
+        {
+            return hidingSpotNearby.transform.position - transform.position;
+        } 
+        else
+        {
+            return transform.position - hidingSpotNearby.transform.position;
+        }
     }
 
     public Vector3 GetPlayerDirection()
@@ -282,7 +290,7 @@ public class PlayerScript : MonoBehaviour
 
     void GoToHidingSpot()
     {
-        //IsPressedButton();
+        IsPressedButton();
 
         if (hidingSpotNearby != null && canHide)
         {
@@ -322,6 +330,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (buttonPressed)
             {
+                isGoingRight = true;
                 splineWalker.enabled = false;
                 transform.position = Vector3.MoveTowards(transform.position, hidingSpotNearby.transform.position, 10 * Time.deltaTime);
             }
@@ -331,6 +340,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (Vector3.Distance(transform.position, FindExitSpotNearby()) > 0f)
                     {
+                        isGoingRight = false;
                         transform.position = Vector3.MoveTowards(transform.position, FindExitSpotNearby(), Time.deltaTime * 10);
                     }
                     else
