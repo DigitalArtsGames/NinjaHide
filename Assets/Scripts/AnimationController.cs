@@ -20,9 +20,9 @@ public class AnimationController : MonoBehaviour
 
         //print(playerScript.isHiding);
         //playerDirection = PlayerScript.splineWalker.GetPlayerDirection();
-        if (playerScript.GetTarget() != null)
+        if (playerScript.GetTarget(10) != null && !playerScript.isHiding)
         {
-            playerDirection = playerScript.GetPlayerDirection();
+            playerDirection = playerScript.GetPlayerDirection(10);
             //Debug.Log("Direction to Enemy!");
         }
         else if(playerScript.isHiding)
@@ -48,7 +48,7 @@ public class AnimationController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, playerDirection);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawRay(transform.position, playerDirection);
     }
 }

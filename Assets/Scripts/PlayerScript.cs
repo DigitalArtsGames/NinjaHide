@@ -57,7 +57,7 @@ public class PlayerScript : MonoBehaviour
     {
         //RotatePlayer();
 
-        //LookAtTarget(GetTarget());
+        //LookAtTarget(GetTarget(seeingRadius + 1f));
         CheckSpeed();
         GoToHidingSpot();
 
@@ -86,11 +86,11 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public Vector3 GetPlayerDirection()
+    public Vector3 GetPlayerDirection(float seeingRadius)
     {
-        if(GetTarget() != null)
+        if(GetTarget(seeingRadius) != null)
         {
-            Vector3 dir = GetTarget().position - transform.position;
+            Vector3 dir = GetTarget(seeingRadius).position - transform.position;
             return dir;
         }
         return Vector3.zero;
@@ -152,32 +152,6 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    //Поварачивает игрока в сторону стрельбы
-    //void RotateToPlayer()
-    //{
-    //    if (enemyTarget != null)
-    //    {
-    //        Vector3 targetDirection = enemyTarget.position - transform.position;
-    //        float singleStep = 1 * Time.deltaTime;
-
-    //        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-    //        transform.rotation = Quaternion.LookRotation(newDirection);
-
-    //    }
-    //}
-
-    //void RotatePlayer()
-    //{
-    //    Vector3 dir = enemyTarget.position - transform.position;
-    //    Quaternion lookRotation = Quaternion.LookRotation(dir);
-
-
-    //    Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 3).eulerAngles;
-    //    transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-    //    Debug.DrawRay(transform.position, dir, Color.red);
-    //}
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Hostage"))
@@ -221,11 +195,11 @@ public class PlayerScript : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(.5f);
-            enemyTarget = GetTarget();
+            enemyTarget = GetTarget(seeingRadius);
         }
     }
 
-    public Transform GetTarget()
+    public Transform GetTarget(float seeingRadius)
     {
         //List<GameObject> enemies = sphereCollider.GetComponent<SphereColliderScript>().enemies;
         List<GameObject> enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
@@ -247,6 +221,7 @@ public class PlayerScript : MonoBehaviour
 
         if (nearestEnemy != null && shortestDistance <= seeingRadius)
         {
+            Debug.DrawLine(transform.position, nearestEnemy.transform.position, Color.green);
             return nearestEnemy.transform;
         }
         else
