@@ -6,7 +6,7 @@ public class BillboardScript : MonoBehaviour
 {
     //Не критичные предупреждения, потом нужно пофиксить
 
-    public Transform camera;
+    public new Transform camera;
 
     void FixedUpdate()
     {

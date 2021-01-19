@@ -42,6 +42,7 @@ public class EnemyScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        RandomRotation();
         targets = GetComponent<FieldOfView>().visibleTargets;
         GetTargets();
         SeeingPlayer();
@@ -64,6 +65,15 @@ public class EnemyScript : MonoBehaviour
         {
             isSeeingPlayer = false;
             seeingBarObject.SetActive(false);
+        }
+    }
+
+
+    void RandomRotation()
+    {
+        if(gameObject.GetComponent<SplineWalker>() == null)
+        {
+            transform.Rotate(0, 1f, 0);
         }
     }
 

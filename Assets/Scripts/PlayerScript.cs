@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -16,6 +17,7 @@ public class PlayerScript : MonoBehaviour
     public int runSpeed = 10;
     public int crouchSpeed = 5;
     public Material lineMaterial;
+    public float seeingRadius;
 
     [Header("Fire Rate")]
     private float fireRate = 1f;
@@ -30,6 +32,7 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector] public bool isGoingRight;
     [HideInInspector] public bool buttonPressed;
     [HideInInspector] public static SplineWalker splineWalker;
+    [HideInInspector] public Vector3 tempDir;
 
     private GameObject hidingSpotNearby;
 
@@ -54,7 +57,7 @@ public class PlayerScript : MonoBehaviour
     {
         //RotatePlayer();
 
-        LookAtTarget(GetTarget());
+        //LookAtTarget(GetTarget());
         CheckSpeed();
         GoToHidingSpot();
 
@@ -78,6 +81,7 @@ public class PlayerScript : MonoBehaviour
         } 
         else
         {
+            //tempDir = hidingSpotNearby.transform.position;
             return transform.position - hidingSpotNearby.transform.position;
         }
     }
@@ -92,20 +96,20 @@ public class PlayerScript : MonoBehaviour
         return Vector3.zero;
     }
 
-    public void LookAtTarget(Transform target)
-    {
-        if (target != null)
-        {
-            splineWalker.enableLookForward = false;
-            Vector3 dir = target.position - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 10 * Time.deltaTime);
-        }
-        else
-        {
-            splineWalker.enableLookForward = true;
-        }
-    }
+    //public void LookAtTarget(Transform target)
+    //{
+    //    if (target != null)
+    //    {
+    //        splineWalker.enableLookForward = false;
+    //        Vector3 dir = target.position - transform.position;
+    //        Quaternion rotation = Quaternion.LookRotation(dir);
+    //        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 10 * Time.deltaTime);
+    //    }
+    //    else
+    //    {
+    //        splineWalker.enableLookForward = true;
+    //    }
+    //}
 
     public void CheckInstance()
     {
@@ -223,7 +227,8 @@ public class PlayerScript : MonoBehaviour
 
     public Transform GetTarget()
     {
-        List<GameObject> enemies = sphereCollider.GetComponent<SphereColliderScript>().enemies;
+        //List<GameObject> enemies = sphereCollider.GetComponent<SphereColliderScript>().enemies;
+        List<GameObject> enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
         foreach (GameObject enemy in enemies)
@@ -240,7 +245,7 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= sphereCollider.radius)
+        if (nearestEnemy != null && shortestDistance <= seeingRadius)
         {
             return nearestEnemy.transform;
         }
