@@ -87,10 +87,10 @@ public class SplineWalker : MonoBehaviour
         if (splineManager.currentSplineIndex > 0)
         {
             //if (points.IndexOf(PlayerScript.Instance.FindExitSpotNearby()) != currentIndex)
-            if (currentIndex < index)
-            {
+            //if ()
+            //{
                 currentProgressIndex += index;
-            } 
+            //} 
         }
         else
         {
