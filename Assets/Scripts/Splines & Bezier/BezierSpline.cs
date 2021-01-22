@@ -281,6 +281,11 @@ public class BezierSpline : MonoBehaviour
         return currentPointIndex / frequency;
     }
 
+    public float GetProgress(int currentPointIndex, float frequency)
+    {
+        return currentPointIndex / frequency;
+    }
+
     private void OnGUI()
     {
 

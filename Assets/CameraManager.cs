@@ -16,7 +16,7 @@ public class CameraManager : MonoBehaviour
     public void Start()
     {
         //SwitchToMainMenuCamera();
-        //SwitchToGameCamera();
+        SwitchToGameCamera();
     }
 
     public void Update()

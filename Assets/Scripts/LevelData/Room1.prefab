@@ -3915,10 +3915,12 @@ MonoBehaviour:
   spline: {fileID: 7446265504901570331}
   mode: 1
   nextPointTreshhold: 0.01
+  splineManager: {fileID: 0}
   enableLookForward: 1
   speed: 10
   progress: 0
   currentIndex: 0
+  currentProgressIndex: 0
   points: []
 --- !u!1 &5829010176096608460
 GameObject:
@@ -4920,6 +4922,11 @@ PrefabInstance:
       propertyPath: spline
       value: 
       objectReference: {fileID: 907707480078494532}
+    - target: {fileID: 759851456357562069, guid: 4967961d4d0822e4182225a237f0caba,
+        type: 3}
+      propertyPath: splineManager
+      value: 
+      objectReference: {fileID: 2322262201955768092}
     - target: {fileID: 1404290621331020028, guid: 4967961d4d0822e4182225a237f0caba,
         type: 3}
       propertyPath: m_Name

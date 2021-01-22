@@ -28,7 +28,7 @@ public class LevelProgressScript : MonoBehaviour
     void ViewProgress()
     {
         if(PlayerScript.splineWalker != null)
-            Slider.value = PlayerScript.splineWalker.progress;
+            Slider.value = PlayerScript.splineWalker.sliderProgress;
     }
 
     void SetProgressBarLevels()

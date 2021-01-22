@@ -38,4 +38,24 @@ public class SplineManager : MonoBehaviour
         currentSplineIndex++;
         return true;
     }
+
+    public float GetCommonFrequency()
+    {
+        float commonFrequency = 0;
+        foreach (var spline in splines)
+        {
+            commonFrequency += spline.frequency;
+        }
+        return commonFrequency;
+    }
+
+    public float GetCommonIndexes()
+    {
+        float commonIndexes = 0;
+        foreach (var spline in splines)
+        {
+            commonIndexes += spline.bezierPoints.Count;
+        }
+        return commonIndexes;
+    }
 }

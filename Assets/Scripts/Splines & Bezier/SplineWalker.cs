@@ -15,6 +15,8 @@ public class SplineWalker : MonoBehaviour
 
     [SerializeField] private float nextPointTreshhold = 0.01f;
 
+    [SerializeField] private SplineManager splineManager;
+
     public bool enableLookForward;
     #endregion
 
@@ -24,8 +26,12 @@ public class SplineWalker : MonoBehaviour
     [HideInInspector] public int speed;
 
     [HideInInspector] public float progress;
+    
+    [HideInInspector] public float sliderProgress;
 
     [HideInInspector] public int currentIndex;
+
+    [HideInInspector] public int currentProgressIndex;
 
     [HideInInspector] public List<Vector3> points;
     #endregion
@@ -33,16 +39,23 @@ public class SplineWalker : MonoBehaviour
     private void Start()
     {
         points = spline.bezierPoints;
+        //splineManager = GameObject.FindGameObjectWithTag("SplineManager");
     }
 
     private void Update()
     {
         progress = spline.GetProgress(currentIndex);
+        //sliderProgress = spline.GetProgress(currentIndex);
+        sliderProgress = spline.GetProgress(currentProgressIndex, splineManager.GetCommonFrequency());
         if(points.Count > currentIndex)
         {
             if(Vector3.Distance(points[currentIndex], transform.position) < nextPointTreshhold)
             {
                 GetNextPoint();
+                //if(splineManager.GetCommonIndexes() > currentProgressIndex)
+                //{
+                    currentProgressIndex++;
+                //}
                 //progress += Time.deltaTime;
             }
 
@@ -56,7 +69,6 @@ public class SplineWalker : MonoBehaviour
             Vector3 position = spline.GetPoint(progress);
             transform.LookAt(position + spline.GetDirection(progress));
         }
-
     }
 
     public Vector3 GetPlayerDirection()
@@ -70,6 +82,7 @@ public class SplineWalker : MonoBehaviour
     public void SetPositionIndex(int index)
     {
         currentIndex = index;
+        currentProgressIndex = index;
     }
     private void GetNextPoint()
     {
