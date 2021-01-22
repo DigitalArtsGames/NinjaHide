@@ -36,8 +36,6 @@ public class PlayerScript : MonoBehaviour
 
     private GameObject hidingSpotNearby;
 
-    private SphereCollider sphereCollider;
-
     private LineRenderer lineRenderer;
 
     private ObjectPoolerScript objectPooler;
@@ -48,7 +46,6 @@ public class PlayerScript : MonoBehaviour
         objectPooler = ObjectPoolerScript.Instance;
         enemyTarget = null;
         score = 0;
-        sphereCollider = GetComponentInChildren<SphereCollider>();
         splineWalker = GetComponent<SplineWalker>();
         StartCoroutine(UpdateTarget());
     }

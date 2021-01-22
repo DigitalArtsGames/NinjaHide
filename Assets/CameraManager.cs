@@ -16,7 +16,7 @@ public class CameraManager : MonoBehaviour
     public void Start()
     {
         //SwitchToMainMenuCamera();
-        SwitchToGameCamera();
+        //SwitchToGameCamera();
     }
 
     public void Update()
@@ -26,9 +26,6 @@ public class CameraManager : MonoBehaviour
 
     public void LateUpdate()
     {
-        //if(playerTransform != null)
-        //    gameCamera.gameObject.transform.position = playerTransform.position + new Vector3(-10, 14, 14) * Time.deltaTime;
-
         if (playerTransform != null)
         {
             gameCamera.transform.position = playerTransform.position + new Vector3(13, 13, 0);
@@ -61,12 +58,3 @@ public class CameraManager : MonoBehaviour
         gameCamera.Follow = null;
     }
 }
-
-//if(gameCamera.Follow == null)
-//{
-//    if(playerTransform != null)
-//    {
-//        gameCamera.Follow = playerTransform;
-//        gameCamera.transform.rotation = Quaternion.Euler(35, -90, 0);
-//    }
-//}
