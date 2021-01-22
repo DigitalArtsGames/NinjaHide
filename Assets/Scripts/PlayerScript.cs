@@ -250,7 +250,7 @@ public class PlayerScript : MonoBehaviour
         return splineWalker.points;
     }
 
-    Vector3 FindExitSpotNearby()
+    public Vector3 FindExitSpotNearby()
     {
         Vector3 bestTarget = Vector3.zero;
         float closestDistanceSqr = Mathf.Infinity;

@@ -9,7 +9,6 @@ public class BezierSpline : MonoBehaviour
 
     public List<Vector3> bezierPoints;
 
-
     [SerializeField] private BezierControlPointMode[] modes;
 
     private SplineRender splineRender;

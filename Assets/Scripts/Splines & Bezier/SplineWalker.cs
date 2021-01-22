@@ -8,7 +8,7 @@ public class SplineWalker : MonoBehaviour
 
     #region SplineWalker Settings
     [Header("SplineWalker Settings")]
-    
+
     public BezierSpline spline;
 
     [SerializeField] private SplineWalkerMode mode;
@@ -26,7 +26,7 @@ public class SplineWalker : MonoBehaviour
     [HideInInspector] public int speed;
 
     [HideInInspector] public float progress;
-    
+
     [HideInInspector] public float sliderProgress;
 
     [HideInInspector] public int currentIndex;
@@ -34,6 +34,8 @@ public class SplineWalker : MonoBehaviour
     [HideInInspector] public int currentProgressIndex;
 
     [HideInInspector] public List<Vector3> points;
+
+    [HideInInspector] public int tempIndex;
     #endregion
 
     private void Start()
@@ -47,14 +49,14 @@ public class SplineWalker : MonoBehaviour
         progress = spline.GetProgress(currentIndex);
         //sliderProgress = spline.GetProgress(currentIndex);
         sliderProgress = spline.GetProgress(currentProgressIndex, splineManager.GetCommonFrequency());
-        if(points.Count > currentIndex)
+        if (points.Count > currentIndex)
         {
-            if(Vector3.Distance(points[currentIndex], transform.position) < nextPointTreshhold)
+            if (Vector3.Distance(points[currentIndex], transform.position) < nextPointTreshhold)
             {
                 GetNextPoint();
                 //if(splineManager.GetCommonIndexes() > currentProgressIndex)
                 //{
-                    currentProgressIndex++;
+                currentProgressIndex++;
                 //}
                 //progress += Time.deltaTime;
             }
@@ -82,19 +84,30 @@ public class SplineWalker : MonoBehaviour
     public void SetPositionIndex(int index)
     {
         currentIndex = index;
-        currentProgressIndex = index;
+        if (splineManager.currentSplineIndex > 0)
+        {
+            //if (points.IndexOf(PlayerScript.Instance.FindExitSpotNearby()) != currentIndex)
+            if (currentIndex < index)
+            {
+                currentProgressIndex += index;
+            } 
+        }
+        else
+        {
+            currentProgressIndex = index;
+        }
     }
     private void GetNextPoint()
     {
         if (currentIndex + 1 >= points.Count)
         {
-            if(mode == SplineWalkerMode.Once)
+            if (mode == SplineWalkerMode.Once)
             {
                 onSplineEnded?.Invoke();
                 points = spline.bezierPoints;
                 return;
             }
-            if(mode == SplineWalkerMode.Loop)
+            if (mode == SplineWalkerMode.Loop)
             {
                 progress = 0f;
                 currentIndex = 0;
@@ -115,7 +128,7 @@ public class SplineWalker : MonoBehaviour
 
     private void GetProgress()
     {
-        
+
     }
 
 }
