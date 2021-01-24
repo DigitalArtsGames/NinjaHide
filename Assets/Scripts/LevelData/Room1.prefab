@@ -3916,12 +3916,15 @@ MonoBehaviour:
   mode: 1
   nextPointTreshhold: 0.01
   splineManager: {fileID: 0}
+  isNPC: 1
   enableLookForward: 1
   speed: 10
   progress: 0
+  sliderProgress: 0
   currentIndex: 0
   currentProgressIndex: 0
   points: []
+  tempIndex: 0
 --- !u!1 &5829010176096608460
 GameObject:
   m_ObjectHideFlags: 0
