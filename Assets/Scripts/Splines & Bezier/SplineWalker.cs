@@ -86,20 +86,16 @@ public class SplineWalker : MonoBehaviour
         return dir;
     }
 
-    public void SetPositionIndex(int index)
+    public void SetPositionIndex(Vector3 position)
     {
-        currentIndex = index;
+        currentIndex = points.IndexOf(position);
         if (splineManager.currentSplineIndex > 0)
         {
-            //if (points.IndexOf(PlayerScript.Instance.FindExitSpotNearby()) != currentIndex)
-            //if ()
-            //{
-                currentProgressIndex += index;
-            //} 
+            currentProgressIndex = splineManager.GetCommonIndex(position);
         }
         else
         {
-            currentProgressIndex = index;
+            currentProgressIndex = points.IndexOf(position);
         }
     }
     private void GetNextPoint()

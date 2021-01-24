@@ -327,7 +327,8 @@ public class PlayerScript : MonoBehaviour
                     else
                     {
                         isHiding = false;
-                        splineWalker.SetPositionIndex(GetSplinePoints().IndexOf(FindExitSpotNearby()));
+                        //splineWalker.SetPositionIndex(GetSplinePoints().IndexOf(FindExitSpotNearby()));
+                        splineWalker.SetPositionIndex(FindExitSpotNearby());
                         splineWalker.enabled = true;
                     }
                 }

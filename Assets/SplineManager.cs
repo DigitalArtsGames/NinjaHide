@@ -58,4 +58,18 @@ public class SplineManager : MonoBehaviour
         }
         return commonIndexes;
     }
+
+    public int GetCommonIndex(Vector3 position)
+    {
+        List<Vector3> points = new List<Vector3>();
+        foreach (var spline in splines)
+        {
+            foreach (var point in spline.bezierPoints)
+            {
+                points.Add(point);
+            }
+        }
+        
+        return points.IndexOf(position); 
+    }
 }
