@@ -17,6 +17,8 @@ public class SplineWalker : MonoBehaviour
 
     [SerializeField] private SplineManager splineManager;
 
+    public bool isNPC;
+
     public bool enableLookForward;
     #endregion
 
@@ -48,7 +50,10 @@ public class SplineWalker : MonoBehaviour
     {
         progress = spline.GetProgress(currentIndex);
         //sliderProgress = spline.GetProgress(currentIndex);
-        sliderProgress = spline.GetProgress(currentProgressIndex, splineManager.GetCommonFrequency());
+        if(!isNPC)
+        {
+            sliderProgress = spline.GetProgress(currentProgressIndex, splineManager.GetCommonFrequency());
+        }
         if (points.Count > currentIndex)
         {
             if (Vector3.Distance(points[currentIndex], transform.position) < nextPointTreshhold)

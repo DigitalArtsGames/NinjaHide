@@ -487,6 +487,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7446265504585997817, guid: 5219368e9f1d37d42a3b9cda42296210,
+        type: 3}
+      propertyPath: isNPC
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7446265505067489664, guid: 5219368e9f1d37d42a3b9cda42296210,
         type: 3}
       propertyPath: m_Name
