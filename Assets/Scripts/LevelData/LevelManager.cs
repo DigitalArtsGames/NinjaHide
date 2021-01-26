@@ -42,6 +42,7 @@ public class LevelManager : MonoBehaviour
     {
         if (levelData.rooms.Length != currentLevelIndex)
         {
+            Destroy(currentLevel.gameObject);
             currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
         }
     }
