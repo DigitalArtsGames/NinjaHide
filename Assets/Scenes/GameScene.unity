@@ -296,7 +296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &128021317
 RectTransform:
   m_ObjectHideFlags: 0
@@ -823,7 +823,7 @@ MonoBehaviour:
   timeLine: {fileID: 1581557883}
   currentLevelIndex: 0
   currentLevel: {fileID: 0}
-  rewardMenu: {fileID: 0}
+  rewardMenu: {fileID: 1366844535}
   starsContainer: {fileID: 0}
 --- !u!4 &349879065
 Transform:
@@ -1791,6 +1791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 819689711}
   - component: {fileID: 819689712}
+  - component: {fileID: 819689713}
   m_Layer: 5
   m_Name: StarsContainer
   m_TagString: Untagged
@@ -1817,7 +1818,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9, y: 27}
+  m_AnchoredPosition: {x: 9, y: 52}
   m_SizeDelta: {x: 550, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &819689712
@@ -1844,6 +1845,26 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &819689713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819689710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e2274a1988ad448950b9b43ab1a882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledStars:
+  - {fileID: 1278966267}
+  - {fileID: 686237325}
+  - {fileID: 1657017887}
+  disabledStars:
+  - {fileID: 986096120}
+  - {fileID: 1399067213}
+  - {fileID: 1213151578}
 --- !u!1 &850838960
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,7 +2514,7 @@ GameObject:
   - component: {fileID: 962170801}
   - component: {fileID: 962170800}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Next Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2610,7 +2631,7 @@ GameObject:
   - component: {fileID: 986096123}
   - component: {fileID: 986096122}
   m_Layer: 5
-  m_Name: StarOff
+  m_Name: StarOff 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2685,7 +2706,7 @@ GameObject:
   - component: {fileID: 1010167470}
   - component: {fileID: 1010167469}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2803,7 +2824,7 @@ GameObject:
   - component: {fileID: 1065615775}
   - component: {fileID: 1065615774}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2945,7 +2966,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000015259}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -296.30692, y: -1154.5991}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1121487975
@@ -2997,7 +3018,7 @@ GameObject:
   - component: {fileID: 1213151581}
   - component: {fileID: 1213151580}
   m_Layer: 5
-  m_Name: StarOff
+  m_Name: StarOff 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3395,7 +3416,7 @@ GameObject:
   - component: {fileID: 1399067216}
   - component: {fileID: 1399067215}
   m_Layer: 5
-  m_Name: StarOff
+  m_Name: StarOff 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
