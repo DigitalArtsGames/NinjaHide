@@ -48,6 +48,7 @@ public class SplineWalker : MonoBehaviour
 
     private void Update()
     {
+        print(sliderProgress);
         progress = spline.GetProgress(currentIndex);
         //sliderProgress = spline.GetProgress(currentIndex);
         if(!isNPC)
@@ -61,7 +62,10 @@ public class SplineWalker : MonoBehaviour
                 GetNextPoint();
                 //if(splineManager.GetCommonIndexes() > currentProgressIndex)
                 //{
-                currentProgressIndex++;
+                if(sliderProgress != 1)
+                {
+                    currentProgressIndex++;
+                }
                 //}
                 //progress += Time.deltaTime;
             }
