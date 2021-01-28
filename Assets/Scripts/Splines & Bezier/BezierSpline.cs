@@ -16,14 +16,14 @@ public class BezierSpline : MonoBehaviour
     [Header("Bezier Settings")]
     public float frequency;
    
-    [SerializeField] private bool EnemySpline;
+    [SerializeField] private bool enemySpline;
 
     [SerializeField] private bool loop;
 
     private void Start()
     {
         CreatePoints();
-        if(!EnemySpline)
+        if(!enemySpline)
         {
             splineRender = GetComponent<SplineRender>();
             splineRender.RenderLine();

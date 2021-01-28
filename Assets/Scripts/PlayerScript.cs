@@ -56,30 +56,36 @@ public class PlayerScript : MonoBehaviour
         CheckSpeed();
         GoToHidingSpot();
 
-        gotCaught = CheckIfCaught();
-
         if (enemyTarget == null)
             return;
+        
+        CheckIfCaught();
         //print(enemyTarget);
 
-        if (Time.time > nextFire)
+        if(!isHiding)
         {
-            nextFire = Time.time + fireRate;
-            Shoot();
+            if (Time.time > nextFire)
+            {
+                nextFire = Time.time + fireRate;
+                Shoot();
+            }
         }
 
     }
 
-    public bool CheckIfCaught()
+    public void CheckIfCaught()
     {
-        if (GetTarget(5f) != null)
+        if (GetTarget(5f) != null && !gotCaught)
         {
-            if (GetTarget(5f).GetComponent<EnemyScript>().gotCaught)
+            if (enemyTarget.GetComponent<EnemyScript>().gotCaught)
             {
-                return true;
+                gotCaught = true;
+            } 
+            else
+            {
+                gotCaught = false;
             }
         }
-        return false;
     }
 
     public Vector3 GetHidingSpotDirection()
