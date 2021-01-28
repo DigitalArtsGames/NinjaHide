@@ -60,4 +60,9 @@ public class LevelManager : MonoBehaviour
         rewardMenu.SetActive(true);
         starsContainer.CollectStars(3);
     }
+
+    public void UnPauseGame()
+    {
+        Time.timeScale = 1f;
+    }
 }
