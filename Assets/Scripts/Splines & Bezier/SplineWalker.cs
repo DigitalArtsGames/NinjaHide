@@ -55,7 +55,7 @@ public class SplineWalker : MonoBehaviour
     private void Update()
     {
         isFinished = IsFinishedPath();
-        print(sliderProgress);
+        //print(sliderProgress);
         progress = spline.GetProgress(currentIndex);
         if(!isNPC)
         {

@@ -504,6 +504,7 @@ MonoBehaviour:
   seeingBarObject: {fileID: 626931715}
   maxPossibility: 0
   minPossibility: 0
+  gotCaught: 0
 --- !u!114 &189548716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,7 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c106394972dd5a44db75e85faa8c257b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 6
+  viewRadius: 10
   viewAngle: 60
   targetMask:
     serializedVersion: 2
@@ -1379,7 +1380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080869776}
   m_LocalRotation: {x: -0, y: 0.5423276, z: -0, w: 0.84016716}
-  m_LocalPosition: {x: -42.9, y: 1.57, z: 5}
+  m_LocalPosition: {x: -45.28, y: 1.57, z: 3.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 633255955}
@@ -1488,6 +1489,7 @@ MonoBehaviour:
   seeingBarObject: {fileID: 2051478276}
   maxPossibility: 0
   minPossibility: 0
+  gotCaught: 0
 --- !u!114 &1080869778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1500,7 +1502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c106394972dd5a44db75e85faa8c257b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 6
+  viewRadius: 10
   viewAngle: 60
   targetMask:
     serializedVersion: 2
@@ -2331,6 +2333,7 @@ MonoBehaviour:
   seeingBarObject: {fileID: 1707149621}
   maxPossibility: 0
   minPossibility: 0
+  gotCaught: 0
 --- !u!114 &2128357685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2343,7 +2346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c106394972dd5a44db75e85faa8c257b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 6
+  viewRadius: 10
   viewAngle: 60
   targetMask:
     serializedVersion: 2
@@ -3531,7 +3534,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4734331058507467418}
   m_LocalRotation: {x: -0, y: 0.9075394, z: -0, w: 0.41996694}
-  m_LocalPosition: {x: -13.33, y: 1.57, z: -6.02}
+  m_LocalPosition: {x: -14.02, y: 1.57, z: -4.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7688274061351742930}
@@ -3640,6 +3643,7 @@ MonoBehaviour:
   seeingBarObject: {fileID: 8024020648353361652}
   maxPossibility: 0
   minPossibility: 0
+  gotCaught: 0
 --- !u!114 &126302584017901172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3652,7 +3656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c106394972dd5a44db75e85faa8c257b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 6
+  viewRadius: 10
   viewAngle: 60
   targetMask:
     serializedVersion: 2
@@ -3877,6 +3881,7 @@ MonoBehaviour:
   seeingBarObject: {fileID: 2883463050480773531}
   maxPossibility: 0
   minPossibility: 0
+  gotCaught: 0
 --- !u!114 &6244780667360036533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3889,7 +3894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c106394972dd5a44db75e85faa8c257b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 6
+  viewRadius: 10
   viewAngle: 60
   targetMask:
     serializedVersion: 2
@@ -3925,6 +3930,7 @@ MonoBehaviour:
   currentProgressIndex: 0
   points: []
   tempIndex: 0
+  isFinished: 0
 --- !u!1 &5829010176096608460
 GameObject:
   m_ObjectHideFlags: 0
@@ -4949,6 +4955,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.052
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530836313449460432, guid: 4967961d4d0822e4182225a237f0caba,
+        type: 3}
+      propertyPath: seeingRadius
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4967961d4d0822e4182225a237f0caba, type: 3}

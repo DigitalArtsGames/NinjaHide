@@ -25,6 +25,7 @@ public class PlayerScript : MonoBehaviour
 
     private int score;
 
+    [HideInInspector] public bool gotCaught;
     [HideInInspector] public bool isRunning;
     [HideInInspector] public bool isShooting;
     [HideInInspector] public bool canHide;
@@ -52,11 +53,10 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        //RotatePlayer();
-
-        //LookAtTarget(GetTarget(seeingRadius + 1f));
         CheckSpeed();
         GoToHidingSpot();
+
+        gotCaught = CheckIfCaught();
 
         if (enemyTarget == null)
             return;
@@ -67,46 +67,42 @@ public class PlayerScript : MonoBehaviour
             nextFire = Time.time + fireRate;
             Shoot();
         }
-        
+
+    }
+
+    public bool CheckIfCaught()
+    {
+        if (GetTarget(5f) != null)
+        {
+            if (GetTarget(5f).GetComponent<EnemyScript>().gotCaught)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Vector3 GetHidingSpotDirection()
     {
-        if(isGoingRight)
+        if (isGoingRight)
         {
             return hidingSpotNearby.transform.position - transform.position;
-        } 
+        }
         else
         {
-            //tempDir = hidingSpotNearby.transform.position;
             return transform.position - hidingSpotNearby.transform.position;
         }
     }
 
     public Vector3 GetPlayerDirection(float seeingRadius)
     {
-        if(GetTarget(seeingRadius) != null)
+        if (GetTarget(seeingRadius) != null)
         {
             Vector3 dir = GetTarget(seeingRadius).position - transform.position;
             return dir;
         }
         return Vector3.zero;
     }
-
-    //public void LookAtTarget(Transform target)
-    //{
-    //    if (target != null)
-    //    {
-    //        splineWalker.enableLookForward = false;
-    //        Vector3 dir = target.position - transform.position;
-    //        Quaternion rotation = Quaternion.LookRotation(dir);
-    //        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 10 * Time.deltaTime);
-    //    }
-    //    else
-    //    {
-    //        splineWalker.enableLookForward = true;
-    //    }
-    //}
 
     public void CheckInstance()
     {
@@ -129,9 +125,9 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            if(!isHiding)
+            if (!isHiding)
                 isRunning = true;
-            
+
             splineWalker.speed = runSpeed;
         }
     }
@@ -144,7 +140,6 @@ public class PlayerScript : MonoBehaviour
             float singleStep = 1 * Time.deltaTime;
 
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-            //Debug.DrawLine(transform.position, newDirection, Color.red);
             transform.rotation = Quaternion.LookRotation(newDirection);
         }
     }
@@ -175,7 +170,6 @@ public class PlayerScript : MonoBehaviour
 
     void Shoot()
     {
-        //Pool usage
         GameObject bulletGameObject = objectPooler.SpawnFromPool("Bullet", firePoint.position, firePoint.rotation);
         BulletScript bullet = bulletGameObject.GetComponent<BulletScript>();
         if (bullet != null)
@@ -196,7 +190,6 @@ public class PlayerScript : MonoBehaviour
 
     public Transform GetTarget(float seeingRadius)
     {
-        //List<GameObject> enemies = sphereCollider.GetComponent<SphereColliderScript>().enemies;
         List<GameObject> enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;

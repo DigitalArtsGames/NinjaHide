@@ -28,6 +28,7 @@ public class EnemyScript : MonoBehaviour
     private bool isSeeingPlayer;
     private List<Transform> targets;
     private ObjectPoolerScript objectPooler;
+    public bool gotCaught;
 
     void Start()
     {
@@ -37,6 +38,8 @@ public class EnemyScript : MonoBehaviour
         seeingBarScript.SetSeeingValue(0);
         seeingBarObject.SetActive(false);
 
+        gotCaught = false;
+        
         shotsCount = 0;
     }
 
@@ -163,6 +166,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (isSeeingPlayer)
         {
+            gotCaught = true;
             seeingBarObject.SetActive(true);
             if(currentDetectionValue != seeingBarScript.GetMaxValue())
             {

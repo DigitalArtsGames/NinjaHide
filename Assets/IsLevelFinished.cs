@@ -15,10 +15,26 @@ public class IsLevelFinished : MonoBehaviour
 
     void Update()
     {
-        if(SplineWalker.Instance.isFinished)
+        if(SplineWalker.Instance != null)
         {
-            rewardPanel.SetActive(true);
-            starsManager.CollectStars(3);
+            print(PlayerScript.Instance.gotCaught);
+            if (SplineWalker.Instance.isFinished)
+            {
+                rewardPanel.SetActive(true);
+            
+                if (!PlayerScript.Instance.gotCaught)
+                {
+                    starsManager.CollectStars(2);
+                }
+                else if (GameObject.FindGameObjectsWithTag("Enemy") == null)
+                {
+                    starsManager.CollectStars(3);
+                }
+                else
+                {
+                    starsManager.CollectStars(1);
+                }
+            }
         }
     }
 }
