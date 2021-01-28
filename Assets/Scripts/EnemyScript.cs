@@ -20,15 +20,15 @@ public class EnemyScript : MonoBehaviour
     public SeeingBarScript seeingBarScript;
     public GameObject seeingBarObject;
 
-    public int maxPossibility;
-    public int minPossibility;
+    [HideInInspector] public int maxPossibility;
+    [HideInInspector] public int minPossibility;
 
     private int shotsCount;
     private Transform target;
     private bool isSeeingPlayer;
     private List<Transform> targets;
     private ObjectPoolerScript objectPooler;
-    public bool gotCaught;
+    [HideInInspector] public bool gotCaught;
 
     void Start()
     {

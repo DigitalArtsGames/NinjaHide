@@ -9,21 +9,17 @@ public class LevelManager : MonoBehaviour
     public GameObject timeLine; 
     public int currentLevelIndex = 0;
     public Room currentLevel;
+    //public GameObject currentLevel;
     public GameObject rewardMenu;
     public StarsManager starsContainer;
 
     private void Start()
     {
         currentLevelIndex = 0;
-        //if(3 > 5)
-        //{
-        //    currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
-        //}
     }
 
     public void LoadNextLevel()
     {
-        //timeLine.SetActive(true);
         if(levelData.rooms.Length != currentLevelIndex)
         {
             if(currentLevel != null)

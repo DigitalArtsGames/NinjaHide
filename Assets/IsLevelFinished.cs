@@ -6,7 +6,7 @@ public class IsLevelFinished : MonoBehaviour
 {
     public GameObject rewardPanel;
     public StarsManager starsManager;
-    //public SplineWalker splineWalker;
+    public SplineWalker splineWalker;
 
     void Start()
     {
@@ -15,13 +15,20 @@ public class IsLevelFinished : MonoBehaviour
 
     void Update()
     {
-        if(SplineWalker.Instance != null)
+        if (splineWalker == null)
         {
-            print(PlayerScript.Instance.gotCaught);
-            if (SplineWalker.Instance.isFinished)
+            if(GameObject.FindGameObjectWithTag("Player") != null)
+            {
+                splineWalker = GameObject.FindGameObjectWithTag("Player").GetComponent<SplineWalker>();
+            }
+        }
+        else
+        {
+            //print(PlayerScript.Instance.gotCaught);
+            if (splineWalker.isFinished)
             {
                 rewardPanel.SetActive(true);
-            
+
                 if (!PlayerScript.Instance.gotCaught)
                 {
                     starsManager.CollectStars(2);

@@ -7,4 +7,5 @@ public class LevelData : ScriptableObject
 {
     public new string name;
     public Room[] rooms;
+    //public GameObject[] rooms;
 }

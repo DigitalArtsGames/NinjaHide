@@ -25,7 +25,7 @@ public class SplineWalker : MonoBehaviour
 
     #region HiddenVariables
     
-    [HideInInspector] public static SplineWalker Instance;
+    //[HideInInspector] public static SplineWalker Instance;
     
     public event Action onSplineEnded;
 
@@ -44,16 +44,27 @@ public class SplineWalker : MonoBehaviour
     [HideInInspector] public int tempIndex;
 
     [HideInInspector] public bool isFinished;
+
+    [SerializeField] private bool isDebug;
     #endregion
 
     private void Start()
     {
-        CheckInstance();
+        //if(!isNPC)
+        //{
+        //    CheckInstance();
+        //}
         points = spline.bezierPoints;
+        DebugLog(points.Count.ToString());
     }
 
     private void Update()
     {
+        if(isDebug)
+        {
+            print("");
+        }
+        //DebugLog(currentIndex.ToString());
         isFinished = IsFinishedPath();
         //print(sliderProgress);
         progress = spline.GetProgress(currentIndex);
@@ -63,7 +74,8 @@ public class SplineWalker : MonoBehaviour
         }
         if (points.Count > currentIndex)
         {
-            if (Vector3.Distance(points[currentIndex], transform.position) < nextPointTreshhold)
+            float a = Vector3.Distance(points[currentIndex], transform.position);
+            if (a < nextPointTreshhold)
             {
                 GetNextPoint();
                 if(sliderProgress != 1)
@@ -141,17 +153,25 @@ public class SplineWalker : MonoBehaviour
         this.speed = speed;
     }
 
-    public void CheckInstance()
+    private void DebugLog(string log)
     {
-        if (Instance)
+        if(isDebug)
         {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
+            print(log);
         }
     }
+
+    //public void CheckInstance()
+    //{
+    //    if (Instance)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //    else
+    //    {
+    //        Instance = this;
+    //    }
+    //}
 }
 
 
