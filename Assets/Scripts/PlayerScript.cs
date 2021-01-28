@@ -161,8 +161,6 @@ public class PlayerScript : MonoBehaviour
             canHide = true;
             hidingSpotNearby = other.gameObject;
 
-            HidingSpotScript hidingSpot = hidingSpotNearby.GetComponent<HidingSpotScript>();
-
         }
     }
 

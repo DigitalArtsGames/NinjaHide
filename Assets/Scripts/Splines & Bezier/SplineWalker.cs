@@ -9,6 +9,7 @@ public class SplineWalker : MonoBehaviour
     #region SplineWalker Settings
     [Header("SplineWalker Settings")]
 
+
     public BezierSpline spline;
 
     [SerializeField] private SplineWalkerMode mode;
@@ -23,6 +24,9 @@ public class SplineWalker : MonoBehaviour
     #endregion
 
     #region HiddenVariables
+    
+    [HideInInspector] public static SplineWalker Instance;
+    
     public event Action onSplineEnded;
 
     [HideInInspector] public int speed;
@@ -38,19 +42,21 @@ public class SplineWalker : MonoBehaviour
     [HideInInspector] public List<Vector3> points;
 
     [HideInInspector] public int tempIndex;
+
+    [HideInInspector] public bool isFinished;
     #endregion
 
     private void Start()
     {
+        CheckInstance();
         points = spline.bezierPoints;
-        //splineManager = GameObject.FindGameObjectWithTag("SplineManager");
     }
 
     private void Update()
     {
+        isFinished = IsFinishedPath();
         print(sliderProgress);
         progress = spline.GetProgress(currentIndex);
-        //sliderProgress = spline.GetProgress(currentIndex);
         if(!isNPC)
         {
             sliderProgress = spline.GetProgress(currentProgressIndex, splineManager.GetCommonFrequency());
@@ -60,18 +66,13 @@ public class SplineWalker : MonoBehaviour
             if (Vector3.Distance(points[currentIndex], transform.position) < nextPointTreshhold)
             {
                 GetNextPoint();
-                //if(splineManager.GetCommonIndexes() > currentProgressIndex)
-                //{
                 if(sliderProgress != 1)
                 {
                     currentProgressIndex++;
                 }
-                //}
-                //progress += Time.deltaTime;
             }
 
             var target = points[currentIndex];
-            //print(target);  
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
 
@@ -121,6 +122,15 @@ public class SplineWalker : MonoBehaviour
         currentIndex++;
     }
 
+    public bool IsFinishedPath()
+    {
+        if(sliderProgress == 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public void UpdateTarget()
     {
 
@@ -131,11 +141,17 @@ public class SplineWalker : MonoBehaviour
         this.speed = speed;
     }
 
-    private void GetProgress()
+    public void CheckInstance()
     {
-
+        if (Instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
-
 }
 
 
