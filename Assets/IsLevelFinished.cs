@@ -17,6 +17,8 @@ public class IsLevelFinished : MonoBehaviour
 
     void Update()
     {
+        print(isRewardMenuOpened);
+        //IsEnable();
         if (splineWalker == null)
         {
             if (GameObject.FindGameObjectWithTag("Player") != null)
@@ -30,12 +32,18 @@ public class IsLevelFinished : MonoBehaviour
         }
     }
 
+    public void ClearBoolean()
+    {
+        isRewardMenuOpened = false;
+    }
 
     void ManageRewardMenu()
     {
         if(splineWalker.isFinished && !isRewardMenuOpened)
         {
             rewardPanel.SetActive(true);
+            //Player законченного уровня удаляется чтобы, быть созданным в следующем (т.к. Плейер является статиком)
+            Destroy(GameObject.FindGameObjectWithTag("Player"));
             Time.timeScale = 0f;
             ManageStars();
             isRewardMenuOpened = true;
