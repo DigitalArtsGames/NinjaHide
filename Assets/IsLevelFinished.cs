@@ -8,6 +8,8 @@ public class IsLevelFinished : MonoBehaviour
     public StarsManager starsManager;
     public SplineWalker splineWalker;
 
+    [HideInInspector] public bool isRewardMenuOpened;
+
     void Start()
     {
 
@@ -24,39 +26,36 @@ public class IsLevelFinished : MonoBehaviour
         }
         else
         {
-            //print(PlayerScript.Instance.gotCaught);
-            if (splineWalker.isFinished)
-            {
-                Time.timeScale = 0f;
-                rewardPanel.SetActive(true);
+            ManageRewardMenu();
+        }
+    }
 
-                starsManager.CollectStars(1);
-               
-                if (!PlayerScript.Instance.gotCaught)
-                {
-                    starsManager.CollectStars(2);
-                }
-                
-                GameObject[] objects = GameObject.FindGameObjectsWithTag("Enemy");
 
-                if (objects.Length == 0)
-                {
-                    starsManager.CollectStars(3);
-                }
+    void ManageRewardMenu()
+    {
+        if(splineWalker.isFinished && !isRewardMenuOpened)
+        {
+            rewardPanel.SetActive(true);
+            Time.timeScale = 0f;
+            ManageStars();
+            isRewardMenuOpened = true;
+        }
+    }
 
-                //if (!PlayerScript.Instance.gotCaught)
-                //{
-                //    starsManager.CollectStars(2);
-                //}
-                //else if (GameObject.FindGameObjectsWithTag("Enemy") == null)
-                //{
-                //    starsManager.CollectStars(3);
-                //}
-                //else
-                //{
-                //    starsManager.CollectStars(1);
-                //}
-            }
+    void ManageStars()
+    {
+        starsManager.CollectStars(1);
+
+        if (!PlayerScript.Instance.gotCaught)
+        {
+            starsManager.CollectStars(2);
+        }
+
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if (objects.Length == 0)
+        {
+            starsManager.CollectStars(3);
         }
     }
 }

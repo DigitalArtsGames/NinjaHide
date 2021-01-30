@@ -5180,11 +5180,6 @@ PrefabInstance:
       propertyPath: seeingRadius
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 8530836313449460432, guid: 4967961d4d0822e4182225a237f0caba,
-        type: 3}
-      propertyPath: runSpeed
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4967961d4d0822e4182225a237f0caba, type: 3}
 --- !u!114 &3386925352978522546 stripped

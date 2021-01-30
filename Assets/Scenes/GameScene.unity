@@ -824,7 +824,6 @@ MonoBehaviour:
   currentLevelIndex: 0
   currentLevel: {fileID: 0}
   rewardMenu: {fileID: 1366844535}
-  starsContainer: {fileID: 0}
 --- !u!4 &349879065
 Transform:
   m_ObjectHideFlags: 0
@@ -2516,6 +2515,7 @@ MonoBehaviour:
   rewardPanel: {fileID: 1366844535}
   starsManager: {fileID: 819689713}
   splineWalker: {fileID: 0}
+  isRewardMenuOpened: 0
 --- !u!1 &962170798
 GameObject:
   m_ObjectHideFlags: 0
@@ -2597,9 +2597,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 349879064}
-        m_MethodName: LoadNextLevel
-        m_Mode: 1
+      - m_Target: {fileID: 1366844535}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2608,9 +2608,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1366844535}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 349879064}
+        m_MethodName: LoadNextLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
