@@ -26,8 +26,8 @@ public class LevelManager : MonoBehaviour
             {
                 Destroy(currentLevel.gameObject);
             }
-            currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
             currentLevelIndex++;
+            currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
         } else
         {
             Debug.Log("THE END!");
@@ -38,7 +38,10 @@ public class LevelManager : MonoBehaviour
     {
         if (levelData.rooms.Length != currentLevelIndex)
         {
-            Destroy(currentLevel.gameObject);
+            if (currentLevel != null)
+            {
+                Destroy(currentLevel.gameObject);
+            }
             currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
         }
     }

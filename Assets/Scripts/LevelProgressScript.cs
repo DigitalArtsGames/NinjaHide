@@ -33,8 +33,8 @@ public class LevelProgressScript : MonoBehaviour
 
     void SetProgressBarLevels()
     {
-        startLevelText.text = (levelManager.currentLevelIndex).ToString();
-        endLevelText.text = (levelManager.currentLevelIndex + 1).ToString();
+        startLevelText.text = (levelManager.currentLevelIndex + 1).ToString();
+        endLevelText.text = (levelManager.currentLevelIndex + 2).ToString();
     }
     
 
