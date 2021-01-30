@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     public Room currentLevel;
     //public GameObject currentLevel;
     public GameObject rewardMenu;
-    public StarsManager starsContainer;
+    //public StarsManager starsContainer;
 
     private void Start()
     {
@@ -55,11 +55,11 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void LoadRewardMenu()
-    {
-        rewardMenu.SetActive(true);
-        starsContainer.CollectStars(3);
-    }
+    //public void LoadRewardMenu()
+    //{
+    //    rewardMenu.SetActive(true);
+    //    starsContainer.CollectStars(3);
+    //}
 
     public void UnPauseGame()
     {
