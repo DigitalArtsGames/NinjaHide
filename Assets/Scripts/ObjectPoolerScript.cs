@@ -28,16 +28,20 @@ public class ObjectPoolerScript : MonoBehaviour
         //Словарь всех "бассейнов", переменная стринг отвечает за название бассейна, вторая за сам бассейн
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
+        GameObject poolerContainer = new GameObject();
+        poolerContainer.name = "Pooler Container";
+        //Instantiate(poolerContainer);
         //Цикл проходться по всем бассейнам
         foreach (Pool pool in pools)
         {
             //Создает "бассейн" объектов
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
+
             //Наполняет бассейн объектами
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pool.prefab, poolerContainer.transform);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
