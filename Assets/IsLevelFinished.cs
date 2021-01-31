@@ -17,7 +17,7 @@ public class IsLevelFinished : MonoBehaviour
 
     void Update()
     {
-        print(isRewardMenuOpened);
+        //print(isRewardMenuOpened);
         //IsEnable();
         if (splineWalker == null)
         {
