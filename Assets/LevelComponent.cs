@@ -12,4 +12,9 @@ public class LevelComponent : MonoBehaviour
         TextMeshProUGUI.text = text;
     }
 
+    public void SetText(int text)
+    {
+        TextMeshProUGUI.text = text.ToString();
+    }
+
 }

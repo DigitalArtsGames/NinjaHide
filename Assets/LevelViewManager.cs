@@ -5,11 +5,8 @@ using UnityEngine;
 public class LevelViewManager : MonoBehaviour
 {
     [SerializeField] private int viewLevelsCount;
-    [SerializeField] private LevelComponent levelPrefab;
+    [SerializeField] private GameObject levelPrefab;
     [SerializeField] private LevelManager levelManager;
-
-
-    private List<LevelComponent> levelComponents;
 
     void Start()
     {
@@ -24,8 +21,7 @@ public class LevelViewManager : MonoBehaviour
         {
             if(levelManager.levelData.rooms.Length <= viewLevelsCount)
             {
-                levelPrefab.SetText((j + 1).ToString());
-                levelComponents.Add(levelPrefab);
+                levelPrefab.GetComponent<LevelComponent>().SetText((j + 1).ToString());
                 
                 Instantiate(levelPrefab, transform);
             }
