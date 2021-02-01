@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
             {
                 Destroy(currentLevel.gameObject);
             }
-            currentLevelIndex++;
+            //currentLevelIndex++;
             currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
         } else
         {
@@ -37,11 +37,24 @@ public class LevelManager : MonoBehaviour
     public void LoadCurrentLevel()
     {
         if (levelData.rooms.Length != currentLevelIndex)
+        {   
+            if (currentLevel != null)
+            {
+                Destroy(currentLevel.gameObject);
+            }
+            currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
+        }
+    }
+
+    public void LoadCurrentLevelReplay()
+    {
+        if (levelData.rooms.Length != currentLevelIndex)
         {
             if (currentLevel != null)
             {
                 Destroy(currentLevel.gameObject);
             }
+            currentLevelIndex--;
             currentLevel = Instantiate(levelData.rooms[currentLevelIndex]);
         }
     }

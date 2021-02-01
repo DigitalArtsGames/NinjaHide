@@ -2632,6 +2632,7 @@ MonoBehaviour:
   rewardPanel: {fileID: 1366844535}
   starsManager: {fileID: 819689713}
   splineWalker: {fileID: 0}
+  levelManager: {fileID: 349879064}
   isRewardMenuOpened: 0
 --- !u!1 &962170798
 GameObject:
@@ -2952,7 +2953,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 349879064}
-        m_MethodName: LoadCurrentLevel
+        m_MethodName: LoadCurrentLevelReplay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

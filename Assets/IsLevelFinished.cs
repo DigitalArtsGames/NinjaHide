@@ -8,6 +8,8 @@ public class IsLevelFinished : MonoBehaviour
     public StarsManager starsManager;
     public SplineWalker splineWalker;
 
+    public LevelManager levelManager;
+
     [HideInInspector] public bool isRewardMenuOpened;
 
     void Start()
@@ -46,6 +48,7 @@ public class IsLevelFinished : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("Player"));
             Time.timeScale = 0f;
             ManageStars();
+            levelManager.currentLevelIndex++;
             isRewardMenuOpened = true;
         }
     }
