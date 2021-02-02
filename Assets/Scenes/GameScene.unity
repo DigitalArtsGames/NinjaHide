@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b321db950f47cfa41ab3deecb45c7244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewLevelsCount: 4
+  viewLevelsCount: 5
   levelPrefab: {fileID: 963598924407069413, guid: 698e84071bd355e4a9d1ddfe9a149e7f,
     type: 3}
   levelManager: {fileID: 349879064}

@@ -8,6 +8,8 @@ public class LevelViewManager : MonoBehaviour
     [SerializeField] private GameObject levelPrefab;
     [SerializeField] private LevelManager levelManager;
 
+    public bool isEnded;
+
     private List<GameObject> childs;
 
     void Awake()
@@ -20,20 +22,36 @@ public class LevelViewManager : MonoBehaviour
 
     private void Update()
     {
+        CheckLevelsCount();
+        if (isEnded)
+        {
+            DrawLevels();
+            isEnded = false;
+        }
+    }
 
+    public void CheckLevelsCount()
+    {
+        var levelGroupStart = levelManager.currentLevelIndex - (levelManager.currentLevelIndex % 5);
+        if (viewLevelsCount == levelGroupStart)
+        {
+            isEnded = true;
+        }
     }
 
     public void DrawLevels()
     {
 
-        for (int j = 0; j < levelManager.levelData.rooms.Length; j++)
-        {
-            if (levelManager.levelData.rooms.Length <= viewLevelsCount)
-            {
-                levelPrefab.GetComponent<LevelComponent>().SetText((j + 1).ToString());
+        var levelGroupStart = levelManager.currentLevelIndex - (levelManager.currentLevelIndex % 5);
 
-                Instantiate(levelPrefab, transform);
-            }
+        for (int j = 0; j < viewLevelsCount; j++)
+        {
+            //if (levelManager.levelData.rooms.Length <= viewLevelsCount)
+            //{
+            levelPrefab.GetComponent<LevelComponent>().SetText((levelGroupStart + j + 1).ToString());
+
+            Instantiate(levelPrefab, transform);
+            //}
         }
     }
 
@@ -47,11 +65,9 @@ public class LevelViewManager : MonoBehaviour
         return childs;
     }
 
-
-
     private void OnEnable()
     {
-        if(childs.Count != 0)
+        if (childs.Count != 0)
         {
             LeanTween.scale(childs[levelManager.currentLevelIndex], new Vector3(1.2f, 1.2f, 1.2f), 0.5f).setLoopPingPong();
         }
