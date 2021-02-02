@@ -18,18 +18,24 @@ public class LevelViewManager : MonoBehaviour
     void Awake()
     {
         DrawLevels();
+        drawEvent += DrawLevels;
         childs = GetChilds();
-
+        
     }
 
     public void Start()
     {
-        drawEvent += DrawLevels;
     }
 
     private void Update()
     {
         CheckLevelsCount();
+    }
+
+    public void SetChilds()
+    {
+        childs = GetChilds();
+        drawEvent -= SetChilds;
     }
 
     public void CheckLevelsCount()
@@ -79,20 +85,33 @@ public class LevelViewManager : MonoBehaviour
         return childs;
     }
 
-    //private void OnEnable()
-    //{
-    //    if (childs.Count != 0)
-    //    {
-    //        LeanTween.scale(childs[levelManager.currentLevelIndex], new Vector3(1.2f, 1.2f, 1.2f), 0.5f).setLoopPingPong();
-    //    }
-    //}
+    public GameObject GetLevelComponentByIndex(string index)
+    {
+        for (int i = 0; i < childs.Count; i++)
+        {
+            if(childs[i].GetComponent<LevelComponent>().TextMeshProUGUI.text == index)
+            {
+                return childs[i];
+            }
+        }
+        return null;
+    }
 
-    //private void OnDisable()
-    //{
-    //    if (childs.Count != 0)
-    //    {
-    //        LeanTween.cancel(childs[levelManager.currentLevelIndex]);
-    //    }
-    //}
+    private void OnEnable()
+    {
+        drawEvent += SetChilds;
+        if (childs.Count != 0 || GetLevelComponentByIndex((levelManager.currentLevelIndex + 1).ToString()) != null)
+        {
+            LeanTween.scale(GetLevelComponentByIndex((levelManager.currentLevelIndex + 1).ToString()), new Vector3(1.2f, 1.2f, 1.2f), 0.5f).setLoopPingPong();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (childs.Count != 0 || GetLevelComponentByIndex((levelManager.currentLevelIndex + 1).ToString()) != null)
+        {
+            LeanTween.cancel(GetLevelComponentByIndex((levelManager.currentLevelIndex + 1).ToString()));
+        }
+    }
 
 }
