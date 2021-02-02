@@ -8,6 +8,9 @@ public class LevelViewManager : MonoBehaviour
     [SerializeField] private GameObject levelPrefab;
     [SerializeField] private LevelManager levelManager;
 
+    public delegate void DrawDelegate();
+    public event DrawDelegate drawEvent;
+
     public bool isEnded;
 
     private List<GameObject> childs;
@@ -19,15 +22,14 @@ public class LevelViewManager : MonoBehaviour
 
     }
 
+    public void Start()
+    {
+        drawEvent += DrawLevels;
+    }
 
     private void Update()
     {
         CheckLevelsCount();
-        if (isEnded)
-        {
-            DrawLevels();
-            isEnded = false;
-        }
     }
 
     public void CheckLevelsCount()
@@ -35,12 +37,22 @@ public class LevelViewManager : MonoBehaviour
         var levelGroupStart = levelManager.currentLevelIndex - (levelManager.currentLevelIndex % 5);
         if (viewLevelsCount == levelGroupStart)
         {
-            isEnded = true;
+            if(drawEvent != null)
+            {
+                drawEvent();
+            }
         }
     }
 
     public void DrawLevels()
     {
+        if(GetChilds() != null)
+        {
+            foreach (Transform item in transform)
+            {
+                Destroy(item.gameObject);
+            }
+        }
 
         var levelGroupStart = levelManager.currentLevelIndex - (levelManager.currentLevelIndex % 5);
 
@@ -52,7 +64,9 @@ public class LevelViewManager : MonoBehaviour
 
             Instantiate(levelPrefab, transform);
             //}
+
         }
+        drawEvent -= DrawLevels;
     }
 
     public List<GameObject> GetChilds()
@@ -65,20 +79,20 @@ public class LevelViewManager : MonoBehaviour
         return childs;
     }
 
-    private void OnEnable()
-    {
-        if (childs.Count != 0)
-        {
-            LeanTween.scale(childs[levelManager.currentLevelIndex], new Vector3(1.2f, 1.2f, 1.2f), 0.5f).setLoopPingPong();
-        }
-    }
+    //private void OnEnable()
+    //{
+    //    if (childs.Count != 0)
+    //    {
+    //        LeanTween.scale(childs[levelManager.currentLevelIndex], new Vector3(1.2f, 1.2f, 1.2f), 0.5f).setLoopPingPong();
+    //    }
+    //}
 
-    private void OnDisable()
-    {
-        if (childs.Count != 0)
-        {
-            LeanTween.cancel(childs[levelManager.currentLevelIndex]);
-        }
-    }
+    //private void OnDisable()
+    //{
+    //    if (childs.Count != 0)
+    //    {
+    //        LeanTween.cancel(childs[levelManager.currentLevelIndex]);
+    //    }
+    //}
 
 }
