@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea01d08022b8f78419a7d47f6c525d36, type: 3}
+  m_Name: LevelsCollection 1
+  m_EditorClassIdentifier: Assembly-CSharp::NewBehaviourScript
+  name: LevelsCollection 1
+  levels:
+  - {fileID: 11400000, guid: ebe7b6941e035ad4f8588eca89a83596, type: 2}
