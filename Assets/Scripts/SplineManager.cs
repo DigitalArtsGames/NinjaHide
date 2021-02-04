@@ -14,7 +14,7 @@ public class SplineManager : MonoBehaviour
         playerSplineWalker.onSplineEnded += OnCurrentSplineEnded;
 
         currentSplineIndex = 0;
-        splines = GetComponentsInChildren<BezierSpline>();
+        //splines = GetComponentsInChildren<BezierSpline>();
         playerSplineWalker.spline = splines[currentSplineIndex];
     }
 
