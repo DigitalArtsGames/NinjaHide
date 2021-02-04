@@ -7,11 +7,14 @@ public class LevelData : ScriptableObject
 {
     public new string name;
     public Room[] rooms;
-    //public GameObject[] rooms;
-    
-    public void SpawnRandomRooms()
-    {
 
+    private List<Room> spawnedRooms = new List<Room>();
+    
+    public void SpawnRandomRoom()
+    {
+        Room newRoom = Instantiate(rooms[Random.Range(0, rooms.Length)]);
+        //newRoom.transform.position = ;
+        spawnedRooms.Add(newRoom);
     }
 
 }

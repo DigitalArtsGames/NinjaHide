@@ -5,6 +5,11 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public string roomName;
+
+    public Transform begin;
+    public Transform end;
+
+
     //public GameObject player;
     //public GameObject playerSpline;
     
