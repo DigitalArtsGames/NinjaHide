@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject playerSpline;
+    public string roomName;
+    //public GameObject player;
+    //public GameObject playerSpline;
     
-    public EnemyScript[] enemiesScript;
-    public GameObject enemySpline;
+    //public EnemyScript[] enemiesScript;
+    //public GameObject enemySpline;
     
-    public GameObject[] roomObjects;
+    //public GameObject[] roomObjects;
 
-    [HideInInspector] public Vector3 playerPosition;
+    //[HideInInspector] public Vector3 playerPosition;
 
-    private void Start()
-    {
-        playerPosition = player.transform.position;
-    }
+    //private void Start()
+    //{
+    //    playerPosition = player.transform.position;
+    //}
 }
