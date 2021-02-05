@@ -5,7 +5,7 @@ using UnityEngine;
 public class SplineManager : MonoBehaviour
 {
     public SplineWalker playerSplineWalker;
-    [SerializeField] private BezierSpline[] splines;
+    public BezierSpline[] splines;
 
     public int currentSplineIndex;
 
@@ -15,6 +15,7 @@ public class SplineManager : MonoBehaviour
 
         currentSplineIndex = 0;
         //splines = GetComponentsInChildren<BezierSpline>();
+        
         playerSplineWalker.spline = splines[currentSplineIndex];
     }
 
