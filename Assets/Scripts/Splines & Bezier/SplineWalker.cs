@@ -16,7 +16,7 @@ public class SplineWalker : MonoBehaviour
 
     [SerializeField] private float nextPointTreshhold = 0.01f;
 
-    public SplineManager splineManager;
+    [SerializeField] private SplineManager splineManager;
 
     public bool isNPC;
 
