@@ -53,5 +53,4 @@ public class LevelBuilder : MonoBehaviour
         playerSpawner.SpawnPlayer();
         playerSpawner.SetSplineWalkerActive(true);
     }
-
 }
