@@ -88,7 +88,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404290621331020028}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 7.5, y: 1.5, z: 0}
+  m_LocalPosition: {x: 7.8, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7092220286996082015}
@@ -179,6 +179,7 @@ MonoBehaviour:
   crouchSpeed: 2
   lineMaterial: {fileID: 2100000, guid: 27f051cab0b14f0498ecb58738cd7073, type: 2}
   seeingRadius: 5
+  gotCaught: 0
   isRunning: 0
   isShooting: 0
   canHide: 0
@@ -198,14 +199,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edddab5ffdd329542b8906c6f900d2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spline: {fileID: 0}
+  spline: {fileID: 8809732388057891386, guid: 5219368e9f1d37d42a3b9cda42296210, type: 3}
+  splineManager: {fileID: 0}
   mode: 0
   nextPointTreshhold: 0.01
+  isNPC: 0
   enableLookForward: 1
   speed: 5
   progress: 0
+  sliderProgress: 0
   currentIndex: 0
+  currentProgressIndex: 0
   points: []
+  tempIndex: 0
+  isFinished: 0
+  isDebug: 0
 --- !u!54 &3615135671437278176
 Rigidbody:
   m_ObjectHideFlags: 0

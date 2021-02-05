@@ -12,11 +12,12 @@ public class SplineWalker : MonoBehaviour
 
     public BezierSpline spline;
 
+    public SplineManager splineManager;
+    
     [SerializeField] private SplineWalkerMode mode;
 
     [SerializeField] private float nextPointTreshhold = 0.01f;
 
-    [SerializeField] private SplineManager splineManager;
 
     public bool isNPC;
 
@@ -55,7 +56,7 @@ public class SplineWalker : MonoBehaviour
         //    CheckInstance();
         //}
         points = spline.bezierPoints;
-        DebugLog(points.Count.ToString());
+        Debug.Log(points.Count.ToString());
     }
 
     private void Update()

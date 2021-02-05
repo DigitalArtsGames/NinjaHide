@@ -6,6 +6,7 @@ public class LevelBuilder : MonoBehaviour
 {
     public LevelManager levelManager;
     public SplineManager splineManager;
+    public PlayerSpawner playerSpawner;
 
     private LevelData currentLevel;
 
@@ -28,7 +29,13 @@ public class LevelBuilder : MonoBehaviour
 
     private void Start()
     {
-        setSplineEvent += SetSplines;
+        setSplineEvent += SetVariables;
+    }
+
+    public void SetVariables()
+    {
+        SetSplines();
+        SetPlayer();
     }
 
     public void SetSplines()
@@ -36,7 +43,15 @@ public class LevelBuilder : MonoBehaviour
         splineManager.splines = new BezierSpline[3];
         for (int i = 0; i < currentLevel.rooms.Length; i++)
             splineManager.splines[i] = currentLevel.rooms[i].playerSpline;
-        
         splineManager.enabled = true;
     }
+
+    public void SetPlayer()
+    {
+        playerSpawner.SetSplineManager(splineManager);
+        splineManager.playerSplineWalker = playerSpawner.GetSplineWalker();
+        playerSpawner.SpawnPlayer();
+        playerSpawner.SetSplineWalkerActive(true);
+    }
+
 }
