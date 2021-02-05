@@ -2069,9 +2069,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: room_02
 <<<<<<< HEAD
+<<<<<<< HEAD
   playerSpline: {fileID: 8809732388057891386}
   begin: {fileID: 8690294651636098293}
   end: {fileID: 8936091231769974409}
+=======
+>>>>>>> parent of 6f71999... In Progress
 =======
 >>>>>>> parent of 6f71999... In Progress
 --- !u!1 &7446265505536466946
