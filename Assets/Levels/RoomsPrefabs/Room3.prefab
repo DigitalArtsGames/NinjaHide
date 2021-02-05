@@ -2071,6 +2071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomName: room_03
+  playerSpline: {fileID: 8809732388057891386}
   begin: {fileID: 8925015405592732678}
   end: {fileID: 795011475104202033}
 --- !u!1 &7446265505536466946
