@@ -7,6 +7,7 @@ public class LevelBuilder : MonoBehaviour
     public LevelManager levelManager;
     public SplineManager splineManager;
     public PlayerSpawner playerSpawner;
+    public RoomsSpawner roomsSpawner;
 
     private LevelData currentLevel;
 
@@ -62,9 +63,6 @@ public class LevelBuilder : MonoBehaviour
 
     public void SpawnPlatforms()
     {
-        for (int i = 0; i < currentLevel.rooms.Length; i++)
-        {
-            currentLevel.rooms[i] = Instantiate(currentLevel.rooms[i]);
-        }
+        roomsSpawner.SpawnPlatformsRandomly(currentLevel.rooms);
     }
 }

@@ -4,5 +4,24 @@ using UnityEngine;
 
 public class RoomsSpawner : MonoBehaviour
 {
-    //gipublic void Spawn
+
+    List<Room> spawnedChunks = new List<Room>();
+    [SerializeField] private Transform firstRoomPointSpawner;
+
+    public void SpawnPlatformsRandomly(Room[] rooms)
+    {
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            rooms[i] = Instantiate(rooms[Random.Range(0, rooms.Length)]);
+            if (spawnedChunks.Count == 0)
+            {
+                rooms[i].transform.position = firstRoomPointSpawner.position - rooms[i].begin.localPosition;
+            }
+            else
+            {
+                rooms[i].transform.position = spawnedChunks[spawnedChunks.Count - 1].end.position - rooms[i].begin.localPosition;
+            }
+            spawnedChunks.Add(rooms[i]);
+        }
+    }
 }

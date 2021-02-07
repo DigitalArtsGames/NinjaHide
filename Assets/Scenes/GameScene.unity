@@ -873,6 +873,7 @@ MonoBehaviour:
   levelManager: {fileID: 349879064}
   splineManager: {fileID: 349879066}
   playerSpawner: {fileID: 349879068}
+  roomsSpawner: {fileID: 349879069}
 --- !u!114 &349879068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,6 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b3382f94a02b548b284d909cc0c563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstRoomPointSpawner: {fileID: 971630988}
 --- !u!1 &366377405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,6 +2483,7 @@ Transform:
   - {fileID: 541521438}
   - {fileID: 55819527}
   - {fileID: 828951865}
+  - {fileID: 971630988}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3027,6 +3030,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962170798}
   m_CullTransparentMesh: 0
+--- !u!1 &971630987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 971630988}
+  m_Layer: 0
+  m_Name: FirstRoomSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &971630988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971630987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.75, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 898771611}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &986096120
 GameObject:
   m_ObjectHideFlags: 0
