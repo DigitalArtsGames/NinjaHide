@@ -13,11 +13,11 @@ public class LevelBuilder : MonoBehaviour
 
     public delegate void SetSplineDelegate();
     public event SetSplineDelegate setSplineEvent;
-    
+
     public delegate void SpawnRoomDelegate();
     public event SpawnRoomDelegate spawnRoomDelegate;
 
-    
+
     public void Update()
     {
         UpdateCurrentLevel();
@@ -25,16 +25,24 @@ public class LevelBuilder : MonoBehaviour
 
     public void UpdateCurrentLevel()
     {
-        if (currentLevel == null && levelManager.currentLevel != null)
+        if (levelManager.currentLevel != null)
         {
-            currentLevel = levelManager.currentLevel;
-            spawnRoomDelegate();
-            setSplineEvent();
+            if (currentLevel != levelManager.currentLevel)
+            {
+                ClearLevel();
+                currentLevel = levelManager.currentLevel;
+                spawnRoomDelegate();
+                setSplineEvent();
+            }
         }
     }
 
     private void Start()
     {
+        currentLevel = levelManager.currentLevel;
+        SpawnPlatforms();
+        SetVariables();
+
         spawnRoomDelegate += SpawnPlatforms;
         setSplineEvent += SetVariables;
     }
@@ -56,13 +64,21 @@ public class LevelBuilder : MonoBehaviour
     public void SetPlayer()
     {
         playerSpawner.SetSplineManager(splineManager);
-        playerSpawner.SpawnPlayer();
+        if(GameObject.FindGameObjectWithTag("Player") == null)
+        {
+            playerSpawner.SpawnPlayer();
+        }
         splineManager.playerSplineWalker = playerSpawner.GetSplineWalker();
         playerSpawner.SetSplineWalkerActive(true);
     }
 
     public void SpawnPlatforms()
     {
-        roomsSpawner.SpawnPlatformsRandomly(currentLevel.rooms);
+        roomsSpawner.SpawnRoomsRandomly(currentLevel.rooms);
+    }
+
+    public void ClearLevel()
+    {
+        roomsSpawner.ClearRooms(currentLevel.rooms);
     }
 }

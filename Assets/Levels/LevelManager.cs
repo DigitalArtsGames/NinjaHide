@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
 
     public LevelsCollection levelsCollection;
 
-    public GameObject timeLine; 
+    public GameObject timeLine;
     public int currentLevelIndex = 0;
     public LevelData currentLevel;
     //public GameObject currentLevel;
@@ -23,15 +23,16 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if(levelsCollection.levels.Length != currentLevelIndex)
+        if (levelsCollection.levels.Length != currentLevelIndex)
         {
-            if(currentLevel != null)
+            if (currentLevel != null)
             {
                 Destroy(currentLevel);
             }
             //currentLevelIndex++;
             currentLevel = Instantiate(levelsCollection.levels[currentLevelIndex]);
-        } else
+        }
+        else
         {
             Debug.Log("THE END!");
         }
@@ -40,7 +41,7 @@ public class LevelManager : MonoBehaviour
     public void LoadCurrentLevel()
     {
         if (levelsCollection.levels.Length != currentLevelIndex)
-        {   
+        {
             if (currentLevel != null)
             {
                 Destroy(currentLevel);

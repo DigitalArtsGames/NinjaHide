@@ -8,7 +8,7 @@ public class RoomsSpawner : MonoBehaviour
     List<Room> spawnedChunks = new List<Room>();
     [SerializeField] private Transform firstRoomPointSpawner;
 
-    public void SpawnPlatformsRandomly(Room[] rooms)
+    public void SpawnRoomsRandomly(Room[] rooms)
     {
         for (int i = 0; i < rooms.Length; i++)
         {
@@ -22,6 +22,15 @@ public class RoomsSpawner : MonoBehaviour
                 rooms[i].transform.position = spawnedChunks[spawnedChunks.Count - 1].end.position - rooms[i].begin.localPosition;
             }
             spawnedChunks.Add(rooms[i]);
+        }
+    }
+
+    public void ClearRooms(Room[] rooms)
+    {
+        spawnedChunks.Clear();
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            Destroy(rooms[i]);
         }
     }
 }
