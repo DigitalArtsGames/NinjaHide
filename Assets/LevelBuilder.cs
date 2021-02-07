@@ -12,7 +12,11 @@ public class LevelBuilder : MonoBehaviour
 
     public delegate void SetSplineDelegate();
     public event SetSplineDelegate setSplineEvent;
+    
+    public delegate void SpawnRoomDelegate();
+    public event SpawnRoomDelegate spawnRoomDelegate;
 
+    
     public void Update()
     {
         UpdateCurrentLevel();
@@ -23,12 +27,14 @@ public class LevelBuilder : MonoBehaviour
         if (currentLevel == null && levelManager.currentLevel != null)
         {
             currentLevel = levelManager.currentLevel;
+            spawnRoomDelegate();
             setSplineEvent();
         }
     }
 
     private void Start()
     {
+        spawnRoomDelegate += SpawnPlatforms;
         setSplineEvent += SetVariables;
     }
 
@@ -40,7 +46,7 @@ public class LevelBuilder : MonoBehaviour
 
     public void SetSplines()
     {
-        splineManager.splines = new BezierSpline[3];
+        splineManager.splines = new BezierSpline[currentLevel.rooms.Length];
         for (int i = 0; i < currentLevel.rooms.Length; i++)
             splineManager.splines[i] = currentLevel.rooms[i].playerSpline;
         splineManager.enabled = true;
@@ -49,8 +55,16 @@ public class LevelBuilder : MonoBehaviour
     public void SetPlayer()
     {
         playerSpawner.SetSplineManager(splineManager);
-        splineManager.playerSplineWalker = playerSpawner.GetSplineWalker();
         playerSpawner.SpawnPlayer();
+        splineManager.playerSplineWalker = playerSpawner.GetSplineWalker();
         playerSpawner.SetSplineWalkerActive(true);
+    }
+
+    public void SpawnPlatforms()
+    {
+        for (int i = 0; i < currentLevel.rooms.Length; i++)
+        {
+            currentLevel.rooms[i] = Instantiate(currentLevel.rooms[i]);
+        }
     }
 }
