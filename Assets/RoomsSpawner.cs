@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RoomsSpawner : MonoBehaviour
 {
@@ -28,9 +29,13 @@ public class RoomsSpawner : MonoBehaviour
     public void ClearRooms(Room[] rooms)
     {
         spawnedChunks.Clear();
-        for (int i = 0; i < rooms.Length; i++)
+        List<GameObject> sl = GameObject.FindGameObjectsWithTag("Room").ToList();
+        
+        rooms.ToList().Clear();
+        
+        for (int i = 0; i < sl.Count; i++)
         {
-            Destroy(rooms[i]);
+            Destroy(sl[i]);
         }
     }
 }

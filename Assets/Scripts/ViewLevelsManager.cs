@@ -92,6 +92,4 @@ public class ViewLevelsManager : MonoBehaviour
             LeanTween.cancel(GetLevelComponentByIndex((levelManager.currentLevelIndex + 1).ToString()));
         }
     }
-
-
 }

@@ -177,9 +177,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 6759090514577536815}
+  splineManager: {fileID: 0}
   mode: 1
   nextPointTreshhold: 0.01
-  splineManager: {fileID: 0}
   isNPC: 1
   enableLookForward: 1
   speed: 5
@@ -1957,9 +1957,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 907707480078494532}
+  splineManager: {fileID: 0}
   mode: 1
   nextPointTreshhold: 0.01
-  splineManager: {fileID: 0}
   isNPC: 1
   enableLookForward: 1
   speed: 5
@@ -2057,7 +2057,7 @@ GameObject:
   - component: {fileID: 7446265505067489667}
   m_Layer: 0
   m_Name: Room2
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
