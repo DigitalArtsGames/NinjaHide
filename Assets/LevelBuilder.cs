@@ -51,6 +51,7 @@ public class LevelBuilder : MonoBehaviour
     {
         SetSplines();
         SetPlayer();
+        setSplineEvent -= SetVariables;
     }
 
     public void SetSplines()
@@ -58,6 +59,8 @@ public class LevelBuilder : MonoBehaviour
         splineManager.splines = new BezierSpline[currentLevel.rooms.Length];
         for (int i = 0; i < currentLevel.rooms.Length; i++)
             splineManager.splines[i] = currentLevel.rooms[i].playerSpline;
+        //splineManager.currentSplineIndex = 0;
+        //splineManager.SetCurrentSplineByIndex(splineManager.currentSplineIndex);
         splineManager.enabled = true;
     }
 

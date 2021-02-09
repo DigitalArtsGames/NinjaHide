@@ -2867,7 +2867,6 @@ MonoBehaviour:
   starsManager: {fileID: 819689713}
   splineWalker: {fileID: 0}
   levelManager: {fileID: 349879064}
-  isRewardMenuOpened: 0
 --- !u!1 &962170798
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,17 +2972,6 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 349879064}
         m_MethodName: UnPauseGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 959726133}
-        m_MethodName: ClearBoolean
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

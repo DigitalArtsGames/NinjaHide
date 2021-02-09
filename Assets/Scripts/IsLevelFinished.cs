@@ -8,19 +8,27 @@ public class IsLevelFinished : MonoBehaviour
     public StarsManager starsManager;
     public SplineWalker splineWalker;
 
-    public LevelManager levelManager;
+    public delegate void IsFinischedSplineDelegate();
+    public event IsFinischedSplineDelegate FinishedSplineEvent;
 
-    [HideInInspector] public bool isRewardMenuOpened;
+    public LevelManager levelManager;
 
     void Start()
     {
-
+        FinishedSplineEvent += ManageRewardMenu;
     }
 
     void Update()
     {
+        CheckIsFinishedSpline();
+        print(levelManager.currentLevelIndex);
+        GetSplineWalker();
         //print(isRewardMenuOpened);
         //IsEnable();
+    }
+
+    public void GetSplineWalker()
+    {
         if (splineWalker == null)
         {
             if (GameObject.FindGameObjectWithTag("Player") != null)
@@ -28,29 +36,28 @@ public class IsLevelFinished : MonoBehaviour
                 splineWalker = GameObject.FindGameObjectWithTag("Player").GetComponent<SplineWalker>();
             }
         }
-        else
-        {
-            ManageRewardMenu();
-        }
     }
 
-    public void ClearBoolean()
+    public void CheckIsFinishedSpline()
     {
-        isRewardMenuOpened = false;
+        if (splineWalker != null && splineWalker.isFinished && FinishedSplineEvent != null)
+        {
+            FinishedSplineEvent();
+        }
     }
 
     void ManageRewardMenu()
     {
-        if(splineWalker.isFinished && !isRewardMenuOpened)
+        if (splineWalker != null)
         {
             rewardPanel.SetActive(true);
             //Player законченного уровня удаляется чтобы, быть созданным в следующем (т.к. Плейер является статиком)
-            Destroy(GameObject.FindGameObjectWithTag("Player"));
+            //Destroy(GameObject.FindGameObjectWithTag("Player"));
             Time.timeScale = 0f;
             ManageStars();
             levelManager.currentLevelIndex++;
-            isRewardMenuOpened = true;
         }
+        FinishedSplineEvent -= ManageRewardMenu;
     }
 
     void ManageStars()

@@ -16,6 +16,11 @@ public class SplineManager : MonoBehaviour
         playerSplineWalker.spline = splines[currentSplineIndex];
     }
 
+    public void SetCurrentSplineByIndex(int index)
+    {
+        playerSplineWalker.spline = splines[index];
+    }
+
     private void OnCurrentSplineEnded()
     {
         if (GetNextSpline())
