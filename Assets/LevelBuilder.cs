@@ -20,6 +20,7 @@ public class LevelBuilder : MonoBehaviour
 
     public void Update()
     {
+        //print(splineManager.currentSplineIndex);
         UpdateCurrentLevel();
     }
 
@@ -56,10 +57,16 @@ public class LevelBuilder : MonoBehaviour
 
     public void SetSplines()
     {
+        //splineManager = new SplineManager();
         splineManager.splines = new BezierSpline[currentLevel.rooms.Length];
         for (int i = 0; i < currentLevel.rooms.Length; i++)
             splineManager.splines[i] = currentLevel.rooms[i].playerSpline;
-        //splineManager.currentSplineIndex = 0;
+        //if (splineManager.currentSplineIndex != 0)
+        //{
+        //    splineManager.currentSplineIndex = -1;
+
+
+        //}
         //splineManager.SetCurrentSplineByIndex(splineManager.currentSplineIndex);
         splineManager.enabled = true;
     }
