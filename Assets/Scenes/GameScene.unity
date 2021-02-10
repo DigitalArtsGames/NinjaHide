@@ -871,9 +871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpawnPoint: {fileID: 828951865}
-  playerPrefab: {fileID: 8530836313449460432, guid: 4967961d4d0822e4182225a237f0caba,
-    type: 3}
-  player: {fileID: 0}
+  player: {fileID: 8530836313449460432, guid: 4967961d4d0822e4182225a237f0caba, type: 3}
 --- !u!114 &349879069
 MonoBehaviour:
   m_ObjectHideFlags: 0

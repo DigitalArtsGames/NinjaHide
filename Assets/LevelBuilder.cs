@@ -70,9 +70,12 @@ public class LevelBuilder : MonoBehaviour
 
     public void SetPlayer()
     {
-        Destroy(GameObject.FindGameObjectWithTag("Player"));
-        playerSpawner.SpawnPlayer(currentLevel.player);
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Player"));
+        }
         playerSpawner.SetSplineManager(splineManager);
+        playerSpawner.SpawnPlayer();
         splineManager.playerSplineWalker = playerSpawner.GetSplineWalker();
 
         splineManager.currentSplineIndex = 0;
