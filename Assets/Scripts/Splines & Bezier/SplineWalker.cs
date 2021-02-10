@@ -60,7 +60,7 @@ public class SplineWalker : MonoBehaviour
 
     private void Update()
     {
-       // Debug.Log(currentProgressIndex);
+        Debug.Log(currentProgressIndex);
         if(isDebug)
         {
             print("");
