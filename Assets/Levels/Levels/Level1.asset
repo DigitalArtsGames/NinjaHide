@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844cf91dc98b6114294914225c7076a4, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
+  player: {fileID: 8530836313449460432, guid: 4967961d4d0822e4182225a237f0caba, type: 3}
   name: Level1
   rooms:
   - {fileID: 7446265505067489667, guid: 5219368e9f1d37d42a3b9cda42296210, type: 3}

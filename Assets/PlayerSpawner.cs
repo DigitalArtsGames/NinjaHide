@@ -6,13 +6,14 @@ public class PlayerSpawner : MonoBehaviour
 {
     public Transform playerSpawnPoint;
 
+    public PlayerScript playerPrefab;
     public PlayerScript player;
 
-    public void SpawnPlayer()
+    public void SpawnPlayer(PlayerScript player)
     {
+        player = Instantiate(player);
         player.transform.position = playerSpawnPoint.position;
         player.runSpeed = 30;
-        player = Instantiate(player);
     }
 
     public SplineWalker GetSplineWalker()
