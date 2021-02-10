@@ -10,9 +10,9 @@ public class PlayerSpawner : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        player = Instantiate(player);
         player.transform.position = playerSpawnPoint.position;
         player.runSpeed = 30;
+        player = Instantiate(player);
     }
 
     public SplineWalker GetSplineWalker()
