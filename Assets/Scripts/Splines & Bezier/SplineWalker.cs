@@ -56,11 +56,11 @@ public class SplineWalker : MonoBehaviour
         //    CheckInstance();
         //}
         points = spline.bezierPoints;
-        Debug.Log(points.Count.ToString());
     }
 
     private void Update()
     {
+       // Debug.Log(currentProgressIndex);
         if(isDebug)
         {
             print("");

@@ -12,13 +12,14 @@ public class SplineManager : MonoBehaviour
     private void Start()
     {
         playerSplineWalker.onSplineEnded += OnCurrentSplineEnded;
+
         currentSplineIndex = 0;
         playerSplineWalker.spline = splines[currentSplineIndex];
     }
 
-    public void SetCurrentSplineByIndex(int index)
+    public void Update()
     {
-        playerSplineWalker.spline = splines[index];
+        print(currentSplineIndex);
     }
 
     private void OnCurrentSplineEnded()
@@ -30,7 +31,7 @@ public class SplineManager : MonoBehaviour
         }
         else
         {
-            //TODO: Level finish
+            //End
         }
     }
 
@@ -72,7 +73,7 @@ public class SplineManager : MonoBehaviour
                 points.Add(point);
             }
         }
-        
-        return points.IndexOf(position); 
+
+        return points.IndexOf(position);
     }
 }

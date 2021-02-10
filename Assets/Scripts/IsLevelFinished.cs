@@ -21,7 +21,7 @@ public class IsLevelFinished : MonoBehaviour
     void Update()
     {
         CheckIsFinishedSpline();
-        print(levelManager.currentLevelIndex);
+        //print(levelManager.currentLevelIndex);
         GetSplineWalker();
         //print(isRewardMenuOpened);
         //IsEnable();

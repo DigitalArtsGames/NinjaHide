@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,29 +58,30 @@ public class LevelBuilder : MonoBehaviour
 
     public void SetSplines()
     {
-        //splineManager = new SplineManager();
+        Destroy(splineManager);
+        splineManager = gameObject.AddComponent<SplineManager>();
+
         splineManager.splines = new BezierSpline[currentLevel.rooms.Length];
         for (int i = 0; i < currentLevel.rooms.Length; i++)
             splineManager.splines[i] = currentLevel.rooms[i].playerSpline;
-        //if (splineManager.currentSplineIndex != 0)
-        //{
-        //    splineManager.currentSplineIndex = -1;
-
-
-        //}
-        //splineManager.SetCurrentSplineByIndex(splineManager.currentSplineIndex);
         splineManager.enabled = true;
+
     }
 
     public void SetPlayer()
     {
-        playerSpawner.SetSplineManager(splineManager);
-        if(GameObject.FindGameObjectWithTag("Player") == null)
+        if (GameObject.FindGameObjectWithTag("Player") != null)
         {
-            playerSpawner.SpawnPlayer();
+            Destroy(GameObject.FindGameObjectWithTag("Player"));
         }
+        playerSpawner.SetSplineManager(splineManager);
+        playerSpawner.SpawnPlayer();
         splineManager.playerSplineWalker = playerSpawner.GetSplineWalker();
+
+        splineManager.currentSplineIndex = 0;
+
         playerSpawner.SetSplineWalkerActive(true);
+
     }
 
     public void SpawnPlatforms()
